@@ -1,0 +1,23 @@
+<article>
+  <div class="operation">
+    <input type="text" placeholder="请输入名称" [(ngModel)]="newName">
+    <button type="button" (click)="addProduct()">添加数据</button>
+  </div>
+  <table id="tb">
+    <tr>
+      <th>编号</th>
+      <th>名称</th>
+      <th>创建时间</th>
+      <th>操作</th>
+    </tr>
+    <tr *ngIf="!productList.length">
+      <td colspan="4">列表无数据</td>
+    </tr>
+    <tr *ngFor="let item of productList">
+      <td>{{ item.id }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.ctime | date:'yyyy-MM-dd' }}</td>
+      <td><a href="#" (click)="removeProduct(item.id)">删除</a></td>
+    </tr>
+  </table>
+</article>

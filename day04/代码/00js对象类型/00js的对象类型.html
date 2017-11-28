@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 构造函数/类
+    function Person(name) {
+        this.name = name;
+    }     
+
+    // 实例
+    let xiaomei = new Person('小美');
+    let xiaoming = new Person('小明');
+
+
+    // 问xiaomei是什么类型的对象? Person
+    // 问xiaoming是什么类型的对象? Person
+    // 问[]是什么类型的对象? Array
+    // 问new Array是什么类型的对象? Array
+    // !!!! 问 Person 自己是什么类型的对象? Function
+    // !!!! 问 Array 自己是什么类型的对象? Function
+    // !!!! 问 Function 自己是什么类型的对象? Function
+    // !!!! 问 Object 自己是什么类型的对象? Function
+
+    // 结论: 
+    // new xxx()得到实例类型为 xxx.
+    // xxx 自己是 Function类型.
+    // 如果有了class关键字, xxx自己是 Class类型
+    </script>
+</body>
+</html>

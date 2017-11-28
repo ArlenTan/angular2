@@ -1,0 +1,297 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>i5ting_ztree_toc:gulp</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="-">包管理工具</h1>
+<blockquote>
+<p>在进行项目开发中，我们经常需要&quot;引入&quot;、&quot;更新&quot;、或者&quot;删除&quot;一些由我们自己开发或第三方开发的独立文件模块与包。
+而且不同的项目对于同一个包经常会使用其不同的版本。传统的做法是开发人员根据自己的经验，维护一个本地目录，
+专门存储与管理与自己开发相关的各种常用包，以供将来使用。特点是这些包经常被copy来copy去，
+每一个包有新版本发布时，我们需要手动下载来不断扩充自己本地的包仓库。
+久而久之，随着包的增多，版本的增多，管理也越发烦琐，包管理工具就是专门解决这类问题的软件。</p>
+</blockquote>
+<h2 id="npm-node-package-manager">npm ==&gt; node package manager</h2>
+<p>npm是集成在node中的包管理工具，也就是说安装了node，就安装了npm。
+node是使用js开发服务端的一个开发环境或者平台，npm最初只负责维护这种服务端开发所需的js包。
+它通过配置文件(package.json)的方式来定义项目中的依赖，通过命名进行依赖下载、升级与移除。
+随着node的普及，使用npm作为包管理工具也越来越流行，npm也可以管理各种前端所需包了，比如jquery、bootstrap等。</p>
+<h4 id="-">安装</h4>
+<p>在node官网下载node安装包，然后在命令行工具中运行node -v 与 npm -v命令验证是否已经安装成功。
+通过在命令行中也可以输入node命令，进入node运行环境，这个环境有点类似与浏览器的控制台，可以运行js脚本。</p>
+<h4 id="cnpm">cnpm</h4>
+<p>cnpm使用的是淘宝网的镜像，在国内下载速度比较快。<a href="https://npm.taobao.org/">官网</a>
+npm install cnpm -g --registry=<a href="https://registry.npm.taobao.org">https://registry.npm.taobao.org</a></p>
+<h4 id="-">使用场景与演示</h4>
+<ul>
+<li>新建一个目录，做为新项目的根。</li>
+<li>进入该目录，运行cnpm init -y，检测目录下是否创建了一个package.json的文件。</li>
+<li>然后打开命令行工具，cd切入该目录，运行cnpm install --save jquery，npm install --save <em>*</em>。<ul>
+<li>加save参数后，npm就会把安装过的包记录在package.json的文件中dependencies属性中。</li>
+<li>默认安装的都是最新版本的包，可以通过@符号指定要安装包的版本。</li>
+</ul>
+</li>
+<li>查看目录中是否出现node_modules的目录，所有的包都被自动安装到该目录中。</li>
+<li>可以编写项目代码了，引入第三方包。</li>
+<li>将代码通过git仓库共享，但是不要让git管理node_modules目录。</li>
+<li>使用另外一个账户，clone该仓库，然后在根目录中，运行npm install，npm就会根据package中的依赖自动下载依赖包。</li>
+</ul>
+<h4 id="-">常用命令</h4>
+<ul>
+<li>官网[<a href="https://www.npmjs.com">https://www.npmjs.com</a>]</li>
+<li>npm init<ul>
+<li>初始化npm项目</li>
+<li>-y<ul>
+<li>可以省略中间自定义配置信息的环境，直接生成默认的package.json文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>npm install 包名[@指定版本号]<ul>
+<li>安装包</li>
+<li>--save<ul>
+<li>可以把安装信息记录在package.json文件中的dependencies属性</li>
+</ul>
+</li>
+<li>--save-dev<ul>
+<li>可以把安装信息记录在package.json文件中的devDependencies属性</li>
+</ul>
+</li>
+<li>-g <ul>
+<li>全局安装包，一些工具性软件会使用全局安装，安装后可以在任何路径执行该工具所提供的命令。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>npm uninstall 包名<ul>
+<li>卸载包</li>
+<li>--save<ul>
+<li>卸载后同步删除package.json文件中的dependencies记录</li>
+</ul>
+</li>
+<li>--save-dev<ul>
+<li>卸载后同步删除package.json文件中的devDependencies记录</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>npm list<ul>
+<li>查看当前目录下已安装的包</li>
+</ul>
+</li>
+<li>npm root<ul>
+<li>查看当前安装的包的路径</li>
+<li>-g<ul>
+<li>查看全局安装的包的路径</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="-">其他相关工具</h3>
+<ul>
+<li>bower<ul>
+<li>twitter推出的一款包管理工具。</li>
+<li>参考文档[<a href="http://www.zuojj.com/archives/533.html">http://www.zuojj.com/archives/533.html</a>]</li>
+</ul>
+</li>
+<li>yarn<ul>
+<li>facebook推出的包管理工具。</li>
+<li>参考文档[<a href="http://imweb.io/topic/581f6c0bf2e7e042172d618a">http://imweb.io/topic/581f6c0bf2e7e042172d618a</a>]</li>
+</ul>
+</li>
+</ul>
+<h1 id="browser-sync">browser-sync</h1>
+<blockquote>
+<p>一款与浏览器相关的开发工具，该工具会在本地搭建一台文件服务器，使用浏览器可以进行文件预览，它有两个特点：
+1、本地文件修改后浏览器会自动更新被修改的文件，让浏览器始终显示最新结果；
+2、多浏览器同时打开同一页面，在其中一个浏览器做的操作会同步到其他浏览器上，便于测试。</p>
+</blockquote>
+<h2 id="-">安装</h2>
+<p>npm install -g browser-sync</p>
+<h2 id="-">使用</h2>
+<ul>
+<li>使用命令行工具进入项目根路径</li>
+<li>运行browser-sync start --server --files &quot;<em>.</em>&quot;即可开启服务<ul>
+<li>--files参数用来指定哪些文件需要被监听，多个文件以逗号隔开，可以使用星号通配符。</li>
+</ul>
+</li>
+</ul>
+<h1 id="-">构建工具</h1>
+<blockquote>
+<p>可以自动执行一些项目构建与打包的操作，比如常见的代码合并、压缩、混淆等等。</p>
+</blockquote>
+<h2 id="gulp">gulp</h2>
+<p>一款基于流的项目构建工具，该工具特点是灵活，并且简单易用。</p>
+<h3 id="-">环境安装</h3>
+<p><a href="http://www.gulpjs.com">官网</a>
+<a href="http://www.gulpjs.com.cn">中文网</a>
+npm install -g gulp-cli</p>
+<h3 id="-api">常用api</h3>
+<ul>
+<li>task<ul>
+<li>创建任务</li>
+</ul>
+</li>
+<li>src<ul>
+<li>读取待处理的文件内容</li>
+</ul>
+</li>
+<li>dest<ul>
+<li>写入处理好的文件内容</li>
+</ul>
+</li>
+<li>run<ul>
+<li>执行指定的任务</li>
+</ul>
+</li>
+<li>watch<ul>
+<li>监听文件变化</li>
+</ul>
+</li>
+</ul>
+<h3 id="-">基本使用</h3>
+<ul>
+<li>使用命令行工具进入项目根路径</li>
+<li>运行npm install --save-dev gulp安装所需包</li>
+<li>创建一个gulpfiles.js文件用来编写任务脚本</li>
+</ul>
+<h3 id="-">插件使用</h3>
+<ul>
+<li>gulp-uglify<ul>
+<li>压缩混淆js代码</li>
+</ul>
+</li>
+<li>gulp-concat<ul>
+<li>合并文件</li>
+</ul>
+</li>
+<li>gulp-minify-css<ul>
+<li>压缩css代码</li>
+</ul>
+</li>
+<li>gulp-htmlmin<ul>
+<li>压缩html代码</li>
+</ul>
+</li>
+<li>gulp-less<ul>
+<li>less编译</li>
+</ul>
+</li>
+<li>gulp-rename<ul>
+<li>修改文件名</li>
+</ul>
+</li>
+<li>gulp-changed<ul>
+<li>过滤发生变化的文件</li>
+</ul>
+</li>
+</ul>
+<h3 id="-browsersync">引入browserSync</h3>
+<ul>
+<li>npm install --save-dev browser-sync安装</li>
+<li>像常规gulp插件那样引入</li>
+<li>调用init方法，通过server属性配置文件服务的根路径，files配置要监听的文件<pre><code>var browserSync = require(&#39;browser-sync&#39;);
+browserSync.init({
+  server: &#39;path&#39;,                         // 指定网站根目录
+  files: [filename1, filename2]  // 指定文件变化刷新浏览器
+});
+</code></pre></li>
+</ul>
+<h2 id="-">其他相关工具</h2>
+<ul>
+<li>grunt<ul>
+<li>比较老的一款自动化构建工具，gulp可以认为是对该款工具的改进</li>
+<li>参考文档[<a href="http://www.gruntjs.net/">http://www.gruntjs.net/</a>]</li>
+</ul>
+</li>
+<li>webpack<ul>
+<li>facebook推出的打包工具。</li>
+<li>参考文档[<a href="http://webpackdoc.com/index.html">http://webpackdoc.com/index.html</a>]</li>
+</ul>
+</li>
+</ul>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>

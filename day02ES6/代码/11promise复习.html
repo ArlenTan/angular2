@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 1 创建promise实例, 需要传入一个回调函数用来接收yes与no方法,
+    // yes与no名字可以任意起,反正第一个代表成功,第二个代表失败
+    let p = new Promise(function(success, error) {
+        setTimeout(function() {
+            success();
+        }, 5000);
+    });
+
+    // 2 我们可以通过实例的then方法添加成功与失败回调,
+    // 如果只传一个代表成功回调, 传两第一个为成功回调,第二个为失败回调,这是固定格式
+    p.then(
+      () => console.log('这事成了'),
+      () => console.log('这事黄了')
+    );
+    
+    p.then(
+      () => console.log('成功'),
+    );
+
+    p.catch(
+       () => console.log('失败'),
+    )
+    </script>
+</body>
+</html>

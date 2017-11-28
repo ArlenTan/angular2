@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.1.0.js"></script>
+    <style>
+    div {
+        width: 50px;
+        height: 50px;
+        background-color: skyblue;
+    }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+    new Promise(function(yes, no) {
+        $('div').animate({ width: 200 }, 1000, function() {
+            yes();
+        });
+    })
+    .then(function() {
+        return new Promise(function(yes, no) {
+            $('div').animate({ height: 200 }, 1000, function() {
+                yes();
+            });
+        });
+    })
+    .then(function() {
+        console.log('第二个动画执行完了');
+    });
+    </script>
+</body>
+</html>

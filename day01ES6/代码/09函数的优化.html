@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 获取一个任意区间的整数随机数,默认求0~100之间的随机数
+    // 以前定义参数默认值都是通过||运算符实现的
+    // function random(min, max) {
+    //     min = min || 1;
+    //     max = max || 100;
+    //     return  Math.floor(Math.random() * (max - min) + min);
+    // }
+    // console.log(random(2, 10));
+
+    // es6对方法的默认值提供了支持
+    function random(min = 1, max = 100) {
+        return  Math.floor(Math.random() * (max - min) + min);
+    }
+    console.log(random());
+    </script>
+</body>
+</html>

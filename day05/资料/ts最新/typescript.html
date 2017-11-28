@@ -1,0 +1,960 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>i5ting_ztree_toc:typescript</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="typescript">TypeScript</h1>
+<h2 id="-">简介</h2>
+<ul>
+<li>TypeScript是一种由微软开发的自由和<code>开源</code>的编程语言，它是JavaScript的一个<code>超集</code>，扩展了JavaScript的语法</li>
+<li>TypeScript如它的名字一样,最广为人知的特点是增加了类型系统,是一门<code>强类型</code>语言</li>
+<li>相比弱类型语言,丢失了灵活性,但在编写大型项目时会降低程序复杂度,在编译时发现问题,减少bug增强程序健壮性</li>
+</ul>
+<h4 id="-">特性</h4>
+<ul>
+<li>兼容ES6</li>
+<li>强类型</li>
+<li>枚举</li>
+<li>泛型</li>
+<li>类</li>
+<li>接口</li>
+<li>装饰器</li>
+</ul>
+<h4 id="-">资料</h4>
+<ul>
+<li><a href="http://www.typescriptlang.org/">官网</a></li>
+<li><a href="https://www.tslang.cn/index.html">中文网</a></li>
+</ul>
+<h4 id="-">使用说明</h4>
+<ul>
+<li>typeScript无法直接在<code>浏览器</code>当中运行,所以使用ts需要先安装对应的<code>编译器</code></li>
+<li>这个编译器的作用<code>类似</code>与我们之前使用<code>less</code>或<code>sass</code>编译器,它可以把ts转换为浏览器支持的标准语法</li>
+</ul>
+<h4 id="-">编译器安装</h4>
+<ul>
+<li>这里安装需要确保本地已经拥有<code>npm</code>包管理工具</li>
+</ul>
+<pre><code class="lang-bash"># 安装命令
+npm install -g typescript
+# 检测命令
+tsc -v
+</code></pre>
+<h4 id="-">编译器使用</h4>
+<ul>
+<li>创建holle.ts文件,typescript编写的脚本使用ts作为<code>后缀名</code>,这个与less/sass也一样</li>
+<li>运行编译命令: <code>tsc hello.ts</code>, 就会生成对应的es5js文件</li>
+</ul>
+<pre><code class="lang-typescript">class Person {
+  public name: string;
+  public age: number;
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+  speak(): void {
+    console.log(`${this.name}今年${this.age}岁了`);
+  }
+}
+let xiaoming = new Person(&#39;小明&#39;, 16);
+xiaoming.speak();
+</code></pre>
+<h4 id="-">配置文件使用</h4>
+<ul>
+<li>在使用编译ts脚本时, 有时候需要我们明确指定一些<code>编译规则</code></li>
+<li>比如要指定<code>编译后</code>的js为<code>es3</code>还是<code>es5</code>还是<code>es6</code>, 或者启用处于实现阶段的<code>新特性</code>, 比如装饰器</li>
+<li>都需要我们通过<code>tsconfig.json</code>配置文件来指定</li>
+</ul>
+<h1 id="-">类型</h1>
+<h2 id="-">为什么要类型</h2>
+<ul>
+<li>使用typeScript的类型定义可以让工具更早的帮我们分析出潜在bug与隐患</li>
+<li>下面通过一个小例子给大家演示类型的好处与弊端</li>
+</ul>
+<h4 id="javascript">javascript</h4>
+<ul>
+<li>假如我们做一个加法运算,求两数之和</li>
+<li>如果没有类型检测,我们很有可能会不小心和一个字符串相加,从而产生bug</li>
+</ul>
+<pre><code class="lang-javascript">let a = 10;
+let b = &#39;20&#39;;
+let c = 30;
+let sum = a + b + c; // 102030
+</code></pre>
+<h4 id="typescript">typescript</h4>
+<ul>
+<li>如果使用typescript编写上面的代码,然后进行编译</li>
+<li>你会发现详细的<code>错误提示</code>,这样显著<code>提升</code>了程序的健壮性</li>
+<li>当然缺点也是有的,即<code>失去</code>了js原本的简洁性,增加编码量</li>
+</ul>
+<pre><code class="lang-typescript">let a: number = 10;
+let b: string = &#39;20&#39;;
+let c: number = 30;
+let sum: number = a + b + c;
+</code></pre>
+<h2 id="-">基本类型</h2>
+<h4 id="number-">number类型</h4>
+<ul>
+<li>数字类型的变量的只能赋值为数字,<code>不区分</code>整数与<code>小数</code></li>
+</ul>
+<pre><code class="lang-typescript">let num: number = 10;
+num = 20;      // 正常
+num = &#39;abc&#39;;  // 报错
+</code></pre>
+<h4 id="string-">string类型</h4>
+<ul>
+<li>字符串类型的变量的只能赋值为字符或字符串</li>
+</ul>
+<pre><code class="lang-typescript">let str: string = &#39;abc&#39;;
+str = &#39;cba&#39;;    // 正常
+str = 123;     // 报错
+</code></pre>
+<h4 id="boolean-">boolean类型</h4>
+<ul>
+<li>字符串类型的变量的只能赋值为true或false</li>
+</ul>
+<pre><code class="lang-typescript">let bol: boolean = true;
+bol = false;    // 正常
+bol = 1;         // 报错
+</code></pre>
+<h4 id="undefined-">undefined类型</h4>
+<ul>
+<li>undefined类型的变量只能赋值为undefined</li>
+</ul>
+<pre><code class="lang-typescript">let undef: undefined;
+undef = undefined;   // 正常
+undef = &#39;&#39;;                 // 报错
+</code></pre>
+<h4 id="null-">null类型</h4>
+<ul>
+<li>null类型的变量只能赋值为null</li>
+</ul>
+<pre><code class="lang-typescript">let empty: null;
+empty = null;    // 正常
+empty = 0;        // 报错
+</code></pre>
+<h4 id="-">组合类型(也叫联合类型)</h4>
+<ul>
+<li>ts为了适当保留js开发的灵活性, 提供了组合类型, 让变量可以赋值为多种类型</li>
+</ul>
+<pre><code class="lang-typescript">let num: (number | string);
+num = 123;      // 正常
+num = &#39;456&#39;;    // 正常
+num = true;     // 报错
+</code></pre>
+<h4 id="any-">any类型</h4>
+<ul>
+<li>如果组合类型不能满足你, 那么可以选择any任意类型, 不过使用any后你就失去了ts的类型检查</li>
+</ul>
+<pre><code class="lang-typescript">let data: any;
+num = 123;      // 正常
+num = &#39;456&#39;;    // 正常
+num = true;     // 正常
+</code></pre>
+<h4 id="-">补充</h4>
+<ul>
+<li>默认情况下<code>undefined</code>与<code>null</code>可以赋值给其他类型, null又可以赋值给undefined类型</li>
+<li>如果想严谨一些, 可以配置编译选项<code>strictNullChecks</code>为true</li>
+</ul>
+<pre><code class="lang-typescript">let num: number;
+let str: string;
+let bol: boolean;
+
+num = undefine;  // 正常
+str = null;             // 正常
+bol = null;            // 正常
+</code></pre>
+<h2 id="-">数组类型</h2>
+<h4 id="-">基本类型数组</h4>
+<ul>
+<li>在基本数据类型后面添加[]即可表示对应类型的数组</li>
+</ul>
+<pre><code class="lang-typescript">let numArr: number[] = [1, 2, 3];
+let strArr: string[] = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+let bolArr: boolean[] = [true, false];
+let undifArr: undefined[] = [undefined];
+let nulArr: null[] = [null];
+</code></pre>
+<h4 id="-">组合类型数组</h4>
+<pre><code class="lang-typescript">let arr1: (number|string)[] = [1, 2, &#39;abc&#39;, &#39;cba&#39;, 4, 5];
+let arr2: (number|boolean)[] = [1, 2, true, false];
+</code></pre>
+<h4 id="-">任意类型数组</h4>
+<pre><code class="lang-typescript">let anyArr: any[] = [1, &#39;abc&#39;, true, null, undefined];
+</code></pre>
+<h2 id="-">函数</h2>
+<h4 id="-">参数与返回值类型</h4>
+<ul>
+<li>声明形参类型的语法与变量一样,都是 <code>变量名:类型</code></li>
+<li>声明返回值类型的语法需要写在小括号的后面 <code>():类型</code></li>
+</ul>
+<pre><code class="lang-typescript">function sum(a: number, b: number): number {
+    return a + b;
+}
+
+sum(10, 20);  // 正常
+sum(&#39;a&#39;, 30);  // 报错
+</code></pre>
+<h4 id="-">参数个数</h4>
+<ul>
+<li>在typescript中会<code>严格</code>检查函数<code>调用</code>时传参的个数是否符合要求</li>
+</ul>
+<pre><code class="lang-typescript">function sum(a: number, b: number): number  {
+    return a + b;
+}
+
+sum(10, 20);       // 正常
+sum(5);              // 报错
+sum(5, 8, 10);     // 报错
+</code></pre>
+<h4 id="-">可选参数</h4>
+<ul>
+<li>如果某些参数是可选的, 可以使用<code>?</code>号进行标识, 也可采用<code>es6</code>的默认值语法</li>
+<li>注意: 可选参数务必定义在形参的<code>最后</code></li>
+</ul>
+<pre><code class="lang-typescript">function sum(a: number, b?: number, c: number = 50): number  {
+    return b? a + b: a;
+}
+
+sum(5);                   // 正常
+sum(5, 8, 10);          // 正常
+sum(5, 8, 10, 20);     // 报错
+</code></pre>
+<h4 id="-">任意参数与类型</h4>
+<ul>
+<li>可以通过es6语法接收任意多参数, 并通过数组方式定义参数的类型</li>
+</ul>
+<pre><code class="lang-typescript">function sum(...arg: number[]): number {
+  return arg.reduce((sum, v) =&gt; {
+    return sum + v;
+  }, 0);
+}
+
+sum(1, 2, 3);              // 正常
+sum(1, 2, 3, 4, 5);       // 正常
+sum(1, 2, 3, 4, &#39;abc&#39;);  // 报错
+</code></pre>
+<h4 id="-">无返回值</h4>
+<ul>
+<li>如果函数<code>没有</code>返回值, 那么请用<code>void</code>来标识</li>
+</ul>
+<pre><code class="lang-typescript">function log(msg): void {
+    console.log(msg);
+    return 10;                // 报错
+}
+</code></pre>
+<h4 id="-">异常</h4>
+<ul>
+<li>如果某些函数内部一定会<code>抛出错误</code>, 或者永远不会执行完毕, 请用<code>never</code>来表示</li>
+</ul>
+<pre><code class="lang-typescript">function error(msg: string): never {
+  msg = `您的程序运行出现异常, 错误信息为: ${msg}`;
+    throw new Error(msg);
+}
+</code></pre>
+<h2 id="-">枚举类型</h2>
+<ul>
+<li>枚举是typeScript扩展的一种<code>数据类型</code>, 这种类型可以用来存储<code>有限</code>且不可变的数据</li>
+</ul>
+<h4 id="-">语法与特性</h4>
+<ul>
+<li>枚举类型需要使用新的关键字<code>enum</code>来定义, 语法有点类似与类或接口, 但是作用完全不同</li>
+<li>枚举类型也算一种对象类型, 定义时<code>首字母</code>最好大写</li>
+<li>枚举中元素的<code>key</code>必须是字符串, <code>value</code>可以是字符串或数字</li>
+</ul>
+<pre><code class="lang-typescript">enum Gender { man = &#39;男&#39;, woman = &#39;女&#39; };
+enum Gender2 { man, woman };     // 如果不赋值, 那么会从0开始给他们赋默认值
+
+// 通过key取值
+console.log(Gender.man);              // 男
+console.log(Gender2.man);            // 0
+
+// 报错, 值不可变
+Gender.man = &#39;公&#39;;
+Gender2.man = 10;
+</code></pre>
+<h4 id="-">特殊特性</h4>
+<ul>
+<li>如果元素的value为数字, 那么可以反向获取key</li>
+</ul>
+<pre><code class="lang-typescript">// 默认的数字值从0开始, 这里我们也自己指定
+enum Directions  { 左 = 37, 上 = 38, 右 = 39, 下 = 40 };
+
+console.log(Directions[37]);            // 左
+console.log(Directions[38]);            // 上
+</code></pre>
+<pre><code class="lang-typescript">// 指定value为字符串
+enum Directions  { 左 = &#39;left&#39;, 上 = &#39;top&#39;, 右 = &#39;right&#39;, 下 = &#39;bottom&#39; };
+
+console.log(Directions.left);           // 报错, 不能通过字符串反向获取key
+console.log(Directions.top);           // 报错, 不能通过字符串反向获取key
+</code></pre>
+<h2 id="-">作用</h2>
+<h4 id="-1-">作用1 - 限制变量的赋值范围</h4>
+<ul>
+<li>假如我有一个color变量, 要求这个变量的值只能为&#39;红&#39;, &#39;黄&#39;,&#39; 蓝&#39;, &#39;绿&#39;, &#39;紫&#39;, 不能为其他</li>
+<li>像这样的需求我们可以使用枚举来解决</li>
+</ul>
+<pre><code class="lang-javascript">// 先把有限的值定义成枚举类型, 并给每个值取个名字
+enum Color {red = &#39;红&#39;, yellow = &#39;黄&#39;, blue = &#39;蓝&#39;, green = &#39;绿&#39;, purple = &#39;紫&#39;};
+
+// 然后定义一个变量, 指明这个变量只能存储Color里面的东西
+let color: Color = Color.red;
+
+color = Color.yellow;          // 正常
+color = &#39;白&#39;;                        // 报错
+color = &#39;黑&#39;;                        // 报错
+color = &#39;紫&#39;;                        // 报错, 必须用Color给其赋值
+</code></pre>
+<h4 id="-2-const-">作用2 - 定义固定数据, 拟补const不足</h4>
+<ul>
+<li>我们知道enum定义的数据内容是不可变的, 它的表现与<code>const</code>不同</li>
+<li>如果使用const变量保存一个对象, 那么就不能给<code>变量</code>赋新值, 但是却可以给变量存储的对象的<code>属性</code>赋新值</li>
+<li>所以要是有一些固定不变的数据, 比如: 周一到周日, 中国所有省, 四季, 人种等等, 我们都可以使用enum来定义</li>
+</ul>
+<pre><code class="lang-typescript">// 他们的默认值为0, 1, 2, 3
+enum Season { &#39;春&#39;, &#39;夏&#39;, &#39;秋&#39;, &#39;冬&#39; };
+
+// 枚举有个特性, 如果值为数字, 可以反向取值, 利用这个特性我们可以遍历取出所有值
+for(let i = 0; i &lt; 2; i++) {
+    console.log(Gender[i]);
+}
+</code></pre>
+<h2 id="-">面向对象</h2>
+<h4 id="-">字面量对象</h4>
+<ul>
+<li>在typeScript中,无法给对象<code>动态</code>添加属性,必须<code>预先</code>定义</li>
+</ul>
+<pre><code class="lang-typescript">let obj = { a: 1 };
+obj.a = 10;   // 正常
+obj.b = 20;   // 报错
+</code></pre>
+<h4 id="class-">class中的实例属性</h4>
+<ul>
+<li>ts不允许在<code>构造器</code>中动态给实例添加属性, 必须要先进行<code>声明</code></li>
+</ul>
+<pre><code class="lang-typescript">class Person {
+
+    name: string;         // 定义实例属性name及类型
+    age: number = 0;  // 定义实例属性时可以赋一个默认值
+
+    constructor(name: string, age: number, gender: string) {
+        this.name = name;        // 正常
+        this.age = age;              // 正常
+        this.gender = gender;    // 报错,没有预先定义,无法动态添加属性
+    }
+
+}
+</code></pre>
+<h4 id="class-">class中的实例属性 - 简写版</h4>
+<ul>
+<li>在进行面向对象开发时, 会经常在new的时候传值, 上面那样预先定义再赋值的写法虽严禁但实在过于重复</li>
+<li>所以ts提供了一种<code>简写</code>形式, 即在构造器形参上面添加<code>权限修饰符</code>, 加上后ts就知道这个形参是要被赋给实例的</li>
+</ul>
+<pre><code class="lang-typescript">class Person {
+  // 形参加上权限修饰符之后, 不用提前声明, 也不用写this.xxx = xxx这样的代码了, ts会自动添加
+    constructor(public name: string, public age: number, public gender: string) {}
+}
+
+let xiaohong = new Person(&#39;小红&#39;, 12, &#39;女&#39;);
+console.log(xiaohong.age);   // 12
+</code></pre>
+<h4 id="-">静态成员</h4>
+<ul>
+<li>在es6中,<code>只允许</code>使用static关键字定义静态方法,不能定义<code>静态属性</code></li>
+<li>但是在ts中没有这个限制, 只要前面<code>加上</code>static关键字就是静态成员, 否则就是实例成员</li>
+</ul>
+<pre><code class="lang-typescript">class Person {
+    static maxAge: number = 250;
+    static getTotal() {
+        return &#39;70亿&#39;;
+    }
+}
+
+// 静态成员通过类名调用
+Person.maxAge;            // 250
+Person.getTotal();          // &#39;70亿&#39;
+</code></pre>
+<h2 id="-">访问权限修饰符</h2>
+<ul>
+<li>访问权限修饰符的作用是<code>限定</code>属性的可<code>访问</code>范围</li>
+<li>访问修饰符与主流面向对象语言一样, 有三个: <code>public private protected</code></li>
+</ul>
+<h4 id="public">public</h4>
+<ul>
+<li>只有public权限的属性或方法才可以在<code>类外部</code>使用</li>
+<li>如果不明确指明权限的话, 那么<code>默认</code>就是public</li>
+</ul>
+<pre><code class="lang-typescript">class Person {
+    public name: string;    // 手动赋予public权限
+    age: number;              // 默认赋予public权限
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public say(): void {
+        console.log(`我是${this.name}`);
+    }
+}
+
+let p = new Person(&#39;小虎&#39;, 20);
+p.say();        // 我是小虎
+p.name       // 小虎
+p.age          // 20
+</code></pre>
+<h4 id="private">private</h4>
+<ul>
+<li>只供<code>类内部</code>使用的属性或方法,可以通过private关键字来修饰</li>
+</ul>
+<pre><code class="lang-typescript">class Person {
+    public name: string;
+    private age: number;
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public say(): void {
+        console.log(`我是${this.name},我${this.age}岁了`);
+    }
+}
+
+let p = new Person(&#39;小虎&#39;, 20);
+p.say();        // 我是小虎,我20岁了
+p.name       // 小虎
+p.age          // 报错,age是私有属性,只能在类的内部使用
+</code></pre>
+<h4 id="protected">protected</h4>
+<ul>
+<li>只供<code>类</code>或<code>子类</code>内部使用的属性或方法,可以通过protected关键字来修饰</li>
+</ul>
+<pre><code class="lang-typescript">class Animal {
+    protected name: string;
+    private age: number;
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+class Person extends Animal {
+    public sayName(): void {
+        console.log(`我是${this.name}`);  // 正常, 父中protected属性在父子类中均可使用
+    }
+    public sayAge(): void {
+        console.log(`我${this.age}岁了`);  // 报错, 父中private属性只能在父中使用
+    }
+}
+
+let p = new Person(&#39;小芳&#39;, 18);
+p.name         // 报错, protected属性不能在外面使用
+p.age            // 报错, private属性不能在外面使用
+</code></pre>
+<h2 id="-">读写修饰符</h2>
+<h4 id="readonly">readonly</h4>
+<ul>
+<li>ts提供了<code>只读</code>属性修饰符readonly, 属性一旦赋值便不可修改</li>
+<li>注意: 只读修饰符<code>不能</code>作用与<code>方法</code></li>
+</ul>
+<pre><code class="lang-typescript">class Person {
+    readonly name: string;
+    readonly age: number;
+
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+
+  // 报错, 不能使用readonly修饰方法
+    readonly say() {
+        console.log(&#39;说一嘴&#39;);
+    }
+}
+
+let p = new Person(&#39;小美&#39;, 20);
+p.name;                    // 小美
+p.name = &#39;大美&#39;;       // 报错, name是只读属性
+</code></pre>
+<h4 id="-">联合使用</h4>
+<ul>
+<li>读写修饰符允许<code>配合</code>一个权限修饰符共同使用, 但权限修饰符<code>必须</code>写在前面</li>
+</ul>
+<pre><code class="lang-typescript">class Person {
+    public readonly name: string;
+    private readonly age: number;
+    private protected grender: string;
+}
+</code></pre>
+<h2 id="-">接口</h2>
+<ul>
+<li>接口就是契约, 可用来限定对象应该由哪些属性或方法构成</li>
+<li>定义接口需要使用<code>interface</code>关键字</li>
+</ul>
+<h4 id="-">作用</h4>
+<ul>
+<li>在编写大型项目时, 我们可能需要先<code>设计</code>一下这个项目的构成, 比如需要那些模块, 实现那些类, 每个类有那些功能</li>
+<li>那么在设计的过程中我们可以使用<code>代码</code>进行记录与描述, 这些<code>简单</code>的代码就是接口</li>
+<li>接口不会实现任何<code>具体</code>的业务逻辑, 它的<code>作用</code>就是用来规范或提醒将来如何实现</li>
+<li>使用接口还有很多好处, 比如下面这个人使用接口后的评价
+<img src="./imgs/接口好处.png" alt="接口好处"></li>
+</ul>
+<h4 id="-">语法与特性</h4>
+<pre><code>interface Person {
+    name: string;
+    age: number;
+    gender: string = &#39;男&#39;;              // 报错, 接口里的属性不能赋值
+    say(): void;
+    study(): void;
+    run(): void{ console.log(&#39;跑&#39;) }  // 报错, 接口里的方法不能实现
+}
+</code></pre><h2 id="-">使用范例</h2>
+<h4 id="-">用接口约束类</h4>
+<ul>
+<li>我们先使用<code>interface</code>设计一个接口, 里面<code>描述</code>某种类应该有的属性与方法, 然后我们再根据接口去实现对应的类</li>
+<li>同时为了让<code>工具</code>能够自动帮我们分析实现的对不对,有没有缺失, 可以在类上使用<code>implements</code>关键接口</li>
+</ul>
+<pre><code class="lang-typescript">// 使用接口定义Person类应该有的属性与方法
+interface PersonInterface {
+  name: string;
+  age: number;
+  eat(food: string): void;
+}
+
+// 当真正编写Person类时, 使用implements关联对应的接口, 以约束我们的实现
+class CNPerson implements PersonInterface {
+
+        // 如果不添加name或age就会报错, 多添加不会报错
+    constructor(public name: string, public age: number, public gender: string) {}
+
+    // 不实现这个方法就会报错
+    eat(food: string): void {
+        console.log(&#39;我要吃${food}&#39;);
+    }
+
+    // 多实现不会报错
+    say(): void {
+        console.log(`我是${this.name}`);
+    }
+}
+</code></pre>
+<h4 id="-">用接口约束字面量对象</h4>
+<ul>
+<li>我们在定义<code>变量</code>时, 如果想限制这个变量可存储的<code>对象</code>具体结构, 那么变量的类型可以为某个<code>接口</code>的名称</li>
+<li>注意: 接口类型的变量, 必须<code>严格</code>按照接口的定义<code>数据结构</code>进行赋值,多了少了都不行</li>
+</ul>
+<pre><code class="lang-typescript">interface data {
+    a: number,
+    b: string
+};
+
+let obj: data = { a: 10, b: &#39;abc&#39; };         // 正常, 这个对象符合接口data定义的数据结构
+let obj2: data = { a: 10 };                    // 报错, 缺失b属性
+let obj3: data = { a: 10, b: true };        // 报错, b属性类型不对
+let obj3: data = { a: 10, b: true, c:1 };  // 报错, 多了c属性
+</code></pre>
+<h2 id="-">泛型</h2>
+<h4 id="-">为什么要泛型</h4>
+<ul>
+<li>假设有一个方法,可以传入任意多个<code>数字</code>,组成数组并返回</li>
+</ul>
+<pre><code class="lang-typescript">function createArray(...arg: number[]): number[] {
+    return arg;
+}
+</code></pre>
+<ul>
+<li>假设我们现在要改造这个函数,让它可以实现更多需求,变得更通用</li>
+<li>改造需求是:传入的参数可以是数字,也可以是字符串等其他<code>任意</code>类型</li>
+<li>但是必须保证所有的参数类型<code>一致</code>,同时返回该类型构成的数组</li>
+</ul>
+<pre><code class="lang-typescript">function createArray(...arg: any[]): any[] {
+    return arg;
+}
+</code></pre>
+<ul>
+<li>你可能会像上面那样写,但显然,这不能保证参数的类型是一致的</li>
+</ul>
+<h4 id="-">使用泛型</h4>
+<ul>
+<li>要解决上面的问题,泛型就派上用场了</li>
+<li>泛型的使用方式是在函数的后面使用<code>&lt;&gt;</code>定义一个变量</li>
+<li>这个变量的值由<code>调用者</code>传入一个描述<code>数据类型</code>的字符串, 比如string/number/boolean等</li>
+<li>然后我们就可以使用这个变量来<code>约束</code>参数与返回值的类型</li>
+</ul>
+<pre><code class="lang-typescript">function createArray&lt;Type&gt;(...arg: Type[]): Type[] {
+    return arg;
+}
+
+let arr1: number = createArray&lt;number&gt;(10, 20, 30);    // 正确
+let arr2: string = createArray&lt;string&gt;(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)            // 正确
+let arr3: any = createArray&lt;string&gt;(&#39;a&#39;, &#39;b&#39;, 10)               // 报错
+</code></pre>
+<h4 id="-">泛型在类中的应用</h4>
+<ul>
+<li>泛型除了可以应用在函数外, 还可以应用在类上</li>
+<li>看下面的代码实现了一个缓存数据的类, 目前这个类对于缓存的数据没有要求</li>
+</ul>
+<pre><code class="lang-typescript">class Cache {
+
+    private data = {};
+
+    set(key: string, val: any) {
+        this.data[key] = val;
+    }
+
+    get(key: string): any {
+        return this.data[key];
+    }
+}
+
+let c: Cache = new Cache();
+c.set(&#39;小红&#39;, 10);
+c.get(&#39;小红&#39;);
+</code></pre>
+<ul>
+<li>假设现在需求变了, 要求每个缓存<code>只能</code>存储同一种类型的数据,</li>
+<li>那可能你需要定义<code>多个</code>缓存类才能满足需求, 看下面的实现</li>
+</ul>
+<pre><code class="lang-typescript">class CacheNumber {
+
+    private data = {};
+
+    set(key: string, val: number) {
+        this.data[key] = val;
+    }
+
+    get(key: string): number {
+        return this.data[key];
+    }
+}
+
+class CacheString {
+
+    private data = {};
+
+    set(key: string, val: string) {
+        this.data[key] = val;
+    }
+
+    get(key: string): string {
+        return this.data[key];
+    }
+}
+</code></pre>
+<ul>
+<li>有了泛型后, 就不用向上面那样大费周折了, 而且支持的类型更多, 理论上无限</li>
+</ul>
+<pre><code class="lang-typescript">class Cache&lt;Type&gt; {
+
+    private data = {};
+
+    set(key: string, val: Type) {
+        this.data[key] = val;
+    }
+
+    get(key: string): Type {
+        return this.data[key];
+    }
+}
+
+let c = new Cache&lt;string&gt;();
+c.set(&#39;小红&#39;, 10);     // 报错, val必须为字符串
+c.set(&#39;小红&#39;, &#39;10&#39;);    // 正常
+
+// 如果变量在定义便赋了值, 那么ts会自动推导变量的类型
+// 如果要手动写类型的话, 必须声明一致的泛型类型, 看下面例子
+let c2: Cache = new Cache&lt;number&gt;();                     // 报错
+let c3: Cache&lt;string&gt; = new Cache&lt;number&gt;();       // 报错
+let c3: Cache&lt;number&gt; = new Cache&lt;number&gt;();    // 正常
+</code></pre>
+<h4 id="-">使用泛型定义数组</h4>
+<ul>
+<li>之前我们在定义数组类型时是这样写的</li>
+</ul>
+<pre><code class="lang-typescript">let arr: number[] = [];
+arr.push(10);        // 正常
+arr.push(&#39;abx&#39;);    // 报错
+</code></pre>
+<ul>
+<li>学习了泛型之后还可以这样写</li>
+</ul>
+<pre><code class="lang-typescript">let arr: Array&lt;number&gt; = [];
+arr.push(10);        // 正常
+arr.push(&#39;abx&#39;);    // 报错
+</code></pre>
+<h1 id="-">装饰器</h1>
+<h2 id="-">简介</h2>
+<ul>
+<li>装饰器的作用主要是用来修饰<code>类</code>行为的, 这就像它的名字一样, 给别人来个锦上添花</li>
+<li>这个特性同样来自其他语言, 目前ECMA也有一个<code>提案</code>要把这项功能融入js当中, 未来有很大可能被正式采纳</li>
+</ul>
+<h4 id="-">编译说明</h4>
+<ul>
+<li>由于装饰器<code>还没有</code>正式成为ECMA标准, 未来可能还会有些许变化</li>
+<li>所以要在ts中使用它需要添加<code>experimentalDecorators</code>编译选项</li>
+<li>同时还要指明编译后的<code>ES版</code>本大于等于5, 因为装饰器会用到<code>ES5</code>中的特性, 否则转换后的代码会有问题</li>
+<li>使用编译命令: <code>tsc 文件名.ts --target ES5 --experimentalDecorators</code></li>
+<li>或者先写好配置文件, 然后直接运行<code>tsc</code>命令, 根据配置文件进行编译</li>
+</ul>
+<h4 id="-">使用说明</h4>
+<ul>
+<li>目前装饰器<code>只能</code>应用与类/实例与静态成员身上</li>
+<li>应用在<code>类</code>上, 装饰器函数可以自动接收一个参数: 类</li>
+<li>应用在<code>静态方法</code>上, 装饰器函数可以自动接收三个参数: 类 属性名 描述对象</li>
+<li>应用在<code>静态属性</code>上, 装饰器函数可以自动接收两个参数: 类 属性名</li>
+<li>应用在<code>实例方法</code>上, 装饰器函数可以自动接收三个参数: 原型 属性名 描述对象</li>
+<li>应用在<code>实例属性</code>上, 装饰器函数可以自动接收两个参数: 原型 属性名</li>
+</ul>
+<h2 id="-">初探装饰器</h2>
+<ul>
+<li>装饰器本质就是一个<code>函数</code>,内部封装了一些用以修饰别人的<code>公共</code>处理逻辑,</li>
+<li>装饰器的<code>语法</code>就是在要修饰的东西<code>前面</code>使用<code>@</code>符号调用函数</li>
+</ul>
+<h4 id="-">装饰器语法</h4>
+<pre><code class="lang-typescript">function decoratorFn(...arg: any[]) {
+        console.log(&#39;我执行了, 并且我自动收到了下面的东西!&#39;);
+        console.log(arg);
+}
+
+// 写法1: 在类的前一行使用装饰器
+@decoratorFn
+class Test {}
+
+// 写法2: 在类前面的使用装饰器
+@decoratorFn class Test2 {}
+</code></pre>
+<h4 id="-">装饰属性与方法</h4>
+<pre><code class="lang-typescript">function decoratorFn(...arg: any[]) {
+        console.log(&#39;我执行了, 并且我自动收到了下面的东西!&#39;);
+        console.log(arg);
+}
+
+class Test {
+    @decoratorFn
+    static staticProp: string = &#39;静态属性&#39;;
+
+    @decoratorFn
+    static staticFn(): void {
+        console.log(&#39;静态方法&#39;);
+    }
+
+    @decoratorFn
+    instanceProp: string = &#39;实例属性&#39;;
+
+    @decoratorFn
+    instanceFn(): void {
+        console.log(&#39;实例方法&#39;);
+    }
+}
+</code></pre>
+<h2 id="-">装饰器作用</h2>
+<h4 id="-">装饰类</h4>
+<ul>
+<li>在类上使用装饰器, 装饰函数会自动接收到<code>一个</code>值: 被装饰的类</li>
+<li>拿到类后我们可以修改类的一些东西, 比如静态属性</li>
+</ul>
+<pre><code class="lang-typescript">// 增强类的静态成员
+function addFeature(target: any): void {
+  let newFeature = [&#39;拉&#39;, &#39;撒&#39;, &#39;睡&#39;];
+  if(target.feature) {
+      target.feature.push(...newFeature);
+  }
+}
+
+@addFeature
+class Person {
+    static feature: string[] = [&#39;吃&#39;, &#39;喝&#39;];
+}
+
+@addFeature
+class Cat {
+    static feature: string[] = [&#39;吃&#39;, &#39;喝&#39;];
+}
+
+console.log(Person.feature);    // [&#39;吃&#39;, &#39;喝&#39;, &#39;拉&#39;, &#39;撒&#39;, &#39;睡&#39;]
+console.log(Cat.feature);         // [&#39;吃&#39;, &#39;喝&#39;, &#39;拉&#39;, &#39;撒&#39;, &#39;睡&#39;]
+</code></pre>
+<h4 id="-">装饰器优点</h4>
+<ul>
+<li>装饰器的好处是在无需做任何<code>变动</code>的情况下实现了功能<code>增强</code></li>
+<li>装饰器也是复用的另外一种形式, 装饰器的特点是<code>目的性</code>很强, 在多人项目中很容易让别人<code>看懂</code>你的意图</li>
+<li>下面是不用装饰器的代码, 仍然可以实现<code>相同</code>的功能, 但无论是代码还是语义, 都不如装饰器优雅</li>
+</ul>
+<pre><code class="lang-typescript">function feature(target: any): void {
+  target.feature = [&#39;吃&#39;, &#39;喝&#39;, &#39;拉&#39;, &#39;撒&#39;, &#39;睡&#39;];
+}
+
+class Person {}
+class Dog {}
+
+// 实现了和装饰器同样的效果, 但是写起来明显不如装饰器语法来的简单
+// 同时语义上无法直观的看出调用feature方法是为了增强类, 谁知道feature内部干了什么
+feature(Person);
+feature(Dog);
+</code></pre>
+<h4 id="-">装饰方法</h4>
+<ul>
+<li>在方法上使用装饰器, 装饰函数会自动接收到<code>三个</code>值: (类|原型) 方法名 描述对象</li>
+<li><code>静态</code>方法第一个参数为类, <code>实例</code>方法第一个参数为原型</li>
+<li>拿到这些值后, 我们可以修改或者替换方法定义</li>
+</ul>
+<pre><code class="lang-typescript">function executeTime(target: any, name: string, msg: any): void {
+  // 缓存旧方法
+  let oldFn = msg.value;
+
+  // 赋值新方法, 新方法对旧方法进行了功能扩展
+  msg.value = function(...arg: any[]) {
+    let date = Date.now();
+    oldFn.call(this, ...arg);
+      console.log(`执行了: ${Date.now() - date} 毫秒`);
+  }
+}
+
+class Person {
+
+    @executeTime
+  static getTotal(): void {
+    console.log(&#39;70亿&#39;);
+  }
+
+  @executeTime
+  study(time: number): void {
+      for(let i =0; i &lt; time; i++) {
+          console.log(&#39;学习&#39;);
+      }
+  }
+}
+
+new Person().study(1000);
+Person.getTotal()
+</code></pre>
+<h2 id="-">装饰器工厂 - 可传参的装饰器</h2>
+<ul>
+<li>装饰器工厂的写法就是函数<code>返回</code>另一个函数, 这种写法好处是可以接收<code>用户</code>传递的参数</li>
+<li>这样我们就可以根据用户的参数进行<code>个性化</code>定制</li>
+</ul>
+<h4 id="-">语法</h4>
+<pre><code class="lang-typescript">// 外层的函数可收到用户传递的参数
+function test(param: string): any {
+  console.log(param);
+
+  // 内层函数可收到装饰器自动传递的参数, 说白了就是以前的装饰器函数
+    return function(target: any): void {
+      console.log(target);
+    }
+}
+
+// 这里的装饰器语法相比以前多了小括号调用与传参
+@test(&#39;可以传参?&#39;)
+class Person {}
+</code></pre>
+<h4 id="-">范例</h4>
+<pre><code class="lang-typescript">function feature(level: string): any {
+    return function(target: any): void {
+      // 高等生物
+      if(level === &#39;高等&#39;) {
+        target.feature.push(&#39;玩&#39;, &#39;乐&#39;);
+      }
+      // 低等生物
+      else if(level === &#39;低等&#39;) {
+        target.feature.push(&#39;拉&#39;, &#39;撒&#39;);
+      }
+    }
+}
+
+@feature(&#39;高等&#39;)
+class Person {
+    static feature: string[] = [&#39;吃&#39;, &#39;喝&#39;];
+}
+
+@feature(&#39;低等&#39;)
+class Dog {
+    static feature: string[] = [&#39;吃&#39;, &#39;喝&#39;];
+}
+</code></pre>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function getTimeout(time) {
+        return new Promise(function(yes, no) {
+           setTimeout(() => {
+              yes('传哥');
+           }, time);
+        });
+    }
+
+    let p = getTimeout(5000); // 得到promise实例
+
+    p.then(function(data){
+        console.log(`第一个计时器回调执行，开启第二个____${data}`);
+        return getTimeout(3000);
+    })
+
+    .then(function(data) {
+        console.log(`第二个计时器回调执行，开启第三个____${data}`);
+        return getTimeout(1000);
+    })
+
+    .then(function() {
+        console.log('第三个计时器回调执行, 完毕');
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+article {
+    padding: 10px 20px;
+}
+.operation {
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 18px;
+}
+.operation input {
+    padding: 5px;
+    border: 1px solid deepskyblue;
+}
+.operation button {
+    border-radius: 3px;
+    background-color: deepskyblue;
+}
+.search {
+    text-align: left;
+    line-height: 20px;
+    font-size: 18px;
+}
+.search input {
+    padding: 5px;
+    border: 1px solid deeppink;
+}

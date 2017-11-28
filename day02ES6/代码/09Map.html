@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 传统的对象,不管你使用什么方式添加key,最终都会转为字符串
+    // let a = {};
+    // let obj = { 
+    //     document: 100,
+    //     [a]: 200
+    // };
+    // console.log(obj);  // { document: 100, [object Object]: 200 }
+    
+    // // 测试key是不是字符串
+    // for(let key in obj) {
+    //     console.log(typeof key);  // string, string
+    // }
+
+
+    // es6新增了一种数据结构,Map,类似与传统对象,特点是key可以是任意东西
+    let map = new Map([
+        [1, 100],
+        ['abc', 200],
+        [Date, 300],
+        [{}, 400]
+    ]);
+    console.log(map);
+    console.log(map.size);  // 4
+
+    // get方法获取值
+    console.log(map.get(Date)); // 300
+    console.log(map.get({}));   // undefined,因为传入的{}是新的
+   
+    // set方法设置值
+    let obj = {};
+    map.set(obj, 500);
+    console.log(map.get(obj));  // 500,因为传入的obj是同一个
+    </script>
+</body>
+</html>

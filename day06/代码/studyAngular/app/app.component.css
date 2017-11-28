@@ -1,0 +1,24 @@
+.btn {
+    width: 100px;
+    background-color: blue;
+}
+
+.a {
+    color: red;
+}
+
+.b {
+    background-color: blue;
+}
+
+.c {
+    font-size: 20px;
+}
+
+.d {
+    border: 1px solid forestgreen;
+}
+
+.e {
+    height: 30px;
+}

@@ -1,0 +1,80 @@
+<h1>
+  Welcome to {{ site }}!
+</h1>
+<!--  插值表达式当中可以写简单的运算  -->
+<p>{{ site == '深圳'? '花钱': '攒钱' }}</p>
+
+<!-- 事件绑定, 只需在元素身上使用 (事件名)=函数() 即可 -->
+<button (click)="clickHandler()">点我</button>
+
+<!-- 如果你需要在事件处理函数中, 使用事件对象, 添加传入$event模版变量即可 -->
+<input type="text" (input)="inputHandler($event)">
+<input type="text" (change)="changeHandler($event)">
+
+<!-- *ngIf指令可以控制元素的添加与移除 -->
+<p *ngIf="isTrue">我是快乐的我!</p>
+
+<!-- 数据驱动开发思想范例 -->
+<div>
+  <p *ngIf="hasTaoKong">感觉身体被掏空!!</p>
+  <button (click)="changeTaoKong()">点我</button>
+</div>
+
+<!-- *ngFor 渲染所有的城市 -->
+<ul>
+  <li *ngFor="let city of cityList; let i = index;">{{ i }} : {{ city }}</li>
+</ul>
+<ul>
+  <li *ngFor="let cityObj of cityList2; let i = index; trackBy: trackByFn">{{ i }} : {{ cityObj.name }}</li>
+</ul>
+<button (click)="changeCityList()">改变城市列表的值</button>
+
+<!-- ngSwitch指令组 -->
+<div [ngSwitch]="site">
+  <!-- 注意: 因为这里我们不需要去找数据, 而是需要直接写死, 所以使用引号又包了一层, 代表数据是字符串 -->
+  <p *ngSwitchCase="'北京'">喜欢吸雾霾</p>
+  <p *ngSwitchCase="'深圳'">喜欢看美女</p>
+  <p *ngSwitchCase="'上海'">偷钱</p>
+  <p *ngSwitchDefault>人生的理想很模糊</p>
+</div>
+
+<!-- 属性指令, 使用[]的语法 -->
+<div [innerHTML]='tpl'></div>
+<div>
+  <a [href]="href">163</a>
+  <img [src]="src" alt="">
+  <button (click)="aImg()">点我切换a与img的表现</button>
+</div>
+
+<!-- ngContainer的作用, 下面的语法报错 -->
+<ul>
+  <!-- <li *ngFor="let city of cityList; let i = index;" *ngIf="i % 2 == 0">{{ city }}</li> -->
+</ul>
+<!-- 使用ngContainer解决问题 -->
+<ul>
+  <ng-container *ngFor="let city of cityList; let i = index;">
+    <li *ngIf="i % 2 == 0">{{ city }}</li>
+  </ng-container>
+</ul>
+
+<!-- [(ngModel)]="数据"双向数据绑定只能作用于表单元素  -->
+<input type="text" [(ngModel)]="bingData">
+<input type="text" [(ngModel)]="bingData">
+<span>{{ bingData }}</span>
+
+<!-- 控制单个类 -->
+<div>
+  <button [class.btn]="isBtn" (click)="isBtn = !isBtn">点我换肤</button>
+</div>
+
+<!-- 控制多个类 -->
+<div>
+  <button [ngClass]="classObj">我有多个类,我骄傲我自豪!</button>
+</div>
+
+<!-- 通过标签的方式使用子组件, 标签名称就是子组件的selector元数据 -->
+<app-class-style></app-class-style>
+
+<app-aside></app-aside>
+
+<app-pipe></app-pipe>

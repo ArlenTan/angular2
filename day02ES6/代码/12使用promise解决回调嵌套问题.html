@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 需求: 使用promise改造下面的代码
+    // setTimeout(function() {
+    //     console.log('第一个计时器回调执行，开启第二个');
+
+    //     setTimeout(function() {
+    //         console.log('第二个计时器回调执行，开启第三个');
+
+    //         setTimeout(function() {
+    //             console.log('第三个计时器回调执行');
+
+    //         }, 2000);
+    //     }, 2000);
+    // }, 2000);
+
+    /*---------------------------------------------------------------------------------------*/ 
+    let p = new Promise(function(yes, no) {
+        setTimeout(() => {
+            yes();
+        }, 2000);
+    });
+
+    // 上一个定时器执行完毕后, 开启下一个定时器
+    p.then(function() { 
+        console.log('第一个计时器回调执行，开启第二个');
+
+        // 为了可以在外面调用该实例的then方法,只要return出去就可以了
+        return new Promise(function(yes, no) {
+            setTimeout(() => {
+                yes();
+            }, 2000);
+        });
+
+    })
+
+    // 如果then回调中返回的是promise实例,那么我们就可以链式编程得到它
+    .then(function() {
+        console.log('第二个计时器回调执行，开启第三个');
+
+        // 为了可以在外面调用该实例的then方法,只要return出去就可以了
+        return new Promise(function(yes, no) {
+            setTimeout(() => {
+                yes();
+            }, 2000);
+        });
+    })
+
+    .then(function() {
+        console.log('第三个计时器回调执行, 完毕');
+    });
+
+    </script>
+</body>
+</html>                         

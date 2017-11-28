@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 完全解构
+    // let obj = { a: 1, b: 2, c: 3, d: 4 };
+    // let { a, b, c, d } = obj;
+
+    // 完全解构
+    // let obj = { a: 1, b: 2, c: 3, d: 4 };
+    // let { c, a } = obj;
+
+    // 对象深层解构
+    // let obj = { a: 1, b: 2, c: {c1: 31, c2: 32}, d: {d1: 41, d2: 42} };
+    // let { c:{c2}, d:{d1, d2} } = obj;
+
+    // 对象深层解构,包含自己
+    // let obj = { a: 1, b: 2, c: {c1: 31, c2: 32}, d: {d1: 41, d2: 42} };
+    // let { d:{d1, d2}, d } = obj;
+
+    // 重起变量名
+    // 如果解构时候key:后面跟的是字符串,那么就是新的名字,如果跟的是数组或对象,就是进一步深层次解构
+    let obj = { a: 1, b: 2, c: 3 };
+    let { a:A, b:BB, c:CCC } = obj;
+
+    </script>
+</body>
+</html>

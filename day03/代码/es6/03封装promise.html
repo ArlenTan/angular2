@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.1.0.js"></script>
+    <style>
+    div {
+        width: 50px;
+        height: 50px;
+        background-color: skyblue;
+    }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+    // 把jQ的方法封装成promise版本
+    function animate(selector, style, time) {
+        return new Promise(function(yes, no) {
+            $(selector).animate(style, time, function() {
+                yes();
+            });
+        });
+    }
+
+    animate('div', {width: 200}, 1000)
+    .then(function() {
+        return animate('div', {height: 200}, 1000);
+    })
+    .then(function() {
+        return animate('div', {marginLeft: 200}, 1000);
+    })
+    .then(function() {
+        return animate('div', {marginTop: 200}, 1000);
+    })
+    .then(function() {
+        return animate('div', {width: 50, height: 50}, 1000);
+    });
+    </script>
+</body>
+</html>

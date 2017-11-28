@@ -1,0 +1,695 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>i5ting_ztree_toc:angular</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="angular">Angular</h1>
+<h2 id="-">简介</h2>
+<ul>
+<li>Angular 是一款来自谷歌的开源的 web 前端框架，诞生于 2009 年，由 Misko Hevery 等人创建，后为 Google 所购。是一款优秀的前端JS框架，已经被用于 Google 的多款产品当中。</li>
+<li>Angular1.x 的时候被人们称为下一代 web 应用, 在2015 之前得到了广泛的应用，开发单页面应用无人能敌。</li>
+<li>2015 年底 Angular2.0 发布了，这个版本是完全重写Angular, 彻底的颠覆了之前的版本，同时Angular1.x也逐渐进行淘汰阶段, 现已基本不再更新</li>
+<li>目前最新的angualr版本为4.x, 马上就会发布5.x, 不过不用慌, angualr4.x 5.x都是对angular2.x的升级与优化, 属于同一个框架</li>
+<li>所以Angular框架目前只有两个, 一般我们会把Angular1.x称为AngularJS, 而Angular2.x等等称为Angular</li>
+</ul>
+<h4 id="-">新特点</h4>
+<ul>
+<li>Angular 是基于 TypeScript 编写的，所以使用它我们也要学习 TypeScript , 入门门槛比较高</li>
+<li>Angular 相对 AngularJS 的开发方法也完全不一样, 采用的是目前比较流行的组件化架构与编写方式</li>
+<li>现在的 Angular 除了web开发, 还可以进行服务器端渲染, 开发跨平台桌面应用, 跨平台的原生APP。</li>
+</ul>
+<h4 id="-">资料</h4>
+<ul>
+<li><a href="https://angular.cn/">中文官网angular2</a></li>
+</ul>
+<h2 id="-">开发环境</h2>
+<h4 id="-">开发工具</h4>
+<ul>
+<li>Visual Studio Code(链接)[<a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a>]</li>
+</ul>
+<h4 id="vs-code-">VS code 插件</h4>
+<ul>
+<li>Angular Files ：在vsc中集成angular-cli工具，可界面华新建component、directove、module、routing、pipe等feature</li>
+<li>Auto Import：（重要）自动引入模块</li>
+<li>Auto Rename Tag ： html的开始和结束标签同时更新</li>
+<li>beautify: 代码格式化工具</li>
+<li>Document This: 目前vscode上最好的ts注释插件(用法ctrl+alt+d然后再Ctrl+alt+e或者d，e是全部加注释，d是对当前方法加注释)</li>
+<li>Path Intellisense ： 路径提醒工具，非常方便</li>
+<li>Settings Sync ： 通过github账号的token设置不同机子vsc设置上的同步</li>
+<li>TSlint ：ts语法代码质量检测</li>
+<li>npm :在vsc中运行npm指令</li>
+<li>TypeScript Toolbox ：typescript必备插件</li>
+</ul>
+<h4 id="-nodejs">安装 nodejs</h4>
+<ul>
+<li>在终端/控制台窗口(win+R输入cmd)中运行命令 node -v 和 npm -v 来验证一下你正在运行</li>
+<li>需node 6.9.x 和 npm 3.x.x 以上的版本, 老的版本可能会出现错误，更新的版本没问题</li>
+</ul>
+<h4 id="angular-">Angular脚手架工具 (全局只需安装一次）</h4>
+<ul>
+<li>运行命令: <code>npm install -g @angular/cli</code></li>
+<li>可使用淘宝镜像: <code>npm install -g @angular/cli --registry=https://registry.npm.taobao.org</code></li>
+<li>测试命令: <code>ng -v</code></li>
+</ul>
+<h2 id="-">项目创建与结构说明</h2>
+<h4 id="-">项目创建</h4>
+<ol>
+<li>打开 cmd 进入你要创建项目的目录</li>
+<li>运行创建项目命令: <code>ng new 项目名称</code>, 创建项目时会自动下载依赖包, 需要等待一下</li>
+<li>如果依赖安装<code>失败</code>了, <code>cd</code>进入刚刚创建的项目, 然后运行<code>npm install</code>手动安装</li>
+<li>如果仍然安装不成功, 那么<code>删除</code>node_modules文件夹, 尝试使用<code>cnpm install</code></li>
+<li>安装成功后运行项目启动命令: <code>ng serve --open</code></li>
+</ol>
+<h4 id="-">目录结构介绍</h4>
+<h6 id="-">根目录目录结构</h6>
+<ul>
+<li>e2e : 端对端的自动化测试目录，可以模拟黑河测试人员在浏览器上的测试过程, 拥有自己的tsconfig.json配置</li>
+<li>node_modules : 第三方依赖包目录, package.json中列举的所有第三方模块都放在其中</li>
+<li>src : 项目源代码目录</li>
+<li>.angular-cli.json ： Angular命令行工具配置文件，可以设置一系列默认值，还可以配置项目编译时要包含的那些文件</li>
+<li>.editorconfig : 编辑器配置文件, 确保统一的基本配置, 大多数编辑器都支持.editorconfig，参见 [<a href="http://editorconfig.org">http://editorconfig.org</a>]</li>
+<li>.gittgnore : git忽略配置文件, 用来确保某些自动生成的文件不会被提交到源码控制系统中</li>
+<li>karma.conf.js : karma单元测试配置文件, 运行ng test时会用到它</li>
+<li>package.json : 项目描述文件，可列出该应用使用的依赖包, 还可以添加自自定义脚本</li>
+<li>protractor.conf.js : 端到端自动化测试配置文件, 运行ng e2e的时候会用到它</li>
+<li>REAADME.md : 项目说明文档</li>
+<li>tsconfig.json : TypeScript编译器配置文件, 用来指定ts编译时的策略</li>
+<li>tslint.json : tslint配置文件，用于定义ts代码统一规范, 提升编码质量, 保持风格统一</li>
+</ul>
+<h6 id="src-">src目录目录结构</h6>
+<ul>
+<li>app : 包含应用的组件和模块，我们要写的代码都在这个目录</li>
+<li>assets : 资源目录，存放图片等静态资源，构建应用时会拷贝到发布包中</li>
+<li>environment : Angular多环境开发配置，让我们可以在不同的环境下（开发环境，测试环境，生产环境）共用一套代码</li>
+<li>favicon.ico : 网站标题栏图标</li>
+<li>index.html：应用启动页面，构建应用时CLI会自动把所有js和css文件添加进去, 基本不用做任何处理</li>
+<li>main.ts：应用入口，Angular通过此文件启动应用</li>
+<li>polyfills.ts：导入一些库使Angular兼容不同的浏览器, 通常使用core-js和zone.js就够了</li>
+<li>styles.css：全局样式文件, 影响整个应用的样式集中存放在这里, 大多数情况下会在组件中使用局部样式，以利于维护</li>
+<li>test.ts: 单元测试的主要入口点, 它有一些你不熟悉的自定义配置，不过我们不需要编辑这里的任何东西。</li>
+<li>tsconfig.app.json：为Angular应用准备的ts编译配置文件, 添加第三方依赖的时候会修改这个文件</li>
+<li>tsconfig.spec.json：为单元测试准备的ts编译配置文件</li>
+<li>typings.d.ts : ts声明文件</li>
+</ul>
+<h6 id="src-app-">src/app目录结构</h6>
+<ul>
+<li>app.component.css: 根组件样式</li>
+<li>app.component.html: 根组件模版</li>
+<li>app.component.spec.ts: 根组件单元测试文件</li>
+<li>app.component.ts: 跟组件</li>
+<li>app.module.ts: 根模块, 用来引导应用如何组装并启动</li>
+</ul>
+<h6 id="app-module-ts">app.module.ts</h6>
+<pre><code class="lang-typescript">// BrowserModule, 浏览器环境中必须引入的解析模块
+import { BrowserModule } from &#39;@angular/platform-browser&#39;;
+
+// NgModule, 模块装饰器, 用来定义模块, 使用时需要传递一个元数据对象, 用来定义模块组成
+import { NgModule } from &#39;@angular/core&#39;;
+
+// AppComponent, 根组件, 页面会从根组件进行渲染
+import { AppComponent } from &#39;./app.component&#39;;
+
+@NgModule({
+    // 这个属性用来声明本模块的`组件 指令 管道`, 他们三者都与视图有关系, 声明后才可以使用
+    declarations: [ AppComponent ],
+    // 在这里指定依赖的Angular模块, 指定后才可以使用这些模块的功能, Angular模块是用来增强应用的
+    imports: [ BrowserModule ],
+    // 在这里指定依赖的服务, 服务是用来封装公共业务逻辑或数据处理逻辑的
+    providers: [],
+    // 指定根组件, 视图会从根组件进行渲染, 只有根模块才能设置该属性
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
+</code></pre>
+<h2 id="-">模版引擎</h2>
+<ul>
+<li>Angular集成了强大的<code>模板引擎</code>用于视图的开发, 这套引擎让我们在大部分情况下不用<code>手动</code>操作DOM</li>
+<li>接下来我们就基于<code>脚手架</code>工具生成的项目进行学习, 修改的代码主要是项目的<code>src/app</code>目录</li>
+</ul>
+<h2 id="-">插值表达式</h2>
+<ul>
+<li>打开<code>src/app/app.component.html</code>文件</li>
+<li>你会发现模版中含有<code>{{ title }}</code>这样的语法, 这就是插值表达式</li>
+<li>它的主要作用是<code>数据</code>的输出与简单的<code>表达式</code>运算</li>
+</ul>
+<h4 id="-">使用尝试</h4>
+<ul>
+<li>打开<code>src/app/app.component.ts</code>文件, 给AppComponent类<code>添加</code>一个实例属性</li>
+</ul>
+<pre><code class="lang-typescript">export class AppComponent {
+  title = &#39;app&#39;;
+  site = &#39;深圳&#39;;     // 自己添加的属性
+  constructor() {}
+}
+</code></pre>
+<ul>
+<li>然后打开<code>app.component.html</code>, 把{{ title }}插值表达式中的title<code>换成</code>site进行保存</li>
+</ul>
+<pre><code class="lang-html">&lt;h1&gt;
+    Welcome to {{ site }}!
+&lt;/h1&gt;
+</code></pre>
+<ul>
+<li>然后查看浏览器, 原本的<code>app</code>变成了<code>深圳</code>, 整个过程我们没有涉及到任何<code>DOM</code>操作</li>
+<li>回想一下你之前使用过的模版引擎, 是不是觉得Angular的模版引擎很酷</li>
+</ul>
+<h4 id="-">基本运算</h4>
+<ul>
+<li>插值表达式除了直接输出数据外, 还可以进行简单的运算, 比如下面添加的p标签<pre><code class="lang-html">&lt;h1&gt;
+  Welcome to {{ site }}!
+&lt;/h1&gt;
+&lt;p&gt;{{ site == &#39;深圳&#39;? &#39;房子太贵我要离开&#39;: &#39;哥甚是怀念深圳蜗居的日子&#39; }}&lt;/p&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="-">事件绑定</h2>
+<ul>
+<li>在Angular中进行事件绑定同样无需手动获取DOM</li>
+<li>我们只需要在元素身上添加<code>(事件)=函数</code>的语法即可</li>
+</ul>
+<h4 id="-">尝试点击事件</h4>
+<ul>
+<li>在<code>app.component.html</code>文件中添加下面的<code>button</code>元素</li>
+</ul>
+<pre><code class="lang-html">&lt;!-- 事件绑定语法: (事件名)=函数() --&gt;
+&lt;button (click)=&#39;clickHandler()&#39;&gt;点我&lt;/button&gt;
+</code></pre>
+<ul>
+<li>在<code>app.component.ts</code>文件中添加对应的<code>clickHandler</code>方法</li>
+</ul>
+<pre><code class="lang-typescript">export class AppComponent {
+  title = &#39;app&#39;;
+  site = &#39;深圳&#39;;
+
+  // 点击事件处理函数
+  clickHandler(): void {
+    console.log(&#39;按钮被点击&#39;);
+  }
+}
+</code></pre>
+<ul>
+<li>然后在浏览器中尝试点击按钮, 一个事件绑定就完成了</li>
+</ul>
+<h4 id="-">尝试表单事件</h4>
+<ul>
+<li>有些时候在事件<code>触发</code>时我们需要拿到对应的<code>事件对象</code></li>
+<li>那么可以在模版中把<code>$event</code>变量传给函数, 下面使用input事件演示</li>
+<li><code>注意</code>: 因为随着代码累加越来越多, 所以下面的代码都是新添加的代码片段</li>
+</ul>
+<pre><code class="lang-html">&lt;!-- 如果需要事件对象, 那么传入$event即可 --&gt;
+&lt;input type=&quot;text&quot; (input)=&#39;inputHandler($event)&#39;&gt;
+</code></pre>
+<pre><code class="lang-typescript">// 表单事件处理函数
+inputHandler(e): void {
+  console.log(`表单最新值为: ${e.target.value}`);
+}
+</code></pre>
+<h4 id="-">数据绑定特性</h4>
+<ul>
+<li>学习了<code>插值</code>表达式与<code>事件</code>处理之后, 我们可以<code>见识</code>一下Angular的数据绑定特性了</li>
+<li>修改刚刚的<code>inputHandler</code>函数为下面的样子, 然后试着在<code>浏览器</code>表单中输入值</li>
+<li>你会发现属性发生<code>变化</code>时, angular会自动<code>更新</code>视图, DOM操作你又省了</li>
+</ul>
+<pre><code class="lang-typescript">// 表单事件处理函数
+inputHandler(e): void {
+  this.site = e.target.value;  // 修改site属性的值
+}
+</code></pre>
+<h2 id="-">指令</h2>
+<ul>
+<li>前面都只是模版最基本的组成部分, <code>更强大</code>的功能莫过于指令了</li>
+<li>在Angular中指令就是具有<code>特殊</code>功能的属性, 这些特殊的属性<code>扩展</code>了html的功能</li>
+<li>其实上面的<code>事件绑定</code>语法就是指令的一种, 它使用了<code>(事件名)</code>这样的特殊属性</li>
+</ul>
+<h4 id="-ngif">*ngIf</h4>
+<ul>
+<li>该指令可控制元素在DOM中的添加与移除</li>
+</ul>
+<pre><code class="lang-html">&lt;!-- isTure的值控制元素的添加移除 --&gt;
+&lt;p *ngIf=&quot;isTure&quot;&gt;控制我的添加与移除&lt;/p&gt;
+</code></pre>
+<pre><code class="lang-typescript">export class AppComponent {
+  title = &#39;app&#39;;
+  site = &#39;深圳&#39;;
+  isTure = false;    // 使用这个值控制元素
+}
+</code></pre>
+<h4 id="-">数据驱动开发思想</h4>
+<ul>
+<li>尝试在页面中<code>添加</code>一个按钮, <code>控制</code>元素的添加隐藏</li>
+<li>你会发现这个业务逻辑我们<code>只需</code>修改属性即可, 维护<code>数据</code>是我们的根本, 这就是数据驱动</li>
+</ul>
+<pre><code class="lang-html">&lt;!-- *ngIf, isTure的值控制元素的添加移除 --&gt;
+&lt;div&gt;
+  &lt;p *ngIf=&quot;isTure&quot;&gt;控制我的添加与移除&lt;/p&gt;
+  &lt;button (click)=&#39;clickAddOrRemove()&#39;&gt;{{ isTure? &#39;移除&#39;: &#39;添加&#39; }}&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="lang-typescript">export class AppComponent {
+  title = &#39;app&#39;;
+  site = &#39;深圳&#39;;
+  isTure = false;    // 使用这个值控制元素
+
+  // 点击事件, 只要修改isTure属性, 就可以控制元素的添加移除
+  clickAddOrRemove(): void {
+    this.isTure = !this.isTure;
+  }
+}
+</code></pre>
+<h4 id="-ngfor">*ngFor</h4>
+<ul>
+<li>可遍历数组, 依据数据结构渲染一个列表</li>
+</ul>
+<h6 id="-">基本使用</h6>
+<pre><code class="lang-html">&lt;!-- *ngFor, 里面采用的语法是固定格式 --&gt;
+&lt;ul&gt;
+  &lt;li *ngFor=&quot;let city of cityList&quot;&gt;{{ city }}&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<pre><code class="lang-typescript">export class AppComponent {
+  title = &#39;app&#39;;
+  site = &#39;深圳&#39;;
+  isTure = false;    // 使用这个值控制元素
+  cityList = [
+    &#39;北京&#39;,
+    &#39;上海&#39;,
+    &#39;广州&#39;,
+    &#39;深圳&#39;
+  ];
+}
+</code></pre>
+<h6 id="-">拿到数组下标</h6>
+<ul>
+<li>ngFor除了可以拿到值, 还可以拿到下标</li>
+</ul>
+<pre><code class="lang-html">&lt;!-- *ngFor, 下面是获取下标并使用的语法 --&gt;
+&lt;ul&gt;
+  &lt;li *ngFor=&quot;let city of cityList; let i = index&quot;&gt;{{ i }} : {{ city }}&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<h6 id="-">优化属性</h6>
+<ul>
+<li>ngFor中我们可以手动设置<code>trackBy</code>属性值来优化你的视图渲染</li>
+<li>Angular内部会使用这个值作为元素的ID, 当数据<code>变化</code>时, 使用新ID与旧ID比较以判断是否有必要<code>重新</code>渲染这个元素</li>
+<li>大多数情况下我们无需设置它, 如果我们<code>渲染</code>的数据中具有ID这样的<code>唯一</code>属性, 最好手动关联上</li>
+<li>这里通过修改部分数据, 来给大家演示当数据变化时, angular会有选择性的渲染部分元素</li>
+</ul>
+<pre><code class="lang-html">&lt;!-- *ngFor, 下面是添加trackBy的语法 --&gt;
+&lt;ul&gt;
+  &lt;li *ngFor=&quot;let city of cityList; let i = index; trackBy: city&quot;&gt;{{ i }} : {{ city }}&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<h4 id="ngswitch-">ngSwitch指令组</h4>
+<ul>
+<li>有些时候我们需要根据一个变量的值来展示不同的内容</li>
+<li>使用<code>*ngIf</code>可以解决我们的问题, <code>但是</code>他们看起来并不是一组, 使用ngSwitch指令组会更好</li>
+<li>ngSwitch指令组由<code>三个</code>不同指令构成：<code>[ngSwitch] *ngSwitchCase *ngSwitchDefault</code></li>
+<li>其中<code>[]</code>包起来的指令叫<code>属性</code>指令, 这种指令会修改DOM对象的属性</li>
+<li>然后<code>*</code>号开头的指令叫<code>结构</code>指令, 这种指令会进行DOM的添加移除</li>
+</ul>
+<pre><code class="lang-html">&lt;!-- ngSwitch指令组，这里使用以前的site数据进行控制 --&gt;
+&lt;!-- 其中的*ngSwitchCase因为不使用数据绑定，而是写死的字符串，所以里面的值添加单引号包裹 --&gt;
+&lt;div [ngSwitch]=&#39;site&#39;&gt;
+  &lt;p *ngSwitchCase=&quot;&#39;北京&#39;&quot;&gt;北京冬天有暖气&lt;/p&gt;
+  &lt;p *ngSwitchCase=&quot;&#39;上海&#39;&quot;&gt;上海冬天有空调&lt;/p&gt;
+  &lt;p *ngSwitchCase=&quot;&#39;深圳&#39;&quot;&gt;深圳冬天要裹被&lt;/p&gt;
+  &lt;p *ngSwitchDefault&gt;不管在哪, 只要不过冬天就好&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<h4 id="-dom-">属性指令 - 原生的DOM属性修改</h4>
+<ul>
+<li>属性指令的语法是使用[]包起来, 里面可以书写angular<code>扩展</code>的DOM属性, 也可以写<code>原生</code>DOM属性</li>
+<li>下面给出的范例<code>都是</code>操作原生的DOM属性</li>
+</ul>
+<h6 id="innerhtml-">innerHTML属性</h6>
+<pre><code class="lang-html">&lt;!-- 使用[]属性指令语法动态修改元素的innerHTML --&gt;
+&lt;div [innerHTML]=&quot;tpl&quot;&gt;&lt;/div&gt;
+</code></pre>
+<pre><code class="lang-typescript">export class AppComponent {
+    title = &#39;app&#39;;
+    tpl = `&lt;div&gt;
+        &lt;h4&gt;我是数据里的字符串模版&lt;/h4&gt;
+        &lt;h4&gt;我是数据里的字符串模版&lt;/h4&gt;
+    &lt;/div&gt;`;
+}
+</code></pre>
+<h6 id="-">其他属性范例</h6>
+<pre><code class="lang-html">&lt;div&gt;
+  &lt;a [href]=&quot;aHref&quot;&gt;点击跳转&lt;/a&gt;
+  &lt;img [src]=&quot;imgSrc&quot;/&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="lang-typescript">export class AppComponent {
+  aHref = &#39;http://www.baidu.com&#39;;
+  imgSrc = &#39;http://www.baidu.com/img/bd_logo1.png&#39;;
+}
+</code></pre>
+<h4 id="-ng-container-"><ng-container></h4>
+<ul>
+<li>Angular不允许在一个元素上使用多个<code>结构性</code>指令, *打头的指令</li>
+<li>那么可以通过嵌套一个<code>&lt;ng-container&gt;</code>标签, 给它添加控制指令来解决</li>
+<li>这个元素在渲染时不会在<code>页面</code>上留下任何痕迹, 作用只是单纯的添加一些逻辑处理</li>
+</ul>
+<h6 id="-">错误范例</h6>
+<ul>
+<li>下面使用<em>ngFor生成多个li标签, 但是又进一步通过</em>ngIf控制li标签的渲染, 最终报错</li>
+</ul>
+<pre><code class="lang-html">&lt;ul&gt;
+  &lt;li *ngFor=&quot;let city of cityList; let i = index&quot; *ngIf=&quot;i % 2 == 0&quot;&gt;{{ i }} : {{ city }}&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<h6 id="-">解决方案</h6>
+<pre><code class="lang-html">&lt;!-- 不能在一个元素上使用多个结构性指令,那么可以嵌套ng-container标签解决 --&gt;
+&lt;ul&gt;
+  &lt;ng-container *ngFor=&quot;let city of cityList; let i = index&quot;&gt;
+    &lt;li *ngIf=&quot;i % 2 == 0&quot;&gt;{{ i }} : {{ city }}&lt;/li&gt;
+  &lt;/ng-container&gt;
+&lt;/ul&gt;
+</code></pre>
+<h4 id="-ngmodel-">[(ngModel)] - 双向数据绑定</h4>
+<ul>
+<li>这是一个用于表单的<code>双向</code>数据绑定指令, 前面我们使用的插件表达式或指令都是<code>单向</code>的数据绑定</li>
+<li>单向的特点是<code>数据</code>发生变化, <code>视图</code>跟着变化</li>
+<li>但是对于<code>表单</code>元素来说, 我们希望的是表单变了数据变, 数据变了表单变</li>
+</ul>
+<h6 id="-">准备工作</h6>
+<ul>
+<li>使用这个指令我们需要从&#39;@angular/forms&#39;中导入<code>FormsModule</code>模块然后配置到根模块依赖中</li>
+<li>首先打开根模块<code>app/app.modules.ts</code>文件, 然后编写下面的代码</li>
+</ul>
+<pre><code class="lang-typescript">import { BrowserModule } from &#39;@angular/platform-browser&#39;;
+import { NgModule } from &#39;@angular/core&#39;;
+
+// 导入表单模块
+import { FormsModule } from &#39;@angular/forms&#39;;
+
+import { AppComponent } from &#39;./app.component&#39;;
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule     // 把表单模块配置进来
+  ],
+  providers: [
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+</code></pre>
+<h6 id="-">使用</h6>
+<pre><code class="lang-html">&lt;div&gt;
+  &lt;h2&gt;请输入新密码&lt;/h2&gt;
+  &lt;!-- 使用了双向数据绑定后, password的值会自动显示到表单, 表单改变时password也自动改变 --&gt;
+  &lt;input type=&quot;text&quot; [(ngModel)]=&quot;password&quot;&gt;
+  &lt;span&gt;{{ password }}&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="lang-typescript">export class AppComponent {
+    password = &#39;默认密码&#39;;
+}
+</code></pre>
+<h2 id="-">内置管道</h2>
+<ul>
+<li>uppercase  大写转换</li>
+<li>uppercase 小写转换</li>
+<li>number 数字格式化</li>
+<li>data 日期格式化</li>
+<li>json 对象序列化</li>
+</ul>
+<p>—— 用法 {{xxx|管道名称：管道参数(可选)}}</p>
+<h4 id="angular4-">Angular4 内建管道使用示例</h4>
+<ol>
+<li><p>大写转换</p>
+<pre><code class="lang-html">&lt;div&gt;
+&lt;p ngNonBindable&gt;{{ &#39;Angular&#39; | uppercase }}&lt;/p&gt;
+&lt;p&gt;{{ &#39;Angular&#39; | uppercase }}&lt;/p&gt; &lt;!-- Output: ANGULAR 输出的结果把字母全部转为大写--&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li><p>.小写转换</p>
+<pre><code class="lang-html">&lt;div&gt;
+&lt;p ngNonBindable&gt;{{ &#39;Angular&#39; | lowercase }}&lt;/p&gt;
+&lt;p&gt;{{ &#39;Angular&#39; | lowercase }}&lt;/p&gt; &lt;!-- Output: angular --&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li><p>数值格式化</p>
+<pre><code class="lang-html">&lt;div&gt;
+&lt;p ngNonBindable&gt;{{ 3.14159265 | number: &#39;1.4-4&#39; }}&lt;/p&gt;
+&lt;p&gt;{{ 3.14159265 | number: &#39;1.4-4&#39; }}&lt;/p&gt; &lt;!-- Output: 3.1416 1.4-4中表示1位整数，至少4位小数，至多4位小数--&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li><p>日期格式化</p>
+<pre><code class="lang-html">&lt;div&gt;
+&lt;p ngNonBindable&gt;{{ today | date: &#39;shortTime&#39; }}&lt;/p&gt;
+&lt;p&gt;{{ today | date: &#39;shortTime&#39; }}&lt;/p&gt; &lt;!-- Output: 以当前时间为准，输出格式：10:40 AM --&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+<li>JavaScript 对象序列化<pre><code class="lang-html">&lt;div&gt;
+&lt;p ngNonBindable&gt;{{ { name: &#39;semlinker&#39; } | json }}&lt;/p&gt;
+&lt;p&gt;{{ { name: &#39;semlinker&#39; } | json }}&lt;/p&gt; &lt;!-- Output: { &quot;name&quot;: &quot;semlinker&quot; } --&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+</ol>
+<h4 id="-">管道链</h4>
+<ul>
+<li>可以将多个管道连接在一起，组成管道链对数据进行处理。<pre><code class="lang-html">&lt;div&gt;
+&lt;p ngNonBindable&gt;{{ &#39;semlinker&#39; | slice:0:3 | uppercase }}&lt;/p&gt;
+&lt;p&gt;{{ &#39;semlinker&#39; | slice:0:3 | uppercase }}&lt;/p&gt; &lt;!-- Output: SEM --&gt;
+&lt;/div&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="-">组件化</h2>
+<h4 id="-">组件化概念</h4>
+<ul>
+<li>页面上的每个 独立的 可视/可交互区域视为一个组件;</li>
+<li>每个组件对应一个工程目录，组件所需的各种资源都在这个目录下就近维护;</li>
+<li>每个组件相对独立，页面只不过是组件的容器，组件自由组合形成功能完整的界面;</li>
+<li>当不需要某个组件，或者想要替换组件时，可以整个目录删除/替换。</li>
+</ul>
+<h4 id="-">组件化开发的好处</h4>
+<ul>
+<li>标记鲜明，容易维护，组件化后，我们只需要对对应的组件进行维护，不会影响到其它文件。而且文件结构清楚，方便后台人员的使用。</li>
+<li>块状化结构，减少css 的书写，并且方便扩展</li>
+</ul>
+<h4 id="-">自定义组件</h4>
+<h6 id="-compontents-header-">创建compontents下header组件</h6>
+<p><code>ng g component components/header</code></p>
+<h6 id="-">组件内容详解</h6>
+<pre><code class="lang-typescript">import { Component, OnInit } from &#39;@angular/core&#39;; /*引入angular核心*/
+@Component({
+    selector: &#39;app-header&#39;, /*使用这个组件的名称*/
+    templateUrl: &#39;./header.component.html&#39;, /*html模板*/
+    styleUrls: [&#39;./header.component.css&#39;] /*css样式*/
+})
+ export class HeaderComponent implements OnInit { /*实现接口*/
+    constructor() { /*构造函数*/ }
+    ngOnInit() { /*初始化加载的生命周期函数*/ }
+}
+</code></pre>
+<h6 id="-">使用组件</h6>
+<p><code>&lt;app-header&gt;&lt;/app-header&gt;</code></p>
+<h2 id="-">父子组件传值</h2>
+<p> 在每个独立的组件间想互相通讯，就要使用特定的修饰符来进行组件中的通讯。</p>
+<h4 id="-input-">父组件给子组件传值 -@Input（父传子）</h4>
+<ol>
+<li><p>在父组件调用子组件的时候传入数据
+<code>&lt;app-header [msg]=&quot;msg&quot;&gt;&lt;/app-header&gt;</code></p>
+</li>
+<li><p>子组件引入Input模块
+<code>import { Component, OnInit ,Input } from &#39;@angular/core&#39;;</code></p>
+</li>
+<li><p>子组件中用@Input修饰符来接收父组件传过来的数据</p>
+<pre><code class="lang-typescript">export class HeaderComponent implements OnInit {
+ @Input() msg:string
+ constructor() { }
+  ngOnInit() { }
+}
+</code></pre>
+</li>
+</ol>
+<ol>
+<li>子组件中使用父组件的数据
+<code>&lt;h2&gt;这是头部组件,由父组件传递过来的--{{msg}}&lt;/h2&gt;</code></li>
+</ol>
+<h4 id="-">父子组件传值的方式 让子组件执行父组件的方法（父传子）</h4>
+<ol>
+<li><p>父组件定义方法
+<code>run(){ alert(&#39;这是父组件的run方法&#39;); }</code></p>
+</li>
+<li><p>调用子组件传入当前方法
+<code>&lt;app-header [msg]=&quot;msg&quot; [run]=&quot;run&quot;&gt;&lt;/app-header&gt;</code></p>
+</li>
+<li><p>子组件接收父组件传过来的方法
+```typescript</p>
+</li>
+</ol>
+<p>import { Component, OnInit ,Input } from &#39;@angular/core&#39;;// 引入对应依赖
+@Input() run:any; //用修饰符声明接收传入的方法</p>
+<p>//在文件中接受父组件传入的数据写法如下：
+export class HeaderComponent implements OnInit {
+     @Input() msg:string // 接受父组件传入的msg数据
+      @Input() run:any;  // 接受父组件传入的run方法
+      constructor() { }
+}</p>
+<pre><code>
+4. 子组件使用父组件的方法
+```typescript
+export class HeaderComponent implements OnInit {
+    @Input() msg:string;
+    @Input() run:any;
+    constructor() { }
+    ngOnInit() { this.run(); /*子组件调用父组件的run方法*/ }
+}
+</code></pre><h4 id="-output-">子组件通过@Output向父组件传入方法（子传父）</h4>
+<ol>
+<li><p>子组件引入Output 和 EventEmitter
+<code>import { Component, OnInit ,Input,Output,EventEmitter} from &#39;@angular/core&#39;;</code></p>
+</li>
+<li><p>子组件中实例化 EventEmitter
+<code>@Output() private outer=new EventEmitter&lt;string&gt;(); // 用EventEmitter 和output装饰器配合使用 &lt;string&gt;指定类型变量</code></p>
+</li>
+<li><p>子组件通过 EventEmitter 对象outer实例广播数据</p>
+<pre><code class="lang-typescript">sendParent(){
+ this.outer.emit(&#39;msg from child&#39;)
+ }
+</code></pre>
+</li>
+<li><p>父组件调用子组件的时候，定义接收事件 , outer就是子组件的EventEmitter 对象outer
+<code>&lt;app-header (outer)=&quot;runParent($event)&quot;&gt;&lt;/app-header&gt;</code></p>
+</li>
+<li><p>父组件接收到数据会调用自己的runParent方法，这个时候就能拿到子组件的数据</p>
+<pre><code class="lang-typescript">//接收子组件传递过来的数据
+runParent(msg:string){
+ alert(msg);
+}
+</code></pre>
+</li>
+</ol>
+<h4 id="-">父组件通过局部变量获取子组件的引用 ，主动获取子组件的数据和方法（一）</h4>
+<ol>
+<li><p>定义footer子组件</p>
+<pre><code class="lang-typescript">export class FooterComponent implements OnInit {
+ public msg:string;
+ constructor() { }
+ ngOnInit() { }
+ footerRun(){ alert(&#39;这是footer子组件的Run方法&#39;); }
+}
+</code></pre>
+</li>
+<li><p>父组件调用子组件的时候给子组件起个名字
+<code>&lt;app-footer #footer&gt;&lt;/app-footer&gt;</code></p>
+</li>
+<li><p>直接获取执行子组件的方法
+<code>&lt;button (click)=&#39;footer.footerRun()&#39;&gt;获取子组件的数据&lt;/button&gt;</code></p>
+</li>
+</ol>
+<h4 id="-viewchild-">父组件通过局部变量获取子组件的引用,通过ViewChild主动获取子组件的数据和方法</h4>
+<ol>
+<li><p>调用子组件给子组件定义一个名称
+<code>&lt;app-footer #footerChild&gt;&lt;/app-footer&gt;</code></p>
+</li>
+<li><p>父组件引入ViewChild
+<code>import { Component, OnInit ,ViewChild} from &#39;@angular/core&#39;;</code></p>
+</li>
+<li><p>ViewChild和刚才的子组件关联起来
+<code>@ViewChild(&#39;footerChild&#39;) footer;</code></p>
+</li>
+<li><p>调用子组件</p>
+<pre><code class="lang-typescript">run(){
+ this.footer.footerRun();
+}
+</code></pre>
+</li>
+</ol>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>

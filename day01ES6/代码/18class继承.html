@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    class Animal {          
+
+        constructor(name, gender) {
+           this.name = name;
+           this.gender = gender;
+        }
+
+        // 这个方法相当于以前加到原型上的实例方法
+        run() {
+            console.log('跑吧');
+        }
+
+        // 这个方法加了static修饰符,就是以前加到类身上的静态方法
+        static getMaxAge() {
+            console.log(250);
+        }
+    }
+
+    // 动物拥有的属性方法,按照常理来讲,狗应该也有,所有这里通过extends关键字实现继承,提高复用,减少冗余
+    class Dog extends Animal {
+
+        eat() {
+            console.log('吃屎');
+        }
+
+    }
+    
+    let chaiquan = new Dog('柴犬', '公');
+    console.log(chaiquan.name);
+    console.log(chaiquan.gender);
+    chaiquan.run();
+    chaiquan.eat();
+
+    // 人也是动物,也继承一下
+    class Person extends Animal {
+        
+        // 如果继承的子类拥有独特的属性,需要写构造器来添加,
+        // 但是构造器里面的第一句话必须是super()调用
+        constructor(name, gender, price) {
+            super(name, gender);
+            this.price = price;
+        }
+
+        study() {
+            console.log('闻鸡起舞');
+        }
+
+    }
+
+    let xiaoming = new Person('小明', '男', '一张毛爷爷');
+    console.log(xiaoming.name);
+    console.log(xiaoming.gender);
+    console.log(xiaoming.price);
+    xiaoming.run();
+    xiaoming.study();
+
+    // Person也继承了Animal的静态方法,所以可以直接拿来调用
+    Person.getMaxAge()
+    </script>
+</body>
+</html>

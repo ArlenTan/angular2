@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // es6 Set数据结构,特点为值唯一,不会出现重复
+
+    // let numSet = new Set([1, 3, 1, 3]);
+    // console.log(numSet);
+    // console.log(numSet.size);  // 2,自动过滤掉重复
+
+    // add添加新值
+    // numSet.add('今天你好吗');
+    // numSet.add('今天你好吗');
+    // numSet.add('今天你好吗');
+    // numSet.add('今天你好吗');
+    // console.log(numSet.size);  // 3
+
+    // // delte删除值
+    // numSet.delete('今天你好吗');
+    // console.log(numSet.size);  // 2
+
+    // // has是否存在某值
+    // console.log(numSet.has('今天你好吗'))
+    // console.log(numSet.has(3))
+    
+    // // clear情况所有值
+    // numSet.clear();
+    // console.log(numSet.size);
+
+    // forEach遍历值,
+    // forEach方法有第二个参数用来指定函数内的this指向
+    // 如果你写的是箭头函数,那么这个参数无效,因为箭头函数自己没有this,白指定
+    let numSet = new Set([1, 3, 1, 3]);
+
+    // 这里this打印{},因为被第二个参数指定了
+    numSet.forEach(function(v) {
+        console.log(v, this);
+    }, {});
+
+    // 这里this打印window,因为取的是上级作用域this
+    numSet.forEach(v => console.log(v, this), {});
+    </script>
+</body>
+</html>

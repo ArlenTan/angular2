@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    let a = 10;
+    let fn = function() {};
+
+    // es6对象优化1: 假设定义一个对象,要涵盖引用上面两个变量的值,es6那么可以使用下面的简写方式
+    let obj = {
+        a,
+        fn
+    };
+
+    // es6对象优化2: 对象内的方法定义可以简写,省去function关键字
+    let obj2 = {
+        fn: function() {
+            console.log('以前的写法');
+        },
+        fn2() {
+            console.log('es6新的写法');
+        }
+    };
+
+    // es6对象优化3: 对象的key可以使用表达式
+    let varName = 'xxx';
+    let obj3 = {
+        a: 10,
+        b: 20,
+        [varName + 'xxx' + 'ooo']: 30
+    };
+    </script>
+</body>
+</html>

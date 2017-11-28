@@ -1,0 +1,475 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>i5ting_ztree_toc:typescript</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="typescript">TypeScript</h1>
+<h2 id="-">简介</h2>
+<ul>
+<li>TypeScript是一种由微软开发的自由和开源的编程语言，它是JavaScript的一个超集，扩展了JavaScript的语法</li>
+<li>TypeScript如它的名字一样,最广为人知的特点是增加了类型系统</li>
+<li>相比弱类型语言,丢失了灵活性,但在编写大型项目时会降低程序复杂度,在编译时发现问题,减少bug增强健壮性</li>
+</ul>
+<h4 id="-">特性</h4>
+<ul>
+<li>兼容ES6</li>
+<li>类型系统</li>
+<li>类</li>
+<li>接口</li>
+<li>类型注解</li>
+<li>模块</li>
+</ul>
+<h4 id="-">使用说明</h4>
+<ul>
+<li>typeScript无法直接在<code>浏览器</code>当中运行,所以使用ts需要先安装对应的<code>编译器</code></li>
+<li>这个编译器的作用<code>类似</code>与我们之前使用<code>less</code>或<code>sass</code>编译器,它可以把ts转换为浏览器可执行的es5语法</li>
+</ul>
+<h4 id="-">编译器安装</h4>
+<ul>
+<li>这里安装需要确保本地已经拥有<code>npm</code>包管理工具<pre><code class="lang-bash"># 安装命令
+npm install -g typescript
+# 检测命令
+tsc -v
+</code></pre>
+</li>
+</ul>
+<h4 id="-">编译器使用</h4>
+<ul>
+<li>创建holle.ts文件,typescript编写的脚本使用ts作为后缀名,这个与less/sass也一样<pre><code class="lang-typescript">class Person {
+public name: string;
+public age: number;
+constructor(name: string, age: number) {
+  this.name = name;
+  this.age = age;
+}
+speak() {
+  console.log(`${this.name}今年${this.age}岁了`);
+}
+}
+let xiaoming = new Person(&#39;小明&#39;, 16);
+xiaoming.speak();
+</code></pre>
+</li>
+<li>运行编译命令: <code>tsc hello.ts</code>, 就会生成对应的es5js文件</li>
+</ul>
+<h1 id="-">类型</h1>
+<h2 id="-">为什么要类型</h2>
+<ul>
+<li>使用typeScript的类型定义有好处也有坏处</li>
+<li>下面通过一个小例子给大家演示类型的好处与弊端</li>
+</ul>
+<h4 id="javascript">javascript</h4>
+<ul>
+<li>假如我们做一个加法运算,求两数之和</li>
+<li>如果没有类型检测,我们很有可能会不小心和一个字符串相加,造成严重后果<pre><code class="lang-javascript">let a = 10;
+let b = &#39;20&#39;;
+let c = 30;
+let sum = a + b + c; // 102030
+</code></pre>
+</li>
+</ul>
+<h4 id="typescript">typescript</h4>
+<ul>
+<li>如果使用typescript编写上面的代码,然后进行编译</li>
+<li>你会发现详细的错误提示,这样显著提升了程序的健壮性</li>
+<li>但是缺点也显而易见,失去了js原本的简洁性,轻度影响开发效率<pre><code class="lang-typescript">let a: number = 10;
+let b: string = &#39;20&#39;;
+let c: number = 30;
+let sum: number = a + b + c;
+</code></pre>
+</li>
+</ul>
+<h2 id="-">基本类型</h2>
+<h4 id="number-">number类型</h4>
+<ul>
+<li>数字类型的变量的只能赋值为数字,不区分整数与小数<pre><code class="lang-typescript">let num: number = 10;
+num = 20;    // 编译通过
+num = &#39;abc&#39;; // 编译错误
+</code></pre>
+</li>
+</ul>
+<h4 id="string-">string类型</h4>
+<ul>
+<li>字符串类型的变量的只能赋值为字符或字符串<pre><code class="lang-typescript">let str: string = &#39;abc&#39;;
+str = &#39;cba&#39;;    // 编译通过
+str = 123;     // 编译错误
+</code></pre>
+</li>
+</ul>
+<h4 id="boolean-">boolean类型</h4>
+<ul>
+<li>字符串类型的变量的只能赋值为true或false<pre><code class="lang-typescript">let bol: boolean = true;
+bol = false;    // 编译通过
+bol = 1;         // 编译错误
+</code></pre>
+</li>
+</ul>
+<h4 id="undefined-">undefined类型</h4>
+<ul>
+<li>undefined类型的变量只能赋值为undefined<pre><code class="lang-typescript">let undef: undefined;
+undef = undefined;
+undef = &#39;&#39;; // 编译错误
+</code></pre>
+</li>
+</ul>
+<h4 id="null-">null类型</h4>
+<ul>
+<li>null类型的变量只能赋值为null<pre><code class="lang-typescript">let nu: null;
+nu = null;
+nu = 0; // 编译错误
+</code></pre>
+</li>
+</ul>
+<h4 id="-">补充</h4>
+<ul>
+<li>undefined与null可以赋值给其他类型</li>
+<li>用于表示未赋值或空的意思
+```typescript
+let num: number;
+let str: string;
+let bol: boolean;</li>
+</ul>
+<p>num = undefine;
+str = null;
+bol = null;</p>
+<pre><code>
+## 数组类型
+
+#### 基本类型数组
+- 在基本数据类型后面添加[]即可表示对应类型的数组
+```typescript
+let numArr: number[] = [1, 2, 3];
+let strArr: string[] = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;];
+let bolArr: boolean[] = [true, false];
+let undifArr: undefined[] = [undefined];
+let nulArr: null[] = [null];
+</code></pre><h4 id="-">联合类型数组</h4>
+<pre><code class="lang-typescript">let arr1: (number|string)[] = [1, 2, &#39;abc&#39;, &#39;cba&#39;, 4, 5];
+let arr2: (number|boolean)[] = [1, 2, true, false];
+</code></pre>
+<h4 id="-">任意类型数组</h4>
+<pre><code class="lang-typescript">let anyArr: any[] = [1, &#39;abc&#39;, true, null, undefined];
+</code></pre>
+<h2 id="-">枚举类型</h2>
+<h4 id="-">简介</h4>
+<ul>
+<li>枚举是typeScript扩展的一种<code>数据类型</code>,是<code>enum</code>来定义</li>
+</ul>
+<h4 id="-">作用</h4>
+<ul>
+<li>枚举类型的数据都是<code>有限</code>的,可一一列出来</li>
+<li>比如一周有<code>7天</code>,一年有<code>365天</code>,性别有<code>2种</code>,像这样<code>固定</code>的数据我们就可以通过<code>枚举</code>来定义</li>
+<li>对于固定的数据有些人可能会想到使用<code>const</code>来定义,看下面的例子演示const的<code>问题</code>
+```javascript
+const gender = [&#39;男&#39;, &#39;女&#39;];</li>
+</ul>
+<p>gender[0];              // 正常
+gender[0] = &#39;公&#39;     // 不报错,因为const只在乎变量的引用是否被改变,并不在乎对象是否被改变
+gender[2] = &#39;人妖&#39;  // 同样不报错</p>
+<pre><code>
+#### 使用
+- 上面定义了一个存储所有的性别的数组,这个性别也就是男女两种
+- 像这种数据就是枚举数据,枚举数据按照常理讲是不允许改变的,但是上面我们却改变了它的值
+- 为了解决这个问题,我们可以使用ts提供的`enum`关键字定义这种不可变的枚举类型的数据
+```typescript
+enum gender { &#39;男&#39;, &#39;女&#39; };
+
+gender[0];             // 正常
+gender[0] = &#39;公&#39;     // 报错
+gender[2] = &#39;人妖&#39;  // 报错
+</code></pre><h2 id="-">函数</h2>
+<h4 id="-">参数与返回值类型</h4>
+<pre><code class="lang-typescript">function sum(a: number, b: number): number {
+    return a + b;
+}
+
+sum(10, 20);  // 正常
+sum(&#39;a&#39;, 30);  // 报错
+</code></pre>
+<h4 id="-">参数个数</h4>
+<ul>
+<li>在typescript中会严格检查函数调用时参数的个数
+```typescript
+function sum(a: number, b: number): number  {
+  return a + b;
+}</li>
+</ul>
+<p>sum(10, 20);       // 正常
+sum(5);              // 报错
+sum(5, 8, 10);     // 报错</p>
+<pre><code>
+#### 可选参数
+- 在参数后面添加`?`号可以把参数设定为可选
+- 或者使用`es6`语法给这个参数赋一个`默认值`
+```typescript
+function sum(a: number, b?: number, c: number = 50): number  {
+    return b? a + b: a;
+}
+
+sum(5);                    // 正常
+sum(5, 8, 10);          // 正常
+sum(5, 8, 10, 20);     // 报错
+</code></pre><h4 id="-">任意参数与类型</h4>
+<ul>
+<li>可以通过es6参数语法接收任意多个值,并可指定这些值的类型
+```typescript
+function sum(...arg: number[]): number {
+return arg.reduce((sum, v) =&gt; {
+  return sum + v;
+}, 0);
+}</li>
+</ul>
+<p>sum(1, 2, 3);              // 正常
+sum(1, 2, 3, 4, 5);       // 正常
+sum(1, 2, 3, 4, &#39;abc&#39;);  // 报错</p>
+<pre><code>
+#### 无返回值
+```typescript
+function log(msg): void {
+    console.log(msg);
+    return 10;                // 报错
+}
+</code></pre><h2 id="-">泛型</h2>
+<h4 id="-">为什么要泛型</h4>
+<ul>
+<li>假设有一个方法,可以传入任意多个<code>数字</code>,组成数组并返回<pre><code class="lang-typescript">function createArray(...arg: number[]): number[] {
+  return arg;
+}
+</code></pre>
+</li>
+<li>假设我们现在要改造这个函数,让它可以实现更多需求,变得更通用</li>
+<li>改造需求是:传入的参数可以是数字,也可以是字符串等其他<code>任意</code>类型</li>
+<li>但是必须保证所有的参数类型<code>一致</code>,同时返回该类型构成的数组<pre><code class="lang-typescript">function createArray(...arg: any[]): any[] {
+  return arg;
+}
+</code></pre>
+</li>
+<li>你可能会像上面那样写,但显然,这不能保证参数的类型是一致的</li>
+</ul>
+<h4 id="-">使用泛型</h4>
+<ul>
+<li>要解决上面的问题,泛型就派上用场了</li>
+<li>我们可以在函数的后面使用<code>&lt;&gt;</code>定义一个变量</li>
+<li>这个变量的值为可以描述<code>数据类型</code>的string/number/boolean等</li>
+<li>然后我们就可以使用这个变量来<code>约束</code>参数与返回值的类型</li>
+</ul>
+<pre><code class="lang-typescript">function createArray&lt;Type&gt;(...arg: Type[]): Type[] {
+    return arg;
+}
+
+let arr1 = createArray&lt;number&gt;(10, 20, 30);  // 正确
+let arr2 = createArray&lt;string&gt;(&#39;a&#39;, &#39;b&#39;, &#39;c&#39;)          // 正确
+let arr3 = createArray&lt;string&gt;(&#39;a&#39;, &#39;b&#39;, 10)          // 报错
+</code></pre>
+<h2 id="-">对象属性</h2>
+<ul>
+<li>在typeScript中,无法给对象<code>动态</code>添加属性,必须<code>预先</code>定义</li>
+</ul>
+<h4 id="-">字面量对象</h4>
+<pre><code class="lang-typescript">let obj = { a: 1 };
+obj.a = 10;   // 正常
+obj.b = 20;   // 报错
+</code></pre>
+<h4 id="-">实例对象</h4>
+<pre><code class="lang-typescript">class Person {
+    name: string;
+    constructor(name: string, age: number) {
+        this.name = name;   // 正常,因为预先定义了name属性
+        this.age = age;         // 报错,没有预先定义,无法动态添加属性
+    }
+}
+</code></pre>
+<h2 id="-">静态属性</h2>
+<ul>
+<li>在<code>es6</code>中,<code>只允许</code>使用static关键字定义静态方法,<code>不能</code>定义属性</li>
+<li>但是在<code>ts</code>中<code>可以</code>,使用static定义的属性方法,需要通过<code>类名</code>访问
+```typescript
+class Person {
+  static maxAge: number = 250;
+  public name: string = &#39;匿名&#39;;
+}</li>
+</ul>
+<p>Person.maxAge;            // 正常
+new Person().maxAge;   // 报错</p>
+<pre><code>
+## 访问权限修饰符
+- 访问权限修饰符的作用是`限定`属性的可`访问`范围
+
+#### 默认public
+- `public`修饰的属性与方法使用`不受限`
+- 默认情况下属性与方法的权限都是public
+```typescript
+class Person {
+    public name: string;
+    public age: number;
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+    public say(): void {
+        console.log(`我是${this.name}`);
+    }
+}
+
+let p = new Person(&#39;小虎&#39;, 20);
+p.say();        // 正常
+</code></pre><h4 id="private">private</h4>
+<ul>
+<li>只供<code>类内部</code>使用的属性或方法,可以通过private关键字来修饰
+```typescript
+class Person {
+  private name: string;
+  private age: number;
+  constructor(name: string, age: number) {<pre><code>  this.name = name;
+  this.age = age;
+</code></pre>  }
+  public say(): void {<pre><code>  console.log(`我是${this.name},我${this.age}岁了`);
+</code></pre>  }
+}</li>
+</ul>
+<p>let p = new Person(&#39;小虎&#39;, 20);
+p.say();        // 正常
+p.name       // 报错,name只能在类的内部访问
+p.age          // 报错,age只能在类的内部访问</p>
+<pre><code>
+#### protected
+- 只供`类`或`子类`内部使用的属性或方法,可以通过protected关键字来修饰
+```typescript
+class Animal {
+    protected name: string;
+    private age: number;
+    constructor(name: string, age: number) {
+        this.name = name;
+        this.age = age;
+    }
+    public say(): void {
+        console.log(`我是${this.name},我${this.age}岁了`);
+    }
+}
+
+class Person extends Animal {
+    public sayName(): void {
+        console.log(`我是${this.name}`);  // 正常
+    }
+    public sayAge(): void {
+        console.log(`我${this.age}岁了`);  // 报错
+    }
+}
+
+let p = new Person(&#39;小芳&#39;, 18);
+p.say();        // 正常
+p.name       // 报错,name只能在Animal与其子类中使用
+p.age          // 报错,age只能在Animal类中使用
+</code></pre><h2 id="-">只读修饰符</h2>
+<h4 id="readonly">readonly</h4>
+<ul>
+<li>如果一个属性是只读的,可以添加readonly修饰符</li>
+<li>注意<code>方法</code>不可以使用readonly修饰符
+```typescript
+class Person {
+  readonly name: string;
+  readonly age: number;
+  constructor(name: string, age: number) {<pre><code>  this.name = name;
+  this.age = age;
+</code></pre>  }
+  public say(): void {<pre><code>  console.log(`我是${this.name},我${this.age}岁了`);
+</code></pre>  }
+}</li>
+</ul>
+<p>let p = new Person(&#39;小虎&#39;, 20);
+p.say();                     // 正常
+p.name = &#39;大虎&#39;;       // 报错,name只能在类的内部访问</p>
+<pre><code>
+#### 联合使用
+- 只读修饰符可以与访问权限修饰符一起使用
+- 但是访问权限修饰符必须放置到前面
+```typescript
+class Person {
+    public readonly name: string;
+    private readonly age: number;
+    private protected grender: string;
+}
+</code></pre>
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>

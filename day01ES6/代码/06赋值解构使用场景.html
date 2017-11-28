@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 需求,三个变量的值互换
+    let a = 10, b = 20, c = 30;
+
+    // 以前做法
+    // let temp = a;
+    // a = b;
+    // b = c;
+    // c = temp;
+
+    // es6做法,注意这里a b c已经声明了,就不用再声明了
+    [a, b, c] = [ b, c, a ];
+    </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 1. 箭头函数标准语法: 形参 => 代码体
+    let add = (a, b) => {
+        console.log(a + b);
+    };
+    add(1, 1);
+
+    // 2 如果函数只有一个参数,可以省略小括号
+    let log = msg => {
+        console.log(msg);
+    }
+    log('试一试');
+
+    // 3 如果函数只有一条语句,可以省略大括号
+    let ale = msg => alert(msg);
+    ale('还真可以-_-!');
+
+    // 4 如果函数体只有一句,且没有添加大括号,那么函数会自动返回这条语句的执行结果
+    let abc = () => 10 * 10;
+    console.log(abc());
+    </script>
+</body>
+</html>

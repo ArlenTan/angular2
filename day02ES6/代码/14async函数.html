@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function getTimeout(time) {
+        return new Promise(function(yes, no) {
+           setTimeout(() => {
+              yes('传哥');
+           }, time);
+        });
+    }
+
+    // 上面使用promise解决了异步回调嵌套不好维护的问题,
+    // 但是我们还有更好方式书写上面的代码
+    // async函数相当于使用同步的方式书写异步代码
+    async function fn() {
+        // await会等待promise成功,成功后在会向下走,直到遇到下一个await
+        let a = await getTimeout(5000);
+        console.log(`第一个定时器执行完毕了__${a}`);
+        await getTimeout(3000);
+        console.log('第二个定时器执行完毕了');
+        console.log('加多少代码都可以');
+        console.log('加多少代码都可以');
+        await getTimeout(1000);
+        console.log('第二个定时器执行完毕了');
+    }
+
+    fn();
+    </script>
+</body>
+</html>

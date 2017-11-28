@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 实例成员: 供实例使用的属性方法
+    // 静态成员: 供类使用的属性方法
+
+    function Animal(name, age) {
+        this.name = name;    // 这是实例成员
+        this.age = age;      // 这是实例成员
+    }
+
+    Animal.prototype = {
+        // 这是实例成员
+        eat: function() {
+            console.log('吃');
+        },
+        // 这是实例成员
+        run: function() {
+            console.log('动起来');
+        }
+    };
+
+    Animal.MAX_AGE = 10000;
+    Animal.getAnimal = function() {
+        return new Animal();
+    };
+
+    // 创建实例,实例可以使用的name age eat run都是实例成员
+    var gou = new Animal('狗狗', 2);
+    console.log(gou.name );
+    console.log(gou.age );
+    gou.eat();
+    gou.run();
+
+    // 类可以使用的MAX_AGE是静态成员
+    console.log(Animal.MAX_AGE);
+    </script>
+</body>
+</html>

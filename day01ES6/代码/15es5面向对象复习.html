@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /*
+    * 人类:  类是抽象的描述,对应的就是构造函数
+    * 会学习 谈恋爱 具有自我意识 2只眼睛2条胳膊2条腿
+    * 
+    * 小胖:  实例是具体的描述,对应的就是实例
+    * 不学 被谈 一值认为自己很瘦 2只小眼睛2条白白嫩嫩肉肉的胳膊2条可爱的小短腿
+    */ 
+
+    // es5及之前js是没有类的概念的
+    // 这是构造函数
+    // 但是也可以称为类
+    // 构造函数有个特点: 抽象
+    function Animal(name, age) {
+       this.name = name;
+       this.age = age;
+    }
+
+    // new构造函数得到的是新对象
+    // 这个新对象我们也可以称为实例
+    // 实例有个特点: 具象
+    var gou = new Animal('狗', 12);
+    </script>
+</body>
+</html>

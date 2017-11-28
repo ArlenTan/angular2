@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function Tab() {
+        this.btn = document;
+        this.target = document.body;
+    }
+
+    Tab.prototype = {
+
+        // 给btn绑定事件
+        bind: function() {
+          console.log(this);  // this为tab实例
+          this.btn.onclick = () => {
+            console.log(this); // this为上级的tab实例,不再是元素
+          };
+        },
+
+        fn: function() {
+            
+           // 使用箭头函数,回调里面的this就指向了上级的tab实例
+           // 相比以前我们不用再通过一个临时变量存储外界this值了,比如var that = this;
+           setTimeout(() => {
+              console.log(this);
+           }, 1000);
+
+        }
+    };
+
+    var tab = new Tab();
+    tab.bind();
+    tab.fn();
+    </script>
+</body>
+</html>

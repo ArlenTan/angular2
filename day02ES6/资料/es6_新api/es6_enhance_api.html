@@ -1,0 +1,945 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>i5ting_ztree_toc:es6_enhance_api</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="es6-api">ES6新增常用API</h1>
+<h2 id="-">数字</h2>
+<h4 id="-">预览</h4>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>宿主</th>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>isInteger</td>
+<td>Number</td>
+<td>method</td>
+<td>是不是整数，小数点后为0的也算，比如2.0</td>
+</tr>
+<tr>
+<td>isNaN</td>
+<td>Number</td>
+<td>method</td>
+<td>是不是NaN</td>
+</tr>
+<tr>
+<td>isFinite</td>
+<td>Number</td>
+<td>method</td>
+<td>是不是非无穷的数字</td>
+</tr>
+<tr>
+<td>parseInt</td>
+<td>Number</td>
+<td>method</td>
+<td>字符串转整数，原本全局的方法的转移</td>
+</tr>
+<tr>
+<td>parseFloat</td>
+<td>Number</td>
+<td>method</td>
+<td>字符串转浮点数，原本全局的方法的转移</td>
+</tr>
+</tbody>
+</table>
+<h4 id="-">演示</h4>
+<ul>
+<li><p>Number.isInteger</p>
+<pre><code class="lang-javascript">Number.isInteger(100); // true
+Number.isInteger(100.0); // true
+Number.isInteger(100.1); // false
+</code></pre>
+</li>
+<li><p>Number.isNaN</p>
+<pre><code class="lang-javascript">Number.isNaN(123); // false
+Number.isNaN(NaN); // true
+Number.isNaN(&quot;abc&quot;); // false
+Number.isNaN([ &#39;a&#39;, &#39;b&#39;, &#39;c&#39; ]); // false
+</code></pre>
+</li>
+<li><p>Number.isFinite</p>
+<pre><code class="lang-javascript">Number.isFinite(100); // true
+Number.isFinite(Infinity); // false
+Number.isFinite(&quot;100&quot;); // false
+</code></pre>
+</li>
+<li><p>Number.parseInt</p>
+<pre><code class="lang-javascript">Number.parseInt(&quot;100.123&quot;, 10); // 100
+Number.parseInt(&quot;100.123&quot;, 2); // 4
+Number.parseInt(&quot;100.123&quot;, 8); // 64
+Number.parseInt(&quot;100.123&quot;, 16); // 256
+</code></pre>
+</li>
+<li><p>Number.parseFloat</p>
+<pre><code class="lang-javascript">Number.parseFloat(&quot;100.123&quot;); // 100.123
+Number.parseFloat(&quot;10PPP0.123&quot;); // 10
+</code></pre>
+</li>
+</ul>
+<h2 id="-">字符串</h2>
+<h4 id="-">预览</h4>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>宿主</th>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fromCodePoint</td>
+<td>String</td>
+<td>method</td>
+<td>通过Unicode码点求字符，支持大于0xFFFF编码字符</td>
+</tr>
+<tr>
+<td>codePointAt</td>
+<td>String.prototype</td>
+<td>method</td>
+<td>获取指定下标字符的Unicode码点，支持大于0xFFFF编码字符</td>
+</tr>
+<tr>
+<td>at</td>
+<td>String.prototype</td>
+<td>method</td>
+<td>获取指定下标的字符，可正确获取大于0xFFFF编码的字符</td>
+</tr>
+<tr>
+<td>includes</td>
+<td>String.prototype</td>
+<td>method</td>
+<td>是否包含指定字符串</td>
+</tr>
+<tr>
+<td>startsWith</td>
+<td>String.prototype</td>
+<td>method</td>
+<td>起始位置是否包含指定字符串</td>
+</tr>
+<tr>
+<td>endsWith</td>
+<td>String.prototype</td>
+<td>method</td>
+<td>结束位置是否包含指定字符串</td>
+</tr>
+<tr>
+<td>repeat</td>
+<td>String.prototype</td>
+<td>method</td>
+<td>重复字符串多次</td>
+</tr>
+</tbody>
+</table>
+<h4 id="-">演示</h4>
+<ul>
+<li>String.fromCodePoint</li>
+</ul>
+<pre><code class="lang-javascript">String.fromCodePoint(97); // &quot;a&quot;
+String.fromCodePoint(0x61); // &quot;a&quot;
+String.fromCodePoint(19968); // &quot;一&quot;
+String.fromCodePoint(0x4e00); // &quot;一&quot;
+</code></pre>
+<ul>
+<li>String.prototype.codePointAt</li>
+</ul>
+<pre><code class="lang-javascript">let str = &#39;ABCD一二三四&#39;;
+str.codePointAt(0); // 65
+str.codePointAt(4); // 19968
+</code></pre>
+<ul>
+<li>String.prototype.at 浏览器还不支持,忽略</li>
+</ul>
+<pre><code class="lang-javascript">let str = &#39;ABCD一二三四&#39;;
+str.at(0); // &quot;A&quot;
+str.at(4); // &quot;一&quot;
+</code></pre>
+<ul>
+<li>String.prototype.includes<ol>
+<li>要检测的字符串 { string }</li>
+<li>起始位置 { number }</li>
+</ol>
+</li>
+</ul>
+<pre><code class="lang-javascript">let str = &#39;abcde&#39;;
+str.includes(&#39;abc&#39;); // true
+str.includes(&#39;bcd&#39;); // true
+str.includes(&#39;bcd&#39;, 2); // false
+</code></pre>
+<ul>
+<li>String.prototype.startsWith<ol>
+<li>要检测的字符串 { string }</li>
+<li>起始位置 { number }</li>
+</ol>
+</li>
+</ul>
+<pre><code class="lang-javascript">let str = &#39;abcde&#39;;
+str.startsWith(&#39;abc&#39;); // true
+str.startsWith(&#39;bcd&#39;); // false
+str.startsWith(&#39;bcd&#39;, 1); // true
+</code></pre>
+<ul>
+<li>String.prototype.endsWith<ol>
+<li>要检测的字符串 { string }</li>
+<li>结束位置,包头不包尾 { number }</li>
+</ol>
+</li>
+</ul>
+<pre><code class="lang-javascript">let str = &#39;abcde&#39;;
+str.endsWith(&#39;cde&#39;); // true
+str.endsWith(&#39;cde&#39;, 0); // false
+str.endsWith(&#39;cde&#39;, 5); // true
+</code></pre>
+<ul>
+<li>String.prototype.repeat</li>
+</ul>
+<pre><code class="lang-javascript">&quot;abc&quot;.repeat(3); // &quot;abcabc&quot;
+&quot;123&quot;.repeat(4); // &quot;123123123123&quot;
+</code></pre>
+<h2 id="-">数组</h2>
+<h4 id="-">预览</h4>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>宿主</th>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>from</td>
+<td>Array</td>
+<td>method</td>
+<td>类数组转真数组</td>
+</tr>
+<tr>
+<td>find</td>
+<td>Array.prototype</td>
+<td>method</td>
+<td>寻找第一个符合条件的值，类似的filter方法找全部</td>
+</tr>
+<tr>
+<td>findIndex</td>
+<td>Array.prototype</td>
+<td>method</td>
+<td>寻找第一个符合条件的值的下标</td>
+</tr>
+<tr>
+<td>fill</td>
+<td>Array.prototype</td>
+<td>method</td>
+<td>重置数组中的值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="-">演示</h4>
+<ul>
+<li>Array.from<ol>
+<li>类数组</li>
+<li>与map功能一样的回调</li>
+</ol>
+</li>
+</ul>
+<pre><code class="lang-javascript">let likeArray = { 0: &#39;aa&#39;, 1: &#39;bb&#39;, 2: &#39;cc&#39;, length: 3 }
+Array.from(likeArray); // [ &#39;aa&#39;, &#39;bb&#39;, &#39;cc&#39; ]
+
+let lis = document.querySelectorAll(&#39;li&#39;);
+Array.from(lis); // [ li, li, li, ... ]
+
+let str = &#39;abc&#39;;
+Array.from(str); // [ &#39;a&#39;, &#39;b&#39;, &#39;c&#39; ]
+
+let nums = &#39;123&#39;;
+Array.from(nums, v =&gt; v * v); // [ 1, 4, 9 ]
+</code></pre>
+<ul>
+<li>Array.prototype.find</li>
+</ul>
+<pre><code class="lang-javascript">[11, 22, 33, 44].find(v =&gt; v % 2 === 0); // 22
+[11, 22, 33, 44].find(v =&gt; v &gt; 50); // undefined
+</code></pre>
+<ul>
+<li>Array.prototype.findIndex</li>
+</ul>
+<pre><code class="lang-javascript">[11, 22, 33, 44].find(v =&gt; v % 2 === 0); // 22
+[11, 22, 33, 44].find(v =&gt; v &gt; 50); // undefined
+</code></pre>
+<ul>
+<li>Array.prototype.fill<ol>
+<li>重置默认值 { any }</li>
+<li>起始位置 { number }</li>
+<li>结束位置,包头不包尾 { number }</li>
+</ol>
+</li>
+</ul>
+<pre><code class="lang-javascript">let arr = new Array(5);
+arr.fill(1); // [ 1, 1, 1, 1, 1 ]
+arr.fill(10, 2, 4); // [ 1, 1, 10, 10, 1 ]
+</code></pre>
+<h2 id="-">对象</h2>
+<h4 id="-">预览</h4>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>宿主</th>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>is</td>
+<td>Object</td>
+<td>method</td>
+<td>全等运算符的方法实现，但NaN与NaN相等，-0与+0不等</td>
+</tr>
+<tr>
+<td>assign</td>
+<td>Object</td>
+<td>method</td>
+<td>对象浅拷贝</td>
+</tr>
+<tr>
+<td>keys</td>
+<td>Object</td>
+<td>method</td>
+<td>获取自身所有可枚举的key</td>
+</tr>
+<tr>
+<td>values</td>
+<td>Object</td>
+<td>method</td>
+<td>获取自身所有可枚举的value</td>
+</tr>
+<tr>
+<td>entries</td>
+<td>Object</td>
+<td>method</td>
+<td>获取自身所有可枚举的key与value</td>
+</tr>
+<tr>
+<td>getPrototypeOf</td>
+<td>Object</td>
+<td>method</td>
+<td>获取对象继承的原型</td>
+</tr>
+<tr>
+<td>setPrototypeOf</td>
+<td>Object</td>
+<td>method</td>
+<td>设置对象继承的原型</td>
+</tr>
+</tbody>
+</table>
+<h4 id="-">演示</h4>
+<ul>
+<li>Object.is</li>
+</ul>
+<pre><code class="lang-javascript">Object.is(123, &quot;123&quot;);  // false
+Object.is(-0, 0);  // false
+Object.is(NaN, NaN);  // true
+</code></pre>
+<ul>
+<li>Object.assign<ol>
+<li>目标对象</li>
+<li>被拷贝对象</li>
+</ol>
+</li>
+</ul>
+<pre><code class="lang-javascript">let o1 = { a: 1, b: 2 };
+let o2 = { c: 3, d: 4 };
+Object.assign(o1, o2); // o1 =&gt; { a:1, b: 2, c:3, d: 4 }
+</code></pre>
+<ul>
+<li>Object.keys<code>ES5</code></li>
+</ul>
+<pre><code class="lang-javascript">let obj = { a: 11, b: 22, c: 33 };
+Object.keys(obj); // [ &#39;a&#39;, &#39;b&#39;, &#39;c&#39; ]
+</code></pre>
+<ul>
+<li>Object.values</li>
+</ul>
+<pre><code class="lang-javascript">let obj = { a: 11, b: 22, c: 33 };
+Object.values(obj); // [ 11, 22, 33 ]
+</code></pre>
+<ul>
+<li>Object.entries</li>
+</ul>
+<pre><code class="lang-javascript">let obj = { a: 11, b: 22, c: 33 };
+Object.entries(obj); // [ [ &#39;a&#39;, 11 ], [ &#39;b&#39;, 22 ], [&#39;c&#39;, 33] ]
+</code></pre>
+<ul>
+<li>Object.getPrototypeOf</li>
+</ul>
+<pre><code class="lang-javascript">let arr = [];
+Object.getPrototypeOf(arr);  // Array.prototype
+</code></pre>
+<ul>
+<li>Object.setPrototypeOf</li>
+</ul>
+<pre><code class="lang-javascript">let arr = [];
+Object.setPrototypeOf(arr, { a: 11, b: 22 });
+arr.a        // 11
+arr.slice  // undefined
+</code></pre>
+<h2 id="set">Set</h2>
+<ul>
+<li>新增的构造函数, 可创建新的<code>数据结构</code>, 结构类似与数组, 特点是<code>值唯一</code></li>
+</ul>
+<h4 id="-">预览</h4>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>宿主</th>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>size</td>
+<td>Set</td>
+<td>property</td>
+<td>集合成员数量</td>
+</tr>
+<tr>
+<td>add</td>
+<td>Set.prototype</td>
+<td>method</td>
+<td>添加某个值</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>Set.prototype</td>
+<td>method</td>
+<td>删除某个值</td>
+</tr>
+<tr>
+<td>has</td>
+<td>Set.prototype</td>
+<td>method</td>
+<td>是否存在某个值</td>
+</tr>
+<tr>
+<td>clear</td>
+<td>Set.prototype</td>
+<td>method</td>
+<td>清空所有值</td>
+</tr>
+<tr>
+<td>forEach</td>
+<td>Set.prototype</td>
+<td>method</td>
+<td>遍历值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="-">演示</h4>
+<ul>
+<li>size</li>
+</ul>
+<pre><code class="lang-javascript">let numSet = new Set([2, 4, 6, 2, 4, 6]);  // { 2, 4, 5 }
+numSet.size  // 3
+</code></pre>
+<ul>
+<li>add</li>
+</ul>
+<pre><code class="lang-javascript">let numSet = new Set([2, 4, 6]);
+numSet.add(4);  // { 2, 4, 6 }
+numSet.add(8)   // { 2, 4, 6, 8 }
+</code></pre>
+<ul>
+<li>delete</li>
+</ul>
+<pre><code class="lang-javascript">let numSet = new Set([10, 20, 30]);
+numSet.delete(10);  // { 20, 30 }
+</code></pre>
+<ul>
+<li>has</li>
+</ul>
+<pre><code class="lang-javascript">let numSet = new Set([10, 20, 30]);
+numSet.has(20);  // true
+numSet.has(50);  // false
+</code></pre>
+<ul>
+<li>clear</li>
+</ul>
+<pre><code class="lang-javascript">let numSet = new Set([10, 20, 30]);
+numSet.clear();  // {}
+</code></pre>
+<ul>
+<li>forEach<ol>
+<li>用来接收值的回调 { function }</li>
+<li>回调中的this指向  { any }</li>
+</ol>
+</li>
+</ul>
+<pre><code class="lang-javascript">let numSet = new Set([10, 20, 30]);
+numSet.forEach(v =&gt; console.log(v));
+</code></pre>
+<ul>
+<li>支持for of</li>
+</ul>
+<pre><code class="lang-javascript">let numSet = new Set([10, 20, 30]);
+
+for(let v of numSet) {
+    console.log(v);          // 10, 20, 30
+}
+</code></pre>
+<ul>
+<li>合并数据并去重</li>
+</ul>
+<pre><code class="lang-javascript">let arr1 = [ 1, 3, 5 ];
+let arr2 = [ 5, 7, 9 ];
+new Set([ ...arr1, ...arr2 ]);  // { 1, 3, 5, 7, 9 }
+</code></pre>
+<h2 id="map">Map</h2>
+<ul>
+<li>新增的构造函数, 可创建新的<code>数据结构</code>, 结构类似与对象, 特点是<code>key值</code>可以为<code>对象</code></li>
+</ul>
+<h4 id="-">预览</h4>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>宿主</th>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>size</td>
+<td>Map</td>
+<td>property</td>
+<td>集合成员数量</td>
+</tr>
+<tr>
+<td>set</td>
+<td>Set.prototype</td>
+<td>method</td>
+<td>通过key,value形式添加新值</td>
+</tr>
+<tr>
+<td>get</td>
+<td>Set.prototype</td>
+<td>method</td>
+<td>通过key取值</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>Set.prototype</td>
+<td>method</td>
+<td>通过key删除值</td>
+</tr>
+<tr>
+<td>has</td>
+<td>Set.prototype</td>
+<td>method</td>
+<td>是否存在某个key</td>
+</tr>
+<tr>
+<td>clear</td>
+<td>Set.prototype</td>
+<td>method</td>
+<td>清空所有值</td>
+</tr>
+<tr>
+<td>forEach</td>
+<td>Set.prototype</td>
+<td>method</td>
+<td>遍历值</td>
+</tr>
+</tbody>
+</table>
+<h4 id="-">演示</h4>
+<ul>
+<li>size</li>
+</ul>
+<pre><code class="lang-javascript">let numMap = new Map([
+    [new Date(), 100],
+    [{}, 200]
+]);
+numMap.size  // 2
+</code></pre>
+<ul>
+<li>set与get</li>
+</ul>
+<pre><code class="lang-javascript">let obj = { name: &#39;张三&#39;, age: 21 };
+
+let map = new Map();
+map.set(obj, &#39;我不认识李四&#39;);
+map.get(obj)   // &#39;我不认识李四&#39;
+</code></pre>
+<ul>
+<li>delete</li>
+</ul>
+<pre><code class="lang-javascript">let fibs = [1, 1, 2, 3, 5, 8];
+
+let map = new Map();
+map.set(fibs, &#39;这是&#39;);
+map.delete([1, 1, 2, 3, 5, 8]);  // false
+map.delete(fibs);                  // true
+</code></pre>
+<ul>
+<li>has</li>
+</ul>
+<pre><code class="lang-javascript">let date = new Date();
+
+let map = new Map();
+numSet.has(date);  // false
+numSet.set(date, &#39;明月几时有,把酒问青天&#39;);
+numSet.has(date);  // true
+</code></pre>
+<ul>
+<li>clear</li>
+</ul>
+<pre><code class="lang-javascript">let numMap = new Map([
+    [new Date(), 100],
+    [{}, 200]
+]);
+numMap.clear()  // {}
+</code></pre>
+<ul>
+<li>forEach<ol>
+<li>用来接收值的回调 { function }</li>
+<li>回调中的this指向  { any }</li>
+</ol>
+</li>
+</ul>
+<pre><code class="lang-javascript">let numMap = new Map([
+    [new Date(), 100],
+    [{}, 200]
+]);
+numMap.forEach((v, k) =&gt; console.log(v, k));
+</code></pre>
+<ul>
+<li>支持for of</li>
+</ul>
+<pre><code class="lang-javascript">let numMap = new Map([
+    [new Date(), 100],
+    [{}, 200]
+]);
+
+for(let v of numMap) {
+    console.log(v);          // 100, 200
+}
+</code></pre>
+<h2 id="promise">Promise</h2>
+<ul>
+<li>Promise：承诺、约定的意思，主要用于异步执行流程的管理</li>
+<li>它可以解决传统异步解决方案中，回调嵌套过深不利于维护的问题</li>
+</ul>
+<h4 id="-">演示</h4>
+<ul>
+<li>假定我们有这样一个需求：某人和青梅竹马的芳芳约定，如果十年后她还没嫁，就嫁给我</li>
+<li>这个需求中就含有异步逻辑的处理，芳芳要不要嫁给我需要等待10年后才会知晓</li>
+<li>这里我们通过Promise来尝试实现这个需求：<ol>
+<li>使用promise管理一个10年约定</li>
+<li>添加10年后的处理逻辑</li>
+</ol>
+</li>
+</ul>
+<h6 id="-">第一步</h6>
+<ul>
+<li>Promise自身是一个<code>构造函数</code>，我们可以new它<code>创建实例</code></li>
+<li>然后传入一个<code>函数</code>，里面编写异步操作的代码</li>
+</ul>
+<pre><code class="lang-javascript">let engagement = new Promise(function(yes, no) {
+    // 定义10年期限，期限到后芳芳没嫁，就调yes，否则调no
+    // 这里的yes与no方法是Promise实例提供给我们的
+    setTimeout(function() {
+        yes();
+    }, 1000 * 10);
+});
+</code></pre>
+<h6 id="-">第二步</h6>
+<ul>
+<li>上面的代码在10年期限到来时，并没有写处理逻辑，而是通过调用Promise实例提供的方法告知最终结果</li>
+<li>因为Promise实例知道最终的结果，所以它专门提供了一个then方法让我们来添加处理逻辑</li>
+</ul>
+<pre><code class="lang-javascript">// then接收两个回调，第一个是成功回调，第二个是失败回调(可选)
+engagement.then(
+  () =&gt; console.log(&#39;太开心了，芳芳终于嫁给了我&#39;),
+  () =&gt; console.log(&#39;我最终还是错过了芳芳&#39;)
+);
+</code></pre>
+<h6 id="-">后续处理</h6>
+<ul>
+<li>使用Promise后你会发现我们异步操作与后续的处理逻辑是分开编写的</li>
+<li>而且我们可以通过then方法多次添加后续的处理逻辑</li>
+<li>即时异步操作结束了，我们还是可以调用then</li>
+</ul>
+<pre><code class="lang-javascript">// 只传入成功回调
+engagement.then(
+    () =&gt; console.log(&#39;芳芳终于嫁给我了，我要带她环游世界！&#39;)
+);
+// 如果只想指定失败回调，可以通过catch方法来添加
+engagement.catch(
+    () =&gt; console.log(&#39;我的世界开始变得暗淡无光&#39;)
+);
+</code></pre>
+<h4 id="-">小结</h4>
+<ul>
+<li>使用Promise管理异步操作，<code>异步逻辑</code>与<code>结果处理</code>是分开编写的，这有利于我们程序的<code>解耦</code>，让程序更<code>好维护</code></li>
+<li>then方法后续仍可以调用，是因为每个Promise实例都有一个<code>状态</code>记录异步操作<code>执行的进度</code>，即时异步操作<code>结束</code>了，这个记录<code>仍然存在</code><ul>
+<li><code>pending</code>状态，代表正在执行异步操作，实例刚<code>创建</code>时的状态</li>
+<li><code>resolved</code>状态，代表异步代码执行完毕，调用<code>yes</code>方法后的状态</li>
+<li><code>rejected</code>状态，代表异步代码执行完毕，调用<code>no</code>方法后的状态</li>
+</ul>
+</li>
+</ul>
+<h2 id="-">控制异步操作流程</h2>
+<h4 id="-">普通做法</h4>
+<ul>
+<li>通过编写嵌套的异步回调来控制代码的执行流程</li>
+</ul>
+<pre><code class="lang-javascript">setTimeout(function() {
+    console.log(&#39;第一个计时器回调执行，开启第二个&#39;);
+
+    setTimeout(function() {
+        console.log(&#39;第二个计时器回调执行，开启第三个&#39;);
+
+        setTimeout(function() {
+            console.log(&#39;第三个计时器回调执行&#39;);
+
+        }, 2000);
+    }, 2000);
+}, 2000);
+</code></pre>
+<h4 id="promise-">Promise做法</h4>
+<ul>
+<li>通过then方法的链式调用控制代码的执行流程</li>
+</ul>
+<pre><code class="lang-javascript">// 创建一个promise实例，用于控制第二个计时器的执行
+new Promise(function(yes, no) {
+    setTimeout(function() {
+        console.log(&#39;第一个计时器回调执行，开启第二个&#39;);
+        yes();
+    }, 2000);
+})
+// 第二个执行，并创建返回一个新的promise实例，用于控制第三个计时器的执行
+.then(function() {
+    return new Promise(function(yes, no) {
+        setTimeout(function() {
+            console.log(&#39;第二个计时器回调执行，开启第三个&#39;);
+            yes();
+        }, 2000);
+    });
+})
+// 第三个执行，如没第四个，就不用再返回新的promise实例控制后续执行了
+.then(function() {
+    setTimeout(function() {
+        console.log(&#39;第三个计时器回调执行&#39;);
+    }, 2000);
+});
+</code></pre>
+<h2 id="promise-">Promise封装与传参</h2>
+<h4 id="-promise-">封装promise版本的定时器</h4>
+<ul>
+<li>如果同一件异步操作将来可能多次使用，可以考虑封装一个方法，便于复用</li>
+</ul>
+<pre><code class="lang-javascript">function pmsTimeout(time, data) {
+    return new Promise(function(yes, no) {
+        setTimeout(function() {
+            yes(data);
+        }, time);
+    });
+}
+
+pmsTimeout(2000)
+.then(function() {
+    console.log(&#39;通过then方法来添加定时器的回调逻辑，实现解耦&#39;);
+});
+
+pmsTimeout(4000)
+.then(function() {
+    console.log(&#39;封装后使用方便不少&#39;);
+});
+</code></pre>
+<h4 id="-">数据传递</h4>
+<ul>
+<li>另外yes与no方法还可以传递一些参数给then中的回调</li>
+</ul>
+<pre><code class="lang-javascript">function pmsTimeout(time) {
+    return new Promise(function(yes, no) {
+        setTimeout(function() {
+            yes(&#39;给小伙来个士力架&#39;);
+        }, time);
+    });
+}
+
+pmsTimeout(2000)
+.then(function(data) {
+    console.log(data);  // &#39;给小伙来个士力架&#39;
+});
+</code></pre>
+<h4 id="-">进阶</h4>
+<ul>
+<li>我们把普通异步操作封装成promise版本时，可以让使用者指定数据</li>
+</ul>
+<pre><code class="lang-javascript">function pmsTimeout(time, data) {
+    return new Promise(function(yes, no) {
+        setTimeout(function() {
+            yes(data); // 用户传什么我就给then回调什么
+        }, time);
+    });
+}
+
+pmsTimeout(2000, &#39;老大&#39;)
+.then(function(data) {
+    console.log(`${ data }没钱吃饭`);
+    return pmsTimeout(3000, &#39;老二&#39;);
+})
+.then(function(data) {
+    console.log(`${ data }没钱穿衣`);
+    return pmsTimeout(4000, &#39;老三&#39;);
+})
+.then(function(data) {
+    console.log(`${ data }个长不大`);
+});
+</code></pre>
+<h2 id="async-es7-">async<code>ES7</code></h2>
+<ul>
+<li>使异步操作变得更加简洁清晰</li>
+<li>使用它控制Promise执行流程，简直没谁了</li>
+</ul>
+<h4 id="-">顺序执行定时器</h4>
+<pre><code class="lang-javascript">function pmsTimeout(time, data) {
+    return new Promise(function(yes, no) {
+        setTimeout(function() {
+            yes(`Hello ${ data }`); // 数据小做处理
+        }, time);
+    });
+}
+
+async function asyncTimeout() {
+    let data = null;
+
+    data = await pmsTimeout(1000, &#39;大娃&#39;);
+    console.log(data);
+
+    data = await pmsTimeout(2000, &#39;二娃&#39;);
+    console.log(data);
+
+    data = await pmsTimeout(3000, &#39;三娃&#39;);
+    console.log(data);
+
+    data =await pmsTimeout(4000, &#39;四娃&#39;);
+    console.log(data);
+}
+
+// 开启幸福生活
+asyncTimeout();
+</code></pre>
+<h4 id="-">顺序进行数据请求</h4>
+<pre><code class="lang-javascript">async function asyncFetch() {
+    let response = null, data = null;
+
+    response = await fetch(&#39;abc.json&#39;);
+    data =  response.ok &amp;&amp; await response.json();
+    console.log(data);
+
+    response = await fetch(&#39;react.js&#39;);
+    data = response.ok &amp;&amp; await response.text();
+    console.log(data);
+}
+
+// 开启幸福生活
+asyncFetch();
+</code></pre>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>

@@ -1,0 +1,30 @@
+<h1>
+  Welcome to {{ site }}!
+</h1>
+<!--  插值表达式当中可以写简单的运算  -->
+<p>{{ site == '深圳'? '花钱': '攒钱' }}</p>
+
+<!-- 事件绑定, 只需在元素身上使用 (事件名)=函数() 即可 -->
+<button (click)="clickHandler()">点我</button>
+
+<!-- 如果你需要在事件处理函数中, 使用事件对象, 添加传入$event模版变量即可 -->
+<input type="text" (input)="inputHandler($event)">
+<input type="text" (change)="changeHandler($event)">
+
+<!-- *ngIf指令可以控制元素的添加与移除 -->
+<p *ngIf="isTrue">我是快乐的我!</p>
+
+<!-- 数据驱动开发思想范例 -->
+<div>
+  <p *ngIf="hasTaoKong">感觉身体被掏空!!</p>
+  <button (click)="changeTaoKong()">点我</button>
+</div>
+
+<!-- *ngFor 渲染所有的城市 -->
+<ul>
+  <li *ngFor="let city of cityList; let i = index;">{{ i }} : {{ city }}</li>
+</ul>
+<ul>
+  <li *ngFor="let cityObj of cityList2; let i = index; trackBy: trackByFn">{{ i }} : {{ cityObj.name }}</li>
+</ul>
+<button (click)="changeCityList()">改变城市列表的值</button>

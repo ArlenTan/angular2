@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // es6 Object.assign
+    // 作用: 把后面对象的第一层属性copy给第一个对象
+
+    let o1 = {};
+    let o2 = { a: '白切鸡' };
+    let o3 = { b: '口水鸡' };
+    let o4 = { c: '涮羊肉' };
+
+    Object.assign(o1, o2, o3, o4);
+    console.log(o1);
+
+    // es5 Object.keys
+    // 作用: 获取对象所有的key
+    console.log(Object.keys(o1)); // [ 'a', 'b', 'c' ]
+
+    // es6 Object.values
+    // 作用: 获取对象所有的value
+    console.log(Object.values(o1)); // [ '白切鸡', '口水鸡', '涮羊肉' ]
+
+    // es6 Object.entries
+    // 作用: 以二维数组的形式获取对象的key与value
+    console.log(Object.entries(o1)); // [ ['a', '白切鸡'], ['b', '口水鸡'], ['c', '涮羊肉'] ]
+    </script>
+</body>
+</html>

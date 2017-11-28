@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.1.0.js"></script>
+    <style>
+    div {
+        width: 50px;
+        height: 50px;
+        background-color: skyblue;
+    }
+    </style>
+</head>
+<body>
+    <div></div>
+    <script>
+    // 把jQ的方法封装成promise版本
+    function animate(selector, style, time) {
+        return new Promise(function(yes, no) {
+            $(selector).animate(style, time, function() {
+                no();
+            });
+        });
+    }
+
+    // 前面两种方式都可以知晓async函数内部的错误, 然后进行处理
+    // 但是一旦中间的promise错误了, 那么不会向下执行, 如果你还想向下, 那么可以这样写
+    async function divRun() {
+        await animate('div', {width: 200}, 1000).catch(()=>{});
+        await animate('div', {height: 200}, 1000).catch(()=>{});
+        await animate('div', {marginLeft: 200}, 1000).catch(()=>{});
+        await animate('div', {marginTop: 200}, 1000).catch(()=>{});
+        await animate('div', {width: 50, height: 50}, 1000).catch(()=>{});
+    }
+
+    divRun();
+    </script>
+</body>
+</html>

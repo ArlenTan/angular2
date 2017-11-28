@@ -1,0 +1,8 @@
+<article>
+  <div class="operation">
+    <input type="text" placeholder="请输入名称" [(ngModel)]="newName">
+    <button type="button" (click)="addProduct()">添加数据</button>
+  </div>
+  <!-- 这里使用公共的展示列表的组件 -->
+  <app-list [list]="productList" (remove)="removeProduct($event)"></app-list>
+</article>

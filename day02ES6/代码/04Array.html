@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    let arr = [10, 5, 2, 20];
+
+    // es6find,可以用来寻找第一个符合条件的值
+    // 需求:找到第一个小于5的数字
+    let a = arr.find(function(v, i) {
+       return v < 5;
+    });
+    console.log(a);  // 2
+
+    // es6findIndex,可以用来寻找第一个符合条件的值的下标
+    // 需求:找到第一个大于10的数字
+    let b = arr.findIndex(v => v > 10);
+    console.log(b);  // 3
+
+    // es5方法filter,可以用来寻找多个符合条件的值
+    // 需求: 找到arr中的所有偶数
+    let newArr = arr.filter(v => v % 2 === 0);
+    console.log(newArr);
+    </script>
+</body>
+</html>

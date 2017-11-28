@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 提取下标为5 8 9的值
+    // let arr = [1, 2, 1, 1, 2, 3, 4, 5, 6, 7];
+    // let [ , , , , , a, , , b, c ] = arr;
+
+    // 提取对象
+    // let arr = [ {a:1}, {b:2}, ['哈哈', '嘿嘿'], '你是猪吗' ];
+    // let [a, b, c, d] = arr;
+
+    // 数组深层提取
+    // let arr = [ {a:1}, {b:2}, ['哈哈', '嘿嘿'], '你是猪吗' ];
+    // let [a, b, [, c], d] = arr;
+
+    // 默认值
+    let arr = [ 1, 2 ];
+    let [a, b = 20, c = 30] = arr; 
+    console.log(b)
+    </script>
+</body>
+</html>

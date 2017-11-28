@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 箭头函数没有自己的专属this,如果你要使用,那么得到的是上级作用域中的this
+
+    // 例1: 自己没有this,去全局作用域找,this为window
+    // ( ()=>{ console.log(this) } )();  
+
+    // 例2
+    var obj = {
+        fn() {
+            // 自己没有this,去上级fn的作用域找,this为obj
+            ( ()=>{ console.log(this) } )();  
+
+            // 普通的自调函数,内部的this为window,它不会去上级找
+            (function() { console.log(this) })();
+        }
+    };
+    obj.fn();
+
+    // 关于这个this
+    // this为window: 普通自调函数 传入定时器的普通函数 函数名()
+    // this为宿主对象: 对象.方法()
+    // this为实例对象: new 普通函数()
+    // this为任意值: 函数.call(指定this的指向)  
+    </script>
+</body>
+</html>

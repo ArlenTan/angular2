@@ -1,0 +1,18 @@
+#tb{
+    width: 800px;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+#tb th{
+    background-color: #0094ff;
+    color:white;
+    font-size: 16px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid black;
+}
+#tb td{
+    padding: 5px;
+    text-align: center;
+    border: 1px solid black;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    let obj = { a: 1, b: 2, c: 3, 1: 'a', 2: 'b' };
+
+    // .语法
+    // 这种有些不足: 1 访问的属性不能是数字开头的  2 不能使用变量 
+
+    // []语法
+    // 这种语法无敌: 1 可以使用数字 2 可以使用变量 3 可以使用字符串
+
+    // []里面加引号就相当于是.语法
+    // 即obj['a'] 等价于 obj.a
+    console.log(obj['a']) // 1
+
+    // []里面可以使用数字,加不加引号都行
+    console.log(obj[1]) // a
+    console.log(obj['2']) // b
+
+    // []里面可以引用变量
+    let xxx = 'a';
+    console.log(obj[xxx]) // 1
+    xxx = 'b';
+    console.log(obj[xxx]) // 2
+    </script>
+</body>
+</html>

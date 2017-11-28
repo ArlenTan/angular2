@@ -1,0 +1,13 @@
+<h1>我是新的组件</h1>
+
+<!-- class控制 -->
+<div>
+    <p [class.red]="styleOne" (click)="styleOne = !styleOne">单控制class</p>
+    <p [ngClass]="styleMore">多控制class</p>
+</div>
+
+<!-- style控制 -->
+<div>
+    <p [style.color]="pColor">单控制style</p>
+    <p [ngStyle]="pStyleMore">多控制style</p>
+</div>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 箭头函数自己没有this,它的this来自于它的上级作用域
+
+    // let fn = () => console.log(this);
+    // fn();      // 上级this,window
+ 
+    // let obj = { fn: fn };
+    // obj.fn();  // 还是上级this,window
+
+    // new fn();  // 报错,箭头函数不能new
+
+    let fn2 = () => console.log(arguments);  // 报错,箭头函数不能使用arguments,请用...代替
+    fn2(1, 2, 3);
+    </script>
+</body>
+</html>

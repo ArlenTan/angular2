@@ -1,0 +1,44 @@
+article {
+    padding: 10px 20px;
+}
+.operation {
+    margin-bottom: 10px;
+    text-align: center;
+    line-height: 20px;
+    font-size: 18px;
+}
+.operation input {
+    padding: 5px;
+    border: 1px solid deepskyblue;
+}
+.operation button {
+    border-radius: 3px;
+    background-color: deepskyblue;
+}
+.search {
+    text-align: left;
+    line-height: 20px;
+    font-size: 18px;
+}
+.search input {
+    padding: 5px;
+    border: 1px solid deeppink;
+}
+#tb{
+    width: 800px;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+#tb th{
+    background-color: #0094ff;
+    color:white;
+    font-size: 16px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid black;
+}
+#tb td{
+    padding: 5px;
+    text-align: center;
+    border: 1px solid black;
+}

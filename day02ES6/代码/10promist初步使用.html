@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /**
+    * 假定我们有这样一个需求：某人和青梅竹马的芳芳约定，如果十年后她还没嫁，就嫁给我
+    * 这个需求中就含有异步逻辑的处理，芳芳要不要嫁给我需要等待10年后才会知晓
+    */ 
+
+    // console.log(10);
+    // setTimeout(function() {
+    //    console.log('十年到了,该嫁了');
+    //    if('没房没车') {
+    //        setTimeout(function() {
+    //           console.log('十年到了,该嫁了');
+    //        }, 1000 * 5);
+    //    }
+    // }, 1000 * 10);
+    // console.log(20);
+
+    // 大部分解决异步逻辑的方式是添加回调函数,
+    // 但是这种方式存在弊端, 如果异步逻辑还有异步逻辑就会嵌套, 不好维护
+    // 还有一大弊端,就是异步处理逻辑必须一开始就得设计好
+
+    // 使用promise
+    // 第一步: new Promise
+    // 需要传一个回调函数, 这个函数供promise使用,promise在使用它的时候会传入两个方法yes与no
+    let p = new Promise(function(yes, no) {
+       setTimeout(function() {
+          no();
+       }, 1000 * 10);
+    });
+ 
+    // 第二步: 调用实例的then方法做事情,这个then添加的方法会在承诺生效后执行
+    p.then(
+        () => console.log('十年到了,得准备钱了'),
+        () => console.log('十年到了,该吃吃该花花,反正也没啥用')
+    );
+
+    // then方法后续还可以调用无数次,每次添加都不用修改上面的代码,相对而言维护起来比较方便
+    p.then(
+        () => console.log('十年到了,芳芳终于嫁给我了'),
+        () => console.log('绝望将伴随我一生')
+    );
+
+    // 如果你觉得then每次写两个回调太墨迹,但是还想在失败的时候做一些处理,那么可以使用catch解决
+    p.catch(
+        () => console.log('绝望将伴随我一生')
+    );
+    </script>
+</body>
+</html>

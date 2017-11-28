@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1 let变量不允许重复
+        // let a = 10;
+        // let a = 20;
+
+        // 2 代码块就是一对大括号{},let定义的变量拥有块级作用域,只能在块中访问
+        for(let i = 0; i < 4; i++) {
+            console.log(i);
+        }
+        // console.log(i);
+
+        // 3 没有预解析,没有变量提升
+        // console.log(i);
+        // let i = 10;
+
+        // 4 暂时性死区,就是如果一个作用域中已经存在了某变量,那么你就不能在这个变量的前面使用它
+        // 即时上级作用域中含有这个变量也不行,这就是暂时性死区
+        // let i = 100;
+        // {
+        //     console.log(i); 
+        //     let i = 10;
+        // }
+
+        // 5 全局变量不再是window属性
+        // let i = 5;
+        // console.log(window.i);
+    </script>
+</body>
+</html>

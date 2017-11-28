@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // es6新增了一种字符串定义的方式,使用反引号定义,就是esc键下的那个键
+
+    // 特性1,支持换行,就是内部会保留换行符
+    let str = `ab
+    cd`;
+
+
+    // 特性2,支持模版字符串,语法是${里面可以引用变量,写表达式}
+    let a = 10;
+    let obj = { name: '叼', age: 200 };
+    let arr = [ '爆了', 100 ];
+    console.log('es5语法:' + obj.name + arr[0] + '_' + '叼爆值为' + (obj.age + arr[1]));
+    console.log(`es6语法:${obj.name}${arr[0]}___叼爆值为${obj.age + arr[1]}`);
+    </script>
+</body>
+</html>

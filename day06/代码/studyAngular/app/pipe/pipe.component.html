@@ -1,0 +1,15 @@
+<ul>
+  <li>{{ huihui | uppercase }}</li>
+  <li>{{ huahua | lowercase }}</li>
+  <li>{{ date | date:'yyyy-MM-dd HH:mm:ss' }}</li>
+  <li>{{ obj | json }}</li>
+
+  <!-- 至少2位整数,至少2位小数,至多4位小数  ==> 100.123 -->
+  <li>{{ 100.123 | number:'2.2-4' }}</li>
+
+  <!-- 100.10 -->
+  <li>{{ 100.1 | number:'2.2-4' }}</li>
+
+  <!-- 100.12346 会四舍五入 -->
+  <li>{{ 100.123456789 | number:'2.2-5' }}</li>
+</ul>

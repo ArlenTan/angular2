@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // es6新增了一个神奇的运算符...
+    // 它的作用有两个,合并多个值为一个数组,或者解开数组,伪数组也支持
+    // 什么时候解什么时合,不需要记忆,因为在你需要它的时候自然就知道了
+
+    // 作用1:代替arguments
+    // function fn(...arg) {
+    //     console.log(arg);  // 一个数组,可以调用数组的那些方法遍历实参
+    // }
+    // fn(1, 2, 3, 4);
+
+
+    // 比arguments更加灵活,因为它可以选择性的存储后面几个值
+    // 注意,这里...arg必须放置到形参的末尾使用
+    // function fn2(a, b, ...arg) {
+    //     console.log(arg);
+    // }
+    // fn2(1, 2, 3, 4);
+
+
+    // 作用2:代替apply
+    // let nums = [ 5, 10, 2, 20];
+    // console.log(Math.min(nums));  // NaN,因为min方法不接受数组,只能把每一个值分别传过去
+    // console.log(Math.min.apply(null, nums)); // 通过apply提取nums数组中的每个值,分别传递给min方法
+    // console.log(Math.min(...nums));  // 使用es6的新运算符解开数组
+
+
+    // 其他作用,合并数组
+    // let arr1 = [1, 2, 3];
+    // let arr2 = [4, 5, 6];
+    // let arr12 = [ ...arr1, ...arr2 ];
+
+
+    // 用于赋值解构
+    let arr = [ 1, 2, 3, 4, 5 ];
+    let [a, b, ...c] = arr;
+    </script>
+</body>
+</html>

@@ -1,0 +1,1822 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>i5ting_ztree_toc:All</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h1 id="angularjs">AngularJS</h1>
+<h2 id="-">基本介绍</h2>
+<h4 id="-">简介</h4>
+<ul>
+<li>Angular是一款使用js编写的前端应用框架</li>
+<li>由Google员工Miško Hevery从2009 年开始着手开发，与2012年发布了1.0版本</li>
+<li>该项目目前已由Google正式支持，有一个全职的开发团队持续开发和维护这个库</li>
+<li>目前主要有<strong>1.+</strong>与<strong>4.+</strong>两个版本，我们学习的是<strong>1.+</strong>版本</li>
+</ul>
+<h4 id="-">作用</h4>
+<ul>
+<li>既然是框架那么就是为了提高开发人员工作效率的</li>
+<li>但是Angular比较适合大中型并具有大量数据操作的前端应用</li>
+<li>单一页面应用程序就更适合了</li>
+<li>对于小型或者DOM操作频繁的应用，用了反而会增加代码复杂度，影响开发效率</li>
+</ul>
+<h4 id="-">特点</h4>
+<ul>
+<li><strong>内置模块系统</strong><ul>
+<li>这里的模块系统与<strong>requireJS</strong>模块类库有<strong>很大差别</strong>，它不是模块加载器</li>
+<li>而是帮我们<strong>组织代码结构</strong>的一套规范，严格限制了我们的编码方式</li>
+<li>同时多个模块可以通过依赖配置实现功能合并与共享</li>
+</ul>
+</li>
+<li><strong>内置模版引擎</strong><ul>
+<li>这里的模版有我们熟悉的<strong>表达式</strong>和<strong>过滤器</strong>系统，写法基本类似</li>
+<li>不同的是模版与数据的<strong>绑定方式</strong>不一样</li>
+</ul>
+</li>
+<li><strong>扩展原生HTML功能</strong><ul>
+<li>通过自定义<strong>属性</strong>与<strong>标签</strong>扩展了HTML功能，这些属性标签称为<strong>指令</strong></li>
+<li>有了自定义指令基本上我们不再需要<strong>手动</strong>操作DOM，因为封装好了</li>
+</ul>
+</li>
+<li><strong>数据绑定</strong><ul>
+<li>一般的模版引擎，数据与视图的联系是<strong>一次性</strong>的，模版渲染到页面中俩者再无瓜葛</li>
+<li>Angualr中数据与视图的联系是<strong>永久性</strong>的，一旦有了关联，任何时间任意一方改变都会引起另一方的变化</li>
+</ul>
+</li>
+</ul>
+<h2 id="-angular">初探Angular</h2>
+<ul>
+<li>使用Angular开发时<strong>页面视图</strong>与<strong>业务数据操作</strong>天生就是分离的</li>
+<li>从框架的层面上就限制了我们代码的编写方式</li>
+</ul>
+<h4 id="-">使用模版引擎 - 表达式</h4>
+<ul>
+<li>表达式实际上就是模版引擎的一部分，用来进行<strong>数据输出</strong>或<strong>基本运算</strong></li>
+<li>Angular中使用的表达式语法是两对大括号<strong>{{ }}</strong></li>
+<li>不过这里我们先解释如何在模版中使用表达式，关于如何输出变量后续补充<pre><code class="lang-html">&lt;body&gt;
+ &lt;div&gt;{{ 1+1 }}&lt;/div&gt;
+&lt;/body&gt;
+&lt;script&gt;
+// 1、创造一个主模块
+var App = angular.module(&#39;app&#39;, []);
+// 2、让主模块管理body视图，这样就可以在视图中使用Angular的模版与指令等功能了
+angular.bootstrap(document.bod, [&#39;app&#39;]);
+&lt;/script&gt;
+</code></pre>
+</li>
+</ul>
+<h4 id="-">使用指令 - 管理视图</h4>
+<ul>
+<li>Angular中把具有<strong>特殊作用</strong>的<strong>标签属性</strong>称为指令，这些指令全部以ng打头</li>
+<li><strong>ng-app</strong>指令可以替代<strong>angular.bootstrap</strong>方法，指定当前视图由哪个模块管理<pre><code class="lang-html">&lt;!-- 2、让主模块管理body视图 --&gt;
+&lt;body ng-app=&quot;app&quot;&gt;
+ &lt;div&gt;{{ 10 * 10 }}&lt;/div&gt;
+&lt;/body&gt;
+&lt;script&gt;
+// 1、创造一个主模块
+var App = angular.module(&#39;app&#39;, []);
+&lt;/script&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="-">小试牛刀</h2>
+<ul>
+<li>在实际开发中一般不会向上面那样数据写死</li>
+<li>而是请求ajax从后端获取数据，然后展示到页面中</li>
+<li>要把<strong>数据写活</strong>就需要使用模块提供的<strong>控制器</strong>与<strong>$scope</strong>对象来完成</li>
+</ul>
+<h4 id="-">使用控制器 - 创建与关联</h4>
+<ul>
+<li>控制器是我们编写业务逻辑的入口，在这里我们操作数据改变视图<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+&lt;!-- 2、关联控制器，使用val变量 --&gt;
+&lt;div ng-controller=&quot;appCtrl&quot;&gt;{{ val * val }}&lt;/div&gt;
+&lt;/body&gt;
+&lt;script&gt;
+var App = angular.module(&#39;app&#39;, []);
+// 1、App模块添加一个控制器，里面创建一个val变量
+App.controller(&#39;appCtrl&#39;, function() {
+  var val = 10;
+});
+&lt;/script&gt;
+</code></pre>
+</li>
+</ul>
+<h4 id="-scope-">使用$scope载体 - 模版数据写活</h4>
+<ul>
+<li>但是上面的定义的变量无法在视图中使用</li>
+<li>因为Angular无法获取这些变量，我们必须通过某种方式把这些值传给它</li>
+<li>所以Angular提供了一个$scope对象，给这个对象添加的属性都可以在视图中访问<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+&lt;!-- 2、关联哪个控制器就可以使用哪个控制器的$scope数据 --&gt;
+&lt;div ng-controller=&quot;appCtrl&quot;&gt;{{ val * val }}&lt;/div&gt;
+&lt;/body&gt;
+&lt;script&gt;
+var App = angular.module(&#39;app&#39;, []);
+// 1、App模块添加一个控制器，控制器的主要作用是初始化与操作$scope
+App.controller(&#39;appCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+  $scope.val = 10;
+}]);
+&lt;/script&gt;
+</code></pre>
+</li>
+</ul>
+<h4 id="-">补充</h4>
+<ul>
+<li><strong>一个</strong>模块可以创建<strong>任意多</strong>个控制器</li>
+<li>每个控制器可以关联视图中的一部分<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+&lt;div ng-controller=&quot;appHeaderCtrl&quot;&gt;{{ val }}&lt;/div&gt;
+&lt;div ng-controller=&quot;appMainCtrl&quot;&gt;{{ val }}&lt;/div&gt;
+&lt;div ng-controller=&quot;appFooterCtrl&quot;&gt;{{ val }}&lt;/div&gt;
+&lt;/body&gt;
+&lt;script&gt;
+var App = angular.module(&#39;app&#39;, []);
+ App.controller(&#39;appHeaderCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+$scope.val = &#39;头&#39;;
+ }]);
+ App.controller(&#39;appMainCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+$scope.val = &#39;身体&#39;;
+ }]);
+ App.controller(&#39;appFooterCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+$scope.val = &#39;脚&#39;;
+ }]);
+&lt;/script&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="-">常用指令</h2>
+<ul>
+<li>Angular提供了一些具有特殊功能的属性与标签，并把他们称作指令</li>
+<li>使用这些指令可以省去频繁的DOM操作，解放我们的双手</li>
+<li>接下来我们要学习Angular常用的一些内置指令</li>
+</ul>
+<h4 id="ng-bind">ng-bind</h4>
+<ul>
+<li>作用：类似与{{}}表达式，可以解决{{}}闪烁问题，但是会覆盖子元素</li>
+<li>演示：把angular库在body下面引入，并使用调试工具模拟3G网络即可出现<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+&lt;!-- 两者等价，只是在网络比较慢的时候上面会出现显示源码的情况 --&gt;
+&lt;p&gt;{{ val }}&lt;/p&gt;
+&lt;p ng-bind=&quot;val&quot;&gt;{{ val }}&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+<h4 id="ng-cloak">ng-cloak</h4>
+<ul>
+<li>作用：如果喜欢使用{{}}，又要解决闪烁问题，可以使用ng-cloak配合css实现</li>
+<li>原理：Angular渲染视图时会自动去除元素身上的ng-cloak属性，好让元素显现出来<pre><code class="lang-html">&lt;style&gt;
+[ng-cloak] {
+  display: none;
+}
+&lt;/style&gt;
+&lt;!-- 视图渲染前body为隐藏状态，body子元素中的使用{{}}变被一起隐藏掉 --&gt;
+&lt;!-- 视图渲染时Angular会自动去除ng-cloak属性，元素变正常显示 --&gt;
+&lt;body ng-cloak  ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+&lt;p&gt;{{ val }}&lt;/p&gt;
+&lt;p ng-bind=&quot;val&quot;&gt;{{ val }}&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+<h4 id="ng-if">ng-if</h4>
+<ul>
+<li>作用：控制元素的插入与移除<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+&lt;!-- 这里的isLive是$scope中定义的属性 --&gt;
+&lt;p ng-if=&quot;isLive1&quot;&gt;{{ val }}&lt;/p&gt;
+&lt;p ng-if=&quot;isLive2&quot;&gt;{{ val }}&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+<h4 id="ng-show">ng-show</h4>
+<ul>
+<li>作用：控制元素的显示隐藏<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+&lt;!-- 这里的isShow是$scope中定义的属性 --&gt;
+&lt;p ng-show=&quot;isShow1&quot;&gt;{{ val }}&lt;/p&gt;
+&lt;p ng-show=&quot;isShow2&quot;&gt;{{ val }}&lt;/p&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+<h4 id="ng-repeat">ng-repeat</h4>
+<ul>
+<li>作用：遍历数组或对象，也可指定遍历次数</li>
+<li>注意：如果遍历的值存在相等的情况会报错，需要添加track by指定唯一key<ul>
+<li>因为ng-repeat会生成很多元素，数据一改变，所有元素又得重新解析渲染一遍<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+&lt;!-- 遍历数组 --&gt;
+&lt;ul&gt;
+&lt;!--   --&gt;
+&lt;!-- angular为了提高性能，会对数据进行比较，如果没有改变的元素不会重复编译生成  --&gt;
+&lt;!-- 但是这个优化需要给每个元素指定一个唯一key，默认这个key就是遍历到的值，key是不能重复的，重复报错  --&gt;
+&lt;li ng-repeat=&quot;val in list track by $index&quot;&gt;{{ val }}&lt;/li&gt;
+&lt;li ng-repeat=&quot;(i, val) in list track by i&quot;&gt;{{ i }}:{{ val }}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- 遍历对象 --&gt;
+&lt;ul&gt;
+&lt;li ng-repeat=&quot;val in obj&quot;&gt;{{ val }}&lt;/li&gt;
+&lt;li ng-repeat=&quot;(k, val) in obj&quot;&gt;{{ k }}:{{ val }}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="ng-class">ng-class</h4>
+<ul>
+<li>作用：动态设置或控制类名<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+&lt;!-- 一、字符串：通过$scope属性动态设置类名 --&gt;
+&lt;div ng-class=&quot;classes&quot;&gt;&lt;/div&gt;
+&lt;!-- 二、数组：通过$scope属性精确设置类名 --&gt;
+&lt;div ng-class=&quot;[ className1, className2 ]&quot;&gt;&lt;/div&gt;
+&lt;!-- 三、对象：通过$scope属性控制类名 --&gt;
+&lt;div ng-class=&quot;{ &#39;a&#39;: hasA: &#39;b&#39;: hasB, &#39;c&#39;: hasC }&quot;&gt;&lt;/div&gt;
+&lt;div ng-class=&quot;{ &#39;a b c&#39;: hasClass }&quot;&gt;&lt;/div&gt;
+&lt;div ng-class=&quot;{ [classes]: hasClass }&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+<h4 id="ng-">ng-事件</h4>
+<ul>
+<li>作用：元素事件绑定</li>
+<li>备注：如果回调需要事件对象，传入$event即可<pre><code class="lang-html">&lt;body ng-cloak ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+&lt;p&gt;{{ number }}&lt;/p&gt;
+&lt;button ng-click=&quot;add()&quot;&gt;点击add&lt;/button&gt;
+&lt;button ng-mousemove=&quot;add($event)&quot;&gt;移动add&lt;/button&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+<h6 id="-">常见事件</h6>
+<ul>
+<li>ng-click：点击</li>
+<li>ng-dblclick：双击</li>
+<li>ng-mousedown：鼠标按下</li>
+<li>ng-mouseup：鼠标放开</li>
+<li>ng-mouseenter：鼠标进入</li>
+<li>ng-mouseleave：鼠标离开</li>
+<li>ng-mousemove：鼠标移动</li>
+<li>ng-keydown：键盘按下</li>
+<li>ng-keyup：键盘放开</li>
+<li>ng-change：值发生改变</li>
+<li>ng-paste：表单粘贴</li>
+<li>ng-copy：表单复制</li>
+<li>ng-cut：表单剪切</li>
+<li>ng-submit：表单提交</li>
+</ul>
+<h4 id="ng-model">ng-model</h4>
+<ul>
+<li>通常网站会有一些需要用户填写并提交数据的表单，这个指令处理表单就是神器</li>
+<li>作用：表单与数据双向绑定，任意一方的值发生改变另一方跟着变<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+&lt;input type=&quot;text&quot; ng-model=&quot;val&quot; /&gt;
+&lt;input type=&quot;text&quot; ng-model=&quot;val&quot; /&gt;
+&lt;h1&gt;{{ val }}&lt;/h1&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+<h4 id="ng-include">ng-include</h4>
+<ul>
+<li>通过ajax的方式引入一段html作为子元素</li>
+<li>注意：重复加载同一个模版只会请求一次，因为Angular会自动缓存<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+&lt;header ng-include=&quot;tpl/header.tpl&quot;&gt;&lt;/header&gt;
+&lt;section ng-include=&quot;tpl/section.tpl&quot;&gt;&lt;/section&gt;
+&lt;section ng-include=&quot;tpl/section.tpl&quot;&gt;&lt;/section&gt;
+&lt;footer ng-include=&quot;tpl/footer.tpl&quot;&gt;&lt;/footer&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="-">特殊属性指令</h2>
+<h4 id="ng-src">ng-src</h4>
+<ul>
+<li>作用：主要是为了解决原生属性在配合Angular使用时存在的bug</li>
+<li>比如这样写<code>&lt;img src=&quot;{{ imgUrl }}&quot; /&gt;</code><ul>
+<li>浏览器首先会发起一个&#39;{{ imgUrl }}&#39;请求</li>
+<li>当DOM解析完毕后，Angular才会把imgUrl替换成正确的值</li>
+<li>这时候浏览器才会发起正确请求展示img</li>
+</ul>
+</li>
+<li>不足之处：访问$scope的属性，必须使用{{ }}表达式，不能直接使用属性名<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+&lt;!-- 一、如果不使用ng指令，那么浏览器会额外发起多余的{{ imgUrl }}请求 --&gt;
+&lt;img ng-src=&quot;{{ imgUrl }}&quot; /&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+<h4 id="ng-href">ng-href</h4>
+<ul>
+<li>作用：主要是为了解决原生属性在配合Angular使用时存在的bug</li>
+<li>不足之处：访问$scope的属性，必须使用{{ }}表达式，不能直接使用属性名<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+&lt;!-- 预防a标签点击时造成的页面刷新 --&gt;
+&lt;a ng-href=&quot;&quot;&gt;&lt;/a&gt;
+&lt;!-- 预防Angular解析未完成时，点击跳转到错误的url --&gt;
+&lt;a ng-href=&quot;{{ skipUrl }}&quot;&gt;&lt;/a&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="-">跃跃欲试</h2>
+<ul>
+<li>使用Angular需要改变我们开发应用的思维模式</li>
+<li>从以往的DOM操作转为数据操作，DOM交由Angular的指令去操作</li>
+</ul>
+<h4 id="-">加法计算器</h4>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+  &lt;input type=&quot;number&quot; ng-model=&quot;val1&quot; /&gt;
+  &lt;span&gt;+&lt;/span&gt;
+  &lt;input type=&quot;number&quot; ng-model=&quot;val2&quot; /&gt;
+  &lt;button ng-click=&quot;add()&quot;&gt;=&lt;/button&gt;
+  &lt;input type=&quot;number&quot; ng-model=&quot;sum&quot; /&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var App = angular.module(&#39;app&#39;, []);
+App.controller(&#39;appCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+  $scope.val1 = 0;
+  $scope.val2 = 0;
+  $scope.sum = 0;
+  $scope.add = function() {
+    this.sum = this.val1 + this.val2;
+  };
+}]);
+</code></pre>
+<h4 id="-">用户注册 - 主要功能实现</h4>
+<ul>
+<li>创建模块与控制器，关联视图</li>
+<li>初始化表单数据，使用ng-model实现双向绑定</li>
+<li><p>注册按钮事件绑定，点击时进行数据效验，给出不同提示</p>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.controller(&#39;registerCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+
+$scope.user = {
+  name: &#39;&#39;,
+  pwd: &#39;&#39;,
+  repeat_pwd: &#39;&#39;,
+  isAgree: false,
+  msg: &#39;&#39;
+};
+
+$scope.register = function() {
+
+  if(this.user.name.trim() == &#39;&#39;) {
+    this.user.msg = &#39;请输入用户名！&#39;;
+    return;
+  }
+
+  if(this.user.pwd.trim() == &#39;&#39;) {
+    this.user.msg = &#39;请输入密码！&#39;;
+    return;
+  }
+
+  if(this.user.pwd.trim() !== this.user.repeat_pwd.trim()) {
+    this.user.msg = &#39;两次密码输入不一致！&#39;;
+    return;
+  }
+
+  if(!this.user.isAgree) {
+    this.user.msg = &#39;您未同意注册协议！&#39;;
+    return;
+  }
+
+  // 打印最终结果
+  console.log(this.user);
+};
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-">用户注册 - 数据存储</h4>
+<ul>
+<li>注册验证通过后，按照常理我们应该请求接口把用户信息存储起来</li>
+<li>但是我们没有对应的接口，为了实现同样的功能</li>
+<li>所以我们利用localStorage把数据存储到本地以模拟接口的数据存取功能</li>
+<li>用户每次注册通过时，我们先读取本地数据，然后判断该用户是否已注册</li>
+<li>如已注册给出提示，未注册则保存数据</li>
+</ul>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.controller(&#39;registerCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+
+  $scope.user = {
+    name: &#39;&#39;,
+    pwd: &#39;&#39;,
+    repeat_pwd: &#39;&#39;,
+    isAgree: false,
+    msg: &#39;&#39;
+  };
+
+  $scope.register = function() {
+
+    if(this.user.name.trim() == &#39;&#39;) {
+      this.user.msg = &#39;请输入用户名！&#39;;
+      return;
+    }
+
+    if(this.user.pwd.trim() == &#39;&#39;) {
+      this.user.msg = &#39;请输入密码！&#39;;
+      return;
+    }
+
+    if(this.user.pwd.trim() !== this.user.repeat_pwd.trim()) {
+      this.user.msg = &#39;两次密码输入不一致！&#39;;
+      return;
+    }
+
+    if(!this.user.isAgree) {
+      this.user.msg = &#39;您未同意注册协议！&#39;;
+      return;
+    }
+
+    // 获取本地数据
+    var userList = JSON.parse(localStorage.getItem(&#39;userList&#39;)) || [];
+
+    // 用户名效验
+    for(var i = 0, len = userList.length; i &lt; len; i++) {
+      if(userList[i].name == this.user.name) {
+        this.user.msg = &#39;用户名已存在&#39;;
+        return;
+      }
+    }
+
+    // 通过效验则存储
+    userList.push({name: this.user.name, pwd: this.user.pwd});
+    localStorage.setItem(&#39;userList&#39;, JSON.stringify(userList));
+    this.user.msg = &#39;注册成功！&#39;;
+  };
+}]);
+</code></pre>
+<h2 id="-">服务</h2>
+<ul>
+<li>一些通用性的功能应该封装到服务中，以便复用</li>
+<li>定义好的服务可以在控制器中，过滤器中，自定义指令中以及其他服务中使用</li>
+<li>定义服务有好几种方式，不过都大同小异，这里使用factory方法来定义服务</li>
+</ul>
+<h4 id="-user-">封装user服务</h4>
+<ul>
+<li>把用户操作抽取出来，以便复用</li>
+<li>user服务提供三个方法<ul>
+<li>1、获取用户列表</li>
+<li>2、判断用户是否已存在</li>
+<li>3、添加新用户</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.factory(&#39;userSvic&#39;, [function() {
+    return {
+
+        // 从localStorage中提取数据
+        getUserList: function() {
+            return JSON.parse(localStorage.getItem(&#39;userList&#39;)) || [];
+        },
+
+        // 遍历用户列表，与传过来的name比较判断,
+        // 如果已注册，返回true，否则返回undefined
+        isRegistered: function(name) {
+            var userList = this.getUserList();
+            for(var i = 0, len = userList.length; i &lt; len; i++) {
+                if(userList[i].name === name) {
+                    return true;
+                }
+            }
+        },
+
+        // 把新的user对象添加到userList中，然后使用localStorage存储
+        addUser: function(user) {
+            var userList = this.getUserList();
+            userList.push(user);
+            localStorage.setItem(&#39;userList&#39;, JSON.stringify(userList));
+        }
+
+    };
+}]);
+</code></pre>
+<h4 id="-storage-">封装storage服务</h4>
+<ul>
+<li>因为localStorage存取值都必须是字符串，所以在使用时会有数据转换过程</li>
+<li>转换时可能还要处理因数据格式导致的转换错误，可以把这个过程进行封装</li>
+</ul>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.factory(&#39;storageSvic&#39;, [function() {
+  return {
+    set: function(key, data) {
+      try {
+        data = JSON.stringify(data);
+      }finally {
+        localStorage.setItem(key, data);
+      }
+    },
+    get: function(key) {
+      var data = localStorage.getItem(key);
+      try {
+          data = JSON.parse(data);
+      }finally {
+        return data;
+      }
+    }
+  };
+}]);
+</code></pre>
+<h2 id="-">指令</h2>
+<h4 id="-">作用</h4>
+<ul>
+<li>HTML在构建应用时存在诸多不足</li>
+<li>Angular通过扩展一系列的HTML属性或标签来增强HTML</li>
+<li>Angular内置了很多指令，也允许我们自定义指令</li>
+</ul>
+<h4 id="-">指令的种类与使用</h4>
+<ul>
+<li>属性指令<ul>
+<li>最常见使用最频繁的指令</li>
+<li>属性指令主要是为了封装重复的DOM操作</li>
+<li><code>&lt;p ng-show=&quot;true&quot;&gt;显不显示呢&lt;/p&gt;</code></li>
+</ul>
+</li>
+<li>标签指令<ul>
+<li>使用频率第二的指令</li>
+<li>标签指令主要是为了抽取页面中可复用的组件</li>
+<li><code>&lt;ng-view&gt;&lt;/ng-view&gt;</code></li>
+</ul>
+</li>
+<li>类名指令<ul>
+<li>操作拥有特定class的元素，不常用，属性指令可替代</li>
+<li><code>&lt;p class=&quot;指令名称&quot;&gt;操作我&lt;/p&gt;</code></li>
+</ul>
+</li>
+<li>注释指令<ul>
+<li>通过特定格式的注释使用，不常用，标签指令可替代</li>
+<li><code>&lt;!-- directive:指令名称 --&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="-">语法</h4>
+<ul>
+<li>和控制器的定义方式差不多，可以配置服务依赖与一个回调</li>
+<li>语法：模块.directive(name, [ 服务依赖..., function() { return config } ])</li>
+<li>命名规则<ul>
+<li>名字必须使用驼峰式命名</li>
+<li>使用时需要通过-分隔单词，主要是标签名与属性名</li>
+</ul>
+</li>
+<li>注意：使用指令不一定需要控制器，除非要实现数据动态化</li>
+</ul>
+<h2 id="-">初识不同类型指令</h2>
+<h4 id="-">属性指令</h4>
+<ul>
+<li>属性指令主要是为了操作DOM，一般不会替换元素的子节点</li>
+<li>这里的例子会替换元素子节点是因为实现比较简单</li>
+<li>目的是为了先让大家对不同类型的指令有个基本认识<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+  &lt;div ngl-tpl&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.directive(&#39;nglTpl&#39;, [function() {
+return {
+  // 配置指令类型：A:属性，E:标签，C:类名，M:注释
+  restrict: &#39;A&#39;,
+  // 替换元素innerHTML
+  template: &#39;&lt;p&gt;我是指令模版&lt;/p&gt;&#39;
+};
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-">元素指令</h4>
+<ul>
+<li>元素指令主要是为了封装可重复使用的组件，一般都有自己的html模版<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+  &lt;ngl-tpl&gt;&lt;/ngl-tpl&gt;
+  &lt;ngl-tpl2&gt;&lt;/ngl-tpl2&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.directive(&#39;nglTpl&#39;, [function() {
+return {
+  // 指令类型A:属性，E:标签，C:类名，M:注释
+  restrict: &#39;E&#39;,
+  // 替换元素innerHTML
+  template: &#39;&lt;p&gt;我是指令模版&lt;/p&gt;&#39;
+};
+}]);
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.directive(&#39;nglTpl2&#39;, [function() {
+return {
+  restrict: &#39;E&#39;,
+  template: &#39;&lt;section&gt;&lt;p&gt;我是指令模版&lt;/p&gt;&lt;p&gt;我是指令模版&lt;/p&gt;&lt;section/&gt;&#39;,
+  // 如果想把原来的元素覆盖掉，可以配置为true，
+  // 设为true之后模版必须使用一个根元素包裹起来，
+  // 建议设为true，防止自定义标签出现在DOM中
+  replace: true
+};
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-">类名指令</h4>
+<ul>
+<li>不常用，了解即可<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+  &lt;div class=&quot;a ngl-tpl c&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;a nglTpl c&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.directive(&#39;nglTpl&#39;, [function() {
+return {
+  // 配置指令类型：A:属性，E:标签，C:类名，M:注释
+  restrict: &#39;C&#39;,
+  // 替换元素innerHTML
+  template: &#39;&lt;p&gt;我是指令模版&lt;/p&gt;&#39;
+};
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-">注释指令</h4>
+<ul>
+<li>不常用，了解即可</li>
+<li>注意：注释指令必须配置replace为true<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+  &lt;!-- directive:ngl-tpl --&gt;
+  &lt;!-- directive:nglTpl --&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.directive(&#39;nglTpl&#39;, [function() {
+return {
+  // 配置指令类型：A:属性，E:标签，C:类名，M:注释
+  restrict: &#39;M&#39;,
+  // 替换元素innerHTML
+  template: &#39;&lt;p&gt;我是指令模版&lt;/p&gt;&#39;
+};
+}]);
+</code></pre>
+</li>
+</ul>
+<h2 id="-">案例</h2>
+<h4 id="-">自动焦点 - 属性指令</h4>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+  &lt;input type=&quot;text&quot; ngl-focus/&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.directive(&#39;nglFocus&#39;, [function() {
+  return {
+    restrict: &#39;A&#39;,
+    // 第一个参数为元素可使用的$scope对象
+    // 第二个参数为JQLite包装过的dom对象
+    // 第三个参数为元素身上的属性集合
+    link: function($scope, $ele, attrs) {
+      console.log(arguments);
+      $ele[0].focus();
+    }
+  };
+}]);
+</code></pre>
+<h4 id="-">拖拽 - 属性指令</h4>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+  &lt;button ngl-drag&gt;移动&lt;/button&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.directive(&#39;nglDrag&#39;, [function() {
+  return {
+    restrict: &#39;A&#39;,
+    link: function($scope, $ele, attrs) {
+      var $document = angular.element(document);
+      var initLeft = 0, initTop = 0, startX, startY;
+
+      // 鼠标按下监听事件
+      $ele.on(&#39;mousedown&#39;, function(event) {
+        event.preventDefault();
+
+        // 元素添加定位属性
+        $ele.css(&#39;position&#39;, &#39;relative&#39;);
+
+        // 获取元素移动前的left与top值
+        initLeft = parseInt($ele.css(&#39;left&#39;)) || 0;
+        initTop = parseInt($ele.css(&#39;top&#39;)) || 0;
+
+        // 记录鼠标按下的坐标
+        startX = event.pageX;
+        startY = event.pageY;
+
+        // 监听鼠标移动及放开事件
+        $document.on(&#39;mousemove&#39;, move);
+        $document.on(&#39;mouseup&#39;, up);
+      });
+
+      // 元素最终值 = 移动前的值 + 移动的距离
+      function move(event) {
+        $ele.css({
+          left:  initLeft + event.pageX  - startX + &#39;px&#39;,
+          top: initTop + event.pageY - startY + &#39;px&#39;
+        });
+      }
+
+      // 鼠标离开解除事件
+      function up() {
+        $document.off(&#39;mousemove&#39;, move);
+        $document.off(&#39;mouseup&#39;, up);
+      }
+    }
+  };
+}]);
+</code></pre>
+<h4 id="-">丑陋时钟 - 元素指令</h4>
+<ul>
+<li>封装好的元素指令与其他指令一样可以复用</li>
+<li><p>补充：如果自定义标签被覆盖，那么上面定义的属性会移植到模版根元素上</p>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+&lt;ngl-clock&gt;&lt;/ngl-clock&gt;
+&lt;ngl-clock style=&quot;color: red&quot;&gt;&lt;/ngl-clock&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.directive(&#39;nglClock&#39;, [function() {
+return {
+  restrict: &#39;E&#39;,
+  template: &#39;&lt;section&gt;&lt;/section&gt;&#39;,
+  replace: true,
+  link: function($scope, $ele, attrs) {
+
+    // 样式
+    $ele.css({
+      display: &#39;inline-block&#39;,
+      backgroundColor: &#39;skyblue&#39;
+    });
+
+    // 每秒刷新时间
+    var timerId = setInterval(function() {
+      $ele.html(new Date().toLocaleString());
+    }, 1000);
+
+    // 如果使用了定时器，最好监听元素的销毁事件，
+    // 销毁时取消定时器，否则会造成资源的浪费。
+    $ele.on(&#39;$destroy&#39;, function() {
+      clearInterval(timerId);
+    });
+  }
+};
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-">丑陋时钟操作数据实现 - 元素指令</h4>
+<ul>
+<li><p>时钟案例主要是操作数据，所以可以使用我们之前的方式实现</p>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+&lt;ngl-clock&gt;&lt;/ngl-clock&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.directive(&#39;nglClock&#39;, [&#39;$interval&#39;, function($interval) {
+return {
+  restrict: &#39;E&#39;,
+  template: &#39;&lt;section&gt;{{ time | date:&quot;当天时间:hh:mm:ss&quot;  }}&lt;/section&gt;&#39;,
+  replace: true,
+  link: function($scope, $ele, attrs) {
+
+    // 样式
+    $ele.css({
+      display: &#39;inline-block&#39;,
+      backgroundColor: &#39;skyblue&#39;
+    });
+
+    // 修改数据自动刷新视频
+    $scope.time = new Date();
+    var timerId = $interval(function() {
+      $scope.time = new Date();
+    }, 1000);
+
+    // 元素的销毁取消定时器，否则会造成资源浪费。
+    $ele.on(&#39;$destroy&#39;, function() {
+      $interval.cancel(timerId);
+    });
+  }
+};
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-">丑陋时钟控制器实现 - 元素指令</h4>
+<ul>
+<li>在自定义指令中有一个controller配置项，功能与使用和以前一样</li>
+<li>对于非DOM操作的业务逻辑，Angular建议我们放在controller当中</li>
+<li>现在这种写法，就是把咱们之前的视图与控制器使用一个指令封装在了一起，以便复用</li>
+<li><p>注意：这里因为使用了定时器，要获取元素监听销毁事件，所以给根标签加了个class</p>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+&lt;ngl-clock&gt;&lt;/ngl-clock&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.directive(&#39;nglClock&#39;, [&#39;$interval&#39;, function($interval) {
+return {
+  restrict: &#39;E&#39;,
+  template: &#39;&lt;section class=&quot;clock&quot;&gt;{{ time | date:&quot;当天时间:hh:mm:ss&quot;  }}&lt;/section&gt;&#39;,
+  replace: true,
+  link: function($scope, $ele, attrs) {
+    $ele.css({
+      display: &#39;inline-block&#39;,
+      backgroundColor: &#39;skyblue&#39;
+    });
+  },
+  controller: [&#39;$scope&#39;, function($scope) {
+
+    // 修改数据自动刷新视频
+    $scope.time = new Date();
+    var timerId = $interval(function() {
+      $scope.time = new Date();
+      console.log(1)
+    }, 1000);
+
+    // 元素的销毁取消定时器，否则会造成资源浪费。
+    $(&#39;.clock&#39;).on(&#39;$destroy&#39;, function() {
+      $interval.cancel(timerId);
+    });
+  }]
+};
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-">小结</h4>
+<ul>
+<li>服务是为了封装可复用的业务逻辑</li>
+<li>指令是为了封装可复用的dom操作或视图组件</li>
+<li>如果是dom操作，封装为属性指令</li>
+<li>如果是视图组件，封装为元素指令</li>
+</ul>
+<h2 id="-">指令作用域</h2>
+<ul>
+<li>这里作用域指的是指令可使用的$scope</li>
+<li>相信大家对指令使用的$scope来自哪里会有不少疑惑，下面就探究探究</li>
+</ul>
+<h4 id="-">默认情况</h4>
+<ul>
+<li>默认情况下指令自己没有单独的$scope</li>
+<li>在它里面使用的是父级$scope，这样容易出现误操作<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+  &lt;!-- 预期显示的10，结果被自定义指令给改写了 --&gt;
+  &lt;p&gt;{{ val }}&lt;/p&gt;
+  &lt;ngl-counter&gt;&lt;/ngl-counter&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.controller(&#39;appCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+ $scope.val = 10;
+}]);
+app.directive(&#39;nglCounter&#39;, [function() {
+return {
+  restrict: &#39;E&#39;,
+  template: &#39;&lt;p ng-click=&quot;add()&quot;&gt;{{ val }}&lt;/p&gt;&#39;,
+  controller: [&#39;$scope&#39;, function($scope) {
+    $scope.val = 0;
+    $scope.add = function() {
+      $scope.val++;
+    };
+  }]
+};
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-">配置单独作用域</h4>
+<ul>
+<li>如果不想和父作用域有任何瓜葛，可通过scope配置项来指定独立作用域</li>
+<li>配置：<code>scope: {}</code><pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.controller(&#39;appCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+ $scope.val = 10;
+}]);
+app.directive(&#39;nglCounter&#39;, [function() {
+return {
+    scope: {},
+  restrict: &#39;E&#39;,
+  template: &#39;&lt;p ng-click=&quot;add()&quot;&gt;{{ val }}&lt;/p&gt;&#39;,
+  controller: [&#39;$scope&#39;, function($scope) {
+    $scope.val = 0;
+    $scope.add = function() {
+      $scope.val++;
+    };
+  }]
+};
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-">单独作用域继承父作用域</h4>
+<ul>
+<li>如果不想修改父作用域的数据，但是又想访问父作用域的数据，也可以</li>
+<li>配置：<code>scope: true</code><pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.controller(&#39;appCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+ $scope.val = 10;
+}]);
+app.directive(&#39;nglCounter&#39;, [function() {
+return {
+    scope: true,
+  restrict: &#39;E&#39;,
+  template: &#39;&lt;p ng-click=&quot;add()&quot;&gt;{{ val }}&lt;/p&gt;&#39;,
+  controller: [&#39;$scope&#39;, function($scope) {
+    // 对象在取值时自己没有就会去继承的对象身上找,就找到了父$scope,
+    // 但是对象在赋值时自己没有就新增，有则修改，是不会修改继承对象的。
+    $scope.add = function() {
+      $scope.val++;
+    };
+  }]
+};
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-">小结</h4>
+<ul>
+<li>在创建自定义指令时，最好使用独立作用域</li>
+<li>优先配置scope：{}，其次配置scope：true</li>
+</ul>
+<h2 id="-">过滤器</h2>
+<h4 id="-">作用</h4>
+<ul>
+<li>在视图中，同一个数据可能在不同地方，需要以不同的格式或方式进行显示</li>
+<li>这种情况，我们需要在不同的地方对数据进行临时的格式转换</li>
+<li>并且你要确保这些临时性的数据转换不会伤及到原数据</li>
+<li>过滤器就是专门解决这类问题的</li>
+</ul>
+<h4 id="-">创建过滤器</h4>
+<ul>
+<li>和控制器的定义方式差不多，可以配置服务依赖与一个回调</li>
+<li>但是过滤器需要我们在回调中return另一个回调<ul>
+<li>原因是因为外面的回调需要通过配置接收一些服务依赖</li>
+<li>里面的回调负责接收来自模版的数据，对其进行加工处理</li>
+<li>然后把处理后的结果return，最终里面的回调return什么，模版上就渲染什么</li>
+</ul>
+</li>
+<li>语法：模块.filter(name, [ 服务依赖..., function() { return callback } ])</li>
+</ul>
+<h4 id="-">基本使用</h4>
+<ul>
+<li>模版语法：{{ value | filterName1 | filerName2 | ... }}</li>
+<li>备注：可以使用|做连接符使用任意多过滤器</li>
+<li>这样前一个过滤器的结果会交由下一个过滤器继续处理</li>
+</ul>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+  &lt;div&gt;{{ date | formatDate }}&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.filter(&#39;formatDate&#39;, [function() {
+    // 第一个值固定为模版中的数据，后面为用户指定的参数
+    return function(tplTime) {
+        var date = new Date(tplTime);
+        return date.getFullYear() + &#39;_&#39; + (date.getMonth() + 1) + &#39;_&#39; + date.getDate();
+    };
+}]);
+</code></pre>
+<h4 id="-">使用参数</h4>
+<ul>
+<li>模版语法：{{ value | filterName:&#39;arg1&#39;:&#39;arg2&#39;:... }}</li>
+<li>备注：可以使用:做连接符添加任意多参数</li>
+</ul>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+  &lt;div&gt;{{ date | formatDate:&#39;MM-DD-YYYY&#39; }}&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.filter(&#39;formatDate&#39;, [function() {
+
+    // 第一个值固定为模版中的数据，后面为用户指定的参数
+    return function(tplTime, format) {
+
+        // 分别得到模版日期对应的年月日
+        let date = new Date(tplTime);
+        let y = date.getFullYear();
+        let m = date.getMonth() + 1;
+        let d = date.getDate();
+
+        // 创建匹配年月日的三个不同正则
+        let yReg = /YYYY/i;
+        let mReg = /MM/i;
+        let dReg = /DD/i;
+
+        // 最后进行数据替换
+        return format.replace(yReg, y).replace(mReg, m).replace(dReg, d);
+    };
+}]);
+</code></pre>
+<h4 id="-js-">补充了解 - 在js中使用过滤器</h4>
+<ul>
+<li>大部分的过滤器都是在视图中使用的</li>
+<li>如果你需要，也可以利用$filter服务获取到指定的过滤器关键函数，然后在js中调用</li>
+</ul>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+  &lt;div&gt;{{ date }}&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.filter(&#39;formatDate&#39;, [function() {
+    return function(tplTime) {
+        var date = new Date(time);
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        var d = date.getDate();
+        return format.replace(&#39;YYYY&#39;, y).replace(&#39;MM&#39;, m).replace(&#39;DD&#39;, d);
+    };
+}]);
+// 配置$filter服务依赖，$filter本身是一个方法
+// 调用并传一个过滤器名称就会得到对应的过滤器函数
+// 然后你就可以在js中使用你想使用的过滤器函数了
+app.controller(&#39;appCtrl&#39;, [&#39;$scope&#39;, &#39;$filter&#39;,  function($scope, $filter) {
+    var formatDateFn = $filter(&#39;formatDate&#39;);
+    $scope.date = formatDateFn(Date.now(), &#39;DD-MM-YYYY&#39;));
+}]);
+</code></pre>
+<h2 id="-">内置过滤器</h2>
+<ul>
+<li>前面我们学会了如何去创建并使用过滤器</li>
+<li>实际上Angular已经帮我们内置了一些非常实用的过滤器</li>
+<li>有了它们在开发中又可以省不少力气</li>
+</ul>
+<h4 id="currency">currency</h4>
+<ul>
+<li>将数值格式化为货币格式</li>
+<li>可指定货币符号与保留的小数点位数，默认保留2位<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+  &lt;div&gt;{{ val | currency:&#39;￥&#39;:&#39;2&#39; }}&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+<h4 id="date">date</h4>
+<ul>
+<li>日期格式化，可以任意组合年月日时分秒以及毫秒</li>
+<li>年y、月M、日d、时h、分m、秒s、毫秒sss</li>
+<li>注意：因为月与分都是m，所以使用大小写进行区分<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+  &lt;div&gt;{{ val | date:&#39;yyyy-MM-dd hh:mm:ss:.sss&#39; }}&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+<h4 id="orderby">orderBy</h4>
+<ul>
+<li>对数组进行排序，一般配置ng-repeat使用</li>
+<li>第一个参数可以指定排序规则，值可以是字符串、数组</li>
+<li>第二个参数可以指定顺序，默认false从小到大，true从大到小</li>
+<li>了解：第一个参数还可以是数组按优先级指定多个关键字或函数动态设置关键字</li>
+</ul>
+<h6 id="-">普通排序</h6>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+    &lt;ul&gt;
+      &lt;!-- 从小到大 --&gt;
+      &lt;li ng-repeat=&quot;v in list | orderBy &quot;&gt;{{ v }}&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+      &lt;!-- 从大到小 --&gt;
+      &lt;li ng-repeat=&quot;v in list | orderBy:null:true &quot;&gt;{{ v }}&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.controller(&#39;appCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+  $scope.list = [11, 22, 33];
+}]);
+</code></pre>
+<h6 id="-">按属性及优先级排序</h6>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+    &lt;ul&gt;
+      &lt;!-- 按年龄排序 --&gt;
+      &lt;li ng-repeat=&quot;v in list | orderBy:&#39;age&#39; &quot;&gt;{{ v }}&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+      &lt;!-- 先按年龄排序，如果相等再按身高排序 --&gt;
+      &lt;li ng-repeat=&quot;v in list | orderBy:[&#39;age&#39;, &#39;height&#39;] &quot;&gt;{{ v }}&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.controller(&#39;appCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+  $scope.list = [
+      { name: &#39;小明&#39;, age: 16, height: 175 },
+      { name: &#39;小红&#39;, age: 15, height: 160 },
+      { name: &#39;小芳&#39;, age: 16, height: 165 }
+  ];
+}]);
+</code></pre>
+<h4 id="filter">filter</h4>
+<ul>
+<li>找出数组中符合规则的数据【过滤、搜索】</li>
+<li>需要一个参数指定要查找的关键字，值可以是字符串、对象</li>
+</ul>
+<h6 id="-">普通搜索</h6>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+    &lt;ul&gt;
+      &lt;!-- 搜索含有字符a的数据 --&gt;
+      &lt;li ng-repeat=&quot;v in list | filter:&#39;a&#39; &quot;&gt;{{ v }}&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.controller(&#39;appCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+  $scope.list = [&#39;aa&#39;, &#39;bb&#39;, &#39;cc&#39;, &#39;abc&#39;, &#39;cba&#39; ];
+}]);
+</code></pre>
+<h6 id="-">按属性值搜索</h6>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+    &lt;ul&gt;
+      &lt;!-- 搜索对象age属性值为16的数据 --&gt;
+      &lt;li ng-repeat=&quot;v in list | filter:{age: 16} &quot;&gt;{{ v }}&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.controller(&#39;appCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+  $scope.list = [
+      { name: &#39;小明&#39;, age: 16, height: 175 },
+      { name: &#39;小红&#39;, age: 15, height: 160 },
+      { name: &#39;小芳&#39;, age: 16, height: 165 }
+  ];
+}]);
+</code></pre>
+<h4 id="-">其他过滤器</h4>
+<ul>
+<li>number：类似于currency，只是没有货币符合</li>
+<li>json：将对象转为JSON字符串</li>
+<li>limitTo：截取数组字符串前几位或后几位</li>
+<li>lowercase：转小写字母</li>
+<li>uppercase：转大写字母</li>
+</ul>
+<h1 id="angular-route">angular-route</h1>
+<ul>
+<li>这是Angular官方提供的一个独立模块，称为插件也可以</li>
+<li>主要作用是通过url控制不同视图的加载，可实现单页面应用程序</li>
+</ul>
+<h2 id="-">单页面应用概念</h2>
+<ul>
+<li>单页面即网站只有一个页面框架主体<ul>
+<li>网站会根据url的变化按照一定规则</li>
+<li>以ajax的方式加载不同的视图，实现页面切换效果</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>页面切换仅仅是局部模版的替换，响应速度会提高</li>
+<li>省去了资源的重复加载，公共视图的重复刷新，脚本的重复执行</li>
+<li>更好的实现了与后端的分离，减轻了服务端渲染模版的压力</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>因为不同页面都是ajax加载的html模版片段，所以不利于SEO</li>
+</ul>
+</li>
+</ul>
+<h4 id="-">单页面应用演示</h4>
+<ul>
+<li>这里利用ng-include指令来演示单页面应用的概念<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+&lt;header&gt;公共头部&lt;/header&gt;
+&lt;main ng-include=&quot;pageUrl&quot;&gt;&lt;/main&gt;
+&lt;footer&gt;公共底部&lt;/footer&gt;
+&lt;button ng-click=&quot;changeUrl(&#39;tpl/index.html&#39;)&quot;&gt;首页&lt;/button&gt;
+&lt;button ng-click=&quot;changeUrl(&#39;tpl/login.html&#39;)&quot;&gt;登陆页&lt;/button&gt;
+&lt;button ng-click=&quot;changeUrl(&#39;tpl/register.html&#39;)&quot;&gt;注册页&lt;/button&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, [&#39;ngRoute&#39;]);
+app.controller(&#39;appCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+  $scope.pageUrl = &#39;tpl/index.html&#39;;
+  $scope.changeUrl = function(url) {
+    $scope.pageUrl = url;
+  };
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-">改进</h4>
+<ul>
+<li>上面的演示案例中，页面切换是通过按钮点击发起的</li>
+<li>在实际的项目中，页面的展现应该由url的变化而发起</li>
+<li>问题<ul>
+<li>普通的url发生改变时，浏览器会<strong>自动</strong>跳转到新的页面</li>
+<li>这个过程我们无法进行干预，那就无法实现单页面</li>
+</ul>
+</li>
+<li>解决<ul>
+<li>当页面的hash值发生变化时，浏览器是<strong>不会</strong>发生页面跳转的</li>
+<li>我们可以使用$scope.$on方法监听Angular的内置事件$locationChangeStart得知这个变化</li>
+<li>然后通过$location.$$path属性取得hash中的path信息，从而给用户展示不同的视图<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot; ng-controller=&quot;appCtrl&quot;&gt;
+&lt;header&gt;公共头部&lt;/header&gt;
+&lt;main ng-include=&quot;pageUrl&quot;&gt;&lt;/main&gt;
+&lt;footer&gt;公共底部&lt;/footer&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, [&#39;ngRoute&#39;]);
+app.controller(&#39;appCtrl&#39;, [&#39;$scope&#39;, &#39;$location&#39;, function($scope, $location) {
+// $scopehash变化时根据hash中的path动态切换页面
+$scope.$on(&#39;$locationChangeStart&#39;, function() {
+switch ($location.$$path) {
+  case &#39;/index&#39;:
+    $scope.pageUrl = &#39;tpl/index.html&#39;;
+    break;
+  case &#39;/login&#39;:
+    $scope.pageUrl = &#39;tpl/login.html&#39;;
+    break;
+  case &#39;/register&#39;:
+    $scope.pageUrl = &#39;tpl/register.html&#39;;
+    break;
+}
+});
+}]);
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="-">剖析</h2>
+<h4 id="hash-">hash由来</h4>
+<ul>
+<li>hash最初作用是，通过ID定位页面的元素，实现页面内的跳转</li>
+<li>最常见的使用场景都是点击a标签，跳转到页面指定位置，这时候页面hash会跟着变化</li>
+<li>除了点击a标签，我们手动在url中输入指定hash值也会自动跳转<pre><code class="lang-html">&lt;body&gt;
+  &lt;a href=&quot;#mother&quot;&gt;找妈妈&lt;/a&gt;
+  &lt;a href=&quot;#father&quot;&gt;找爸爸&lt;/a&gt;
+  &lt;ul&gt;
+      &lt;li&gt;小蝌蚪&lt;/li&gt;
+      &lt;li&gt;小蝌蚪&lt;/li&gt;
+      &lt;li&gt;小蝌蚪&lt;/li&gt;
+      &lt;li&gt;小蝌蚪&lt;/li&gt;
+      &lt;li id=&quot;mother&quot;&gt;青蛙妈妈&lt;/li&gt;
+      &lt;li&gt;小蝌蚪&lt;/li&gt;
+      &lt;li&gt;小蝌蚪&lt;/li&gt;
+      &lt;li&gt;小蝌蚪&lt;/li&gt;
+      &lt;li&gt;小蝌蚪&lt;/li&gt;
+      &lt;li id=&quot;father&quot;&gt;青蛙爸爸&lt;/li&gt;
+      &lt;li&gt;小蝌蚪&lt;/li&gt;
+      &lt;li&gt;小蝌蚪&lt;/li&gt;
+      &lt;li&gt;小蝌蚪&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
+</li>
+</ul>
+<h4 id="hash-">hash变化</h4>
+<ul>
+<li>在h5标准中，浏览器给window对象实现了一个hashchange事件</li>
+<li>当hash变化时这个事件就会触发，使用它实现单页面就方便多了</li>
+<li>示例：<a href="http://music.163.com">网易云音乐</a></li>
+<li>angular源码中就使用了该事件监听hash变化</li>
+<li>备注：如果没有该事件，我们也可以通过定时器，每隔一定时间检测url的变化<pre><code class="lang-html">&lt;body&gt;
+  &lt;a href=&quot;#mother&quot;&gt;找妈妈&lt;/a&gt;
+  &lt;a href=&quot;#father&quot;&gt;找爸爸&lt;/a&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">&lt;script type=&quot;text/javascript&quot;&gt;
+window.onhashchange = function() {
+ console.log(&#39;hash变化为:&#39; + location.hash);
+};
+&lt;/script&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="angular-route-">angular-route使用</h2>
+<ul>
+<li>该模块的功能可以认为是ng-include与$location的结合版</li>
+<li>可以通过配置的方式自动加载模版，模版还可以配置对应的控制器</li>
+<li>同时还提供了其他解析url参数的服务</li>
+</ul>
+<h4 id="-">基本使用</h4>
+<ul>
+<li>使用这个模块，我们只需配置好规则，剩下的交给模块自动去处理</li>
+<li>另外模块需要我们通过ng-view指令指定模版放置的位置</li>
+<li>配置<ul>
+<li>模块实例上有一个config方法，是专门用来配置的</li>
+<li>语法：<code>模块.config([ 依赖..., callback ])</code></li>
+<li>语法和其他模块方法类似，但是不需要名字，因为这是对模块功能的配置<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+&lt;header&gt;公共头部&lt;/header&gt;
+&lt;main ng-view&gt;&lt;/main&gt;
+&lt;footer&gt;公共底部&lt;/footer&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">// 创建主模块，并添加ngRoute依赖
+var app = angular.module(&#39;app&#39;, [&#39;ngRoute&#39;]);
+// 把配置路由所需的$routeProvider依赖引入进来，然后调用依赖提供的方法进行配置
+app.config([&#39;$routeProvider&#39;, function($routeProvider) {
+$routeProvider
+.when(&#39;/&#39;, {
+templateUrl: &#39;./tpl/index.html&#39;
+})
+.when(&#39;/index&#39;, {
+redirectTo: &#39;/&#39;
+})
+.when(&#39;/login&#39;, {
+templateUrl: &#39;./tpl/login.html&#39;
+})
+.when(&#39;/register&#39;, {
+templateUrl: &#39;./tpl/register.html&#39;
+})
+.otherwise({
+templateUrl: &#39;./tpl/404.html&#39;
+});
+}]);
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="-">添加控制器</h4>
+<ul>
+<li>编写业务逻辑或动态化数据可以配置控制器<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+&lt;header&gt;公共头部&lt;/header&gt;
+&lt;main ng-view&gt;&lt;/main&gt;
+&lt;footer&gt;公共底部&lt;/footer&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, [&#39;ngRoute&#39;]);
+app.config([&#39;$routeProvider&#39;, function($routeProvider) {
+  $routeProvider
+      .when(&#39;/&#39;, {
+        templateUrl: &#39;./tpl/index.html&#39;
+      })
+      .when(&#39;/login&#39;, {
+        templateUrl: &#39;./tpl/login.html&#39;,
+        controller: [&#39;$scope&#39;, function($scope) {
+          $scope.content = &#39;你是谁&#39;;
+        }]
+      })
+      .when(&#39;/register&#39;, {
+        templateUrl: &#39;./tpl/register.html&#39;,
+        controller: [&#39;$scope&#39;, function($scope) {
+          $scope.content = &#39;你叫啥&#39;;
+        }]
+      })
+      .otherwise({
+        templateUrl: &#39;./tpl/404.html&#39;,
+      });
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-">路由参数</h4>
+<ul>
+<li>之前我们访问过这样一个接口：<code>/api/delproduct/:id</code></li>
+<li>它把路径的一部分作为参数获取，然后返回不同的数据</li>
+<li>我们也可以配置这样的路由规则，最常见的场景就是不同id展示不同的信息</li>
+<li>配置完毕后，我们可以通过插件提供的$routeParams服务需要获取这些参数值<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+&lt;header&gt;公共头部&lt;/header&gt;
+&lt;main ng-view&gt;&lt;/main&gt;
+&lt;footer&gt;公共底部&lt;/footer&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, [&#39;ngRoute&#39;]);
+app.config([&#39;$routeProvider&#39;, function($routeProvider) {
+  $routeProvider
+    .when(&#39;/&#39;, {
+      templateUrl: &#39;./tpl/index.html&#39;
+    })
+    .when(&#39;/user/list/:id&#39;, {
+      templateUrl: &#39;./tpl/user_list.html&#39;,
+      controller: [&#39;$scope&#39;, &#39;$routeParams&#39;, function($scope, $routeParams) {
+        $scope.content = $routeParams.id;
+      }]
+    });
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-">路由事件</h4>
+<pre><code class="lang-javascript">app.controller(&#39;appCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+    $scope.$on(&#39;$routeChangeStart&#39;, function() {
+      console.log(&#39;跳转前&#39;);
+    });
+    $scope.$on(&#39;$routeChangeSuccess&#39;, function() {
+      console.log(&#39;跳转后&#39;);
+    });
+    $scope.$on(&#39;$viewContentLoaded&#39;, function() {
+      console.log(&#39;视图加载完毕&#39;);
+    });
+    $scope.$on(&#39;$routeChangeError&#39;, function() {
+      console.log(&#39;跳转失败&#39;);
+    });
+}]);
+</code></pre>
+<h2 id="-">汇总</h2>
+<h4 id="-routeprovider">$routeProvider</h4>
+<ul>
+<li>路由配置的服务</li>
+<li>when(url, config): 添加路由规则<ul>
+<li>config.redirectTo：重定向</li>
+<li>config.template： 字符串模版</li>
+<li>config.templateUrl： 模版路径</li>
+<li>config.controller：模版对应的控制器</li>
+</ul>
+</li>
+<li>otherwise: 路由不匹配的处理规则<ul>
+<li>一般配置一个404页面</li>
+</ul>
+</li>
+</ul>
+<h4 id="-routeparams">$routeParams</h4>
+<ul>
+<li>提取url参数的服务</li>
+</ul>
+<h4 id="-">事件</h4>
+<ul>
+<li>$routeChangeStart: 路由跳转前</li>
+<li>$routeChangeSuccess: 路由跳转后</li>
+<li>$viewContentLoaded: 视图加载完毕</li>
+<li>$routeChangeError: 路由跳转失败</li>
+</ul>
+<h2 id="-api">事件API</h2>
+<ul>
+<li>$scope上有三个事件相关的方法</li>
+<li>$on(e, arg1, arg2, ...): 监听事件</li>
+<li>$emit(eName, arg1, arg2, ...): 触发自身与所有父的自定义事件</li>
+<li>$broadcast(eName, arg1, arg2, ...): 触发自身与所有子的自定义事件</li>
+</ul>
+<h4 id="-emit">$emit</h4>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+    &lt;main ng-controller=&quot;mainCtrl&quot;&gt;
+        &lt;div ng-controller=&quot;divCtrl&quot;&gt;
+          &lt;button ng-click=&quot;parents()&quot;&gt;找爸爸&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/main&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, [&#39;ngRoute&#39;]);
+app.controller(&#39;mainCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+    $scope.$on(&#39;divEvent&#39;, function(e, msg) {
+      console.log(msg);
+    });
+}]);
+app.controller(&#39;divCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+    $scope.parents = function() {
+      $scope.$emit(&#39;divEvent&#39;, &#39;爸爸你在哪&#39;);
+    };
+}]);
+</code></pre>
+<h4 id="-broadcast">$broadcast</h4>
+<pre><code class="lang-html">&lt;body ng-app=&quot;app&quot;&gt;
+    &lt;main ng-controller=&quot;mainCtrl&quot;&gt;
+        &lt;button ng-click=&quot;find()&quot;&gt;找孙女&lt;/button&gt;
+        &lt;div ng-controller=&quot;divCtrl&quot;&gt;&lt;/div&gt;
+      &lt;/main&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, [&#39;ngRoute&#39;]);
+app.controller(&#39;mainCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+    $scope.find = function() {
+      $scope.$broadcast(&#39;mainEvent&#39;, &#39;孙女你在哪&#39;);
+    };
+}]);
+app.controller(&#39;divCtrl&#39;, [&#39;$scope&#39;, function($scope) {
+    $scope.$on(&#39;mainEvent&#39;, function(e, msg) {
+      console.log(msg);
+    });
+}]);
+</code></pre>
+<h2 id="angular">angular</h2>
+<h4 id="module">module</h4>
+<ul>
+<li>创建或获取模块<pre><code class="lang-javascript">angular.module(&#39;app&#39;, []); // 2参数创建
+angular.module(&#39;app&#39;); // 1参数获取
+</code></pre>
+</li>
+</ul>
+<h4 id="bootstrap">bootstrap</h4>
+<ul>
+<li>手动启动Angular应用<pre><code class="lang-javascript">angular.bootstrap(element);
+</code></pre>
+</li>
+</ul>
+<h4 id="element">element</h4>
+<ul>
+<li>传入一个dom包装成JQLite对象，是一个简化版的JQ对象</li>
+<li>功能较弱，不支持传入选择器，包装后可以使用常见的JQ方法与属性，</li>
+<li>提示：如果页面中提前引入了JQuery，那么Angular会自动检测替换为JQ对象<pre><code class="lang-javascript">var $body = angular.element(document.body);
+console.log($body);
+</code></pre>
+</li>
+</ul>
+<h4 id="lowercase">lowercase</h4>
+<ul>
+<li>字符串转小写<pre><code class="lang-javascript">angular.uppercase(&#39;AbCd&#39;); // abcd
+</code></pre>
+</li>
+</ul>
+<h4 id="uppercase">uppercase</h4>
+<ul>
+<li>字符串转大写<pre><code class="lang-javascript">angular.uppercase(&#39;AbCd&#39;); // ABCD
+</code></pre>
+</li>
+</ul>
+<h4 id="copy">copy</h4>
+<ul>
+<li><strong>复制</strong>数组或对象，得到一个<strong>新对象</strong></li>
+<li>内部深拷贝实现<ul>
+<li>深拷贝：遇到子对象递归拷贝子属性</li>
+<li>浅拷贝：遇到子对象直接拷贝对象地址<pre><code class="lang-javascript">var list = [ { name: &#39;小芳&#39;, age: 16 }, { name: &#39;小美&#39;, age: 16 } ];
+var cloneList = angular.copy(list);
+// false，是一个全新的list
+console.log(cloneList === list);
+// false，里面的每一个对象也是全新的
+console.log(cloneList[0] === list[0]);
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="merge">merge</h4>
+<ul>
+<li><strong>合并</strong>任意多对象的属性到一个<strong>指定</strong>对象身上</li>
+<li>merge和copy的区别是不会产生新对象，而是对旧对象的增强</li>
+<li>内部也是深拷贝实现<pre><code class="lang-javascript">var o = { a: 11 };
+var o1 = { b: 22 };
+var o2 = { c: 33 } };
+var list = [ { name: &#39;小芳&#39;, age: 16 }, { name: &#39;小美&#39;, age: 16 } ];
+// 把其他对象的属性全拿过来
+angular.merge(o, o1, o2, list);
+// false，是深拷贝实现的
+console.log(o[0] === list[0]);
+</code></pre>
+</li>
+</ul>
+<h4 id="extend">extend</h4>
+<ul>
+<li><strong>合并</strong>任意多对象的<strong>第一层</strong>属性到一个<strong>指定</strong>对象身上</li>
+<li>功能与merge一样，区别在于extend是浅拷贝<pre><code class="lang-javascript">var o = { a: 11 };
+var o1 = { b: 22 };
+var o2 = { c: 33 } };
+var list = [ { name: &#39;小芳&#39;, age: 16 }, { name: &#39;小美&#39;, age: 16 } ];
+// 把其他对象的第一层属性全拿过来
+angular.extend(o, o1, o2, list);
+// true，是浅拷贝实现的
+console.log(o[0] === list[0]);
+</code></pre>
+</li>
+</ul>
+<h4 id="foreach">forEach</h4>
+<ul>
+<li>数组或对象迭代方法<pre><code class="lang-javascript">angular.forEach([11, 22, 33], function(v, i, arr) {
+ console.log(v, i, arr);
+});
+angular.forEach({a: 11, b: 22, c: 33}, function(v, k, obj) {
+ console.log(v, k, obj);
+});
+</code></pre>
+</li>
+</ul>
+<h2 id="-">服务</h2>
+<ul>
+<li>用于封装功能的业务逻辑，以便复用</li>
+<li>定义好的服务可以在控制器，过滤器，自定义指令以及其他服务中复用</li>
+<li>定义服务有好几种方式，不过都大同小异</li>
+</ul>
+<h4 id="-">说明</h4>
+<ul>
+<li>服务被依赖时只会执行一次，然后服务的返回值会被Angular缓存</li>
+<li>后续其他地方在引入相同的服务时，会直接从缓存中取得服务所暴露的东西</li>
+</ul>
+<h4 id="factory-">factory方法</h4>
+<ul>
+<li>特点：必须要return一个返回值，否则报错</li>
+<li>在使用时return什么就会得到什么<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.factory(&#39;storageSvic&#39;, [function() {
+return {
+  set: function(key, data) {
+    try {
+      data = JSON.stringify(data);
+    }finally {
+      localStorage.setItem(key, data);
+    }
+  },
+  get: function(key) {
+    var data = localStorage.getItem(key);
+    try {
+        data = JSON.parse(data);
+    }finally {
+      return data;
+    }
+  }
+};
+</code></pre>
+</li>
+</ul>
+<h4 id="service-">service方法</h4>
+<ul>
+<li>特点：面向对象写法，里面给this添加属性方法</li>
+<li>在使用时会得到函数实例对象，this添加了什么就有什么<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.factory(&#39;storageSvic&#39;, [function() {
+  this.set = function(key, data) {
+    try {
+      data = JSON.stringify(data);
+    }finally {
+      localStorage.setItem(key, data);
+    }
+  };
+  this.get= function(key) {
+    var data = localStorage.getItem(key);
+    try {
+        data = JSON.parse(data);
+    }finally {
+      return data;
+    }
+  };
+};
+</code></pre>
+</li>
+</ul>
+<h4 id="value-">value方法</h4>
+<ul>
+<li>特点：用来定义共享数据的，不存在业务逻辑的编写<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.value(&#39;data&#39;, { a: 1, b: 2 });
+</code></pre>
+</li>
+</ul>
+<h4 id="constant-">constant方法</h4>
+<ul>
+<li>特点：与value一样，不过语义上是定义常量的</li>
+<li>通常会把那些不会改变的数据定义在这里，比如配置信息<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.constant(&#39;PI&#39;, 3.1415926);
+</code></pre>
+</li>
+</ul>
+<h2 id="-">内置服务</h2>
+<ul>
+<li>angular使用服务的方式已经为我们封装好了很多常用功能</li>
+</ul>
+<h4 id="-http">$http</h4>
+<ul>
+<li>专门用来发送http请求的服务，相当于JQ中的ajax</li>
+<li>区别1：成功与失败回调通过then方法来添加</li>
+<li>区别2：post请求默认发送的数据格式为JSON，如果发送formDate需要自己转</li>
+</ul>
+<h6 id="-http-">$http本身就是函数</h6>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.controller(&#39;registerCtrl&#39;, [&#39;$scope&#39;, &#39;$http&#39;, function($scope, $http) {
+  $http({
+    url: &#39;/xx/xxx&#39;,
+    method: &#39;post&#39;,
+    data: &#39;name:=小明&amp;age=15&#39;,
+    params: { pageindex: 1 },
+    headers: {
+      &#39;Content-Type&#39;:  &#39;application/x-www-form-urlencoded&#39;
+    }
+  }).then(function(resp) {
+        console.log(resp);
+  }, function(resp) {
+        console.log(resp);
+  });
+}]);
+</code></pre>
+<h6 id="-http-get-post-">$http还提供了get、post等快捷方法</h6>
+<pre><code class="lang-javascript">$http.get(url, config).then();
+$http.post(url, data, config).then();
+$http.jsonp(url, config).then();
+</code></pre>
+<h4 id="-location">$location</h4>
+<ul>
+<li>原生location对象的封装，区别是url部分计算方式不同</li>
+<li>相比location对象，他们的协议、域名、端口号是一样的</li>
+<li>但是path、search、hash不同，$location是从#!后面算起的<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.controller(&#39;registerCtrl&#39;, [&#39;$scope&#39;, &#39;$location&#39;, function($scope, $location) {
+  console.log($location);
+}]);
+</code></pre>
+</li>
+</ul>
+<h6 id="-location-">$location常用属性</h6>
+<ul>
+<li>$$absUrl：绝对路径，等价于location.href</li>
+<li>$$protocol：协议，等价于location.protocol</li>
+<li>$$host：主机名，等价于location.hostname</li>
+<li>$$port：端口，等价于location.port</li>
+<li>$$path：路径，从#!后面获取，?前面的东西</li>
+<li>$$search：查询字符串，从#!后面获取，?后面#号前面的东西，已解析为对象</li>
+<li>$$hash：哈希值，从#!后面获取，#号后面的东西</li>
+</ul>
+<h6 id="-location-">$location常用方法</h6>
+<ul>
+<li>url：可同时设置path、search、hash<ul>
+<li><code>$location.url(&#39;?a=1&amp;b=2#123&#39;)</code></li>
+</ul>
+</li>
+<li>path：只设置path，添加?或者#号会自动转义<ul>
+<li><code>$location.path(&#39;/teacher&#39;)</code></li>
+</ul>
+</li>
+<li>search：只设置search，无需添加?号，添加会自动转义<ul>
+<li>字符串方式：<code>$location.search(&#39;pageindex=1&#39;)</code></li>
+<li>对象配置方式：<code>$location.search({ pageindex: 1 })</code></li>
+<li>键值方式：<code>$location.search(&#39;pageindex&#39;, 1)</code></li>
+</ul>
+</li>
+<li>hash：只设置hash，无需添加#号，添加会自动转义<ul>
+<li><code>$location.hash(&#39;123&#39;)</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="-timeout-interval">$timeout与$interval</h4>
+<ul>
+<li>原生的定时器改变数据后，angular是无法检测到的，造成视图不刷新</li>
+<li><p>这两方法是对原生方法的封装，使用方式一样，就是为了解决上诉问题的</p>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.controller(&#39;registerCtrl&#39;, [&#39;$scope&#39;, &#39;$interval&#39;, function($scope, $interval) {
+ $scope.val = 123;
+
+ // 定时器使用
+ var timerID = $interval(function() {
+    $scope.val++;
+ }, 500);
+
+ // 取消定时器
+ $interval.cancel(timerID);
+}]);
+</code></pre>
+</li>
+</ul>
+<h4 id="-log">$log</h4>
+<pre><code class="lang-javascript">var app = angular.module(&#39;app&#39;, []);
+app.controller(&#39;registerCtrl&#39;, [&#39;$scope&#39;, &#39;$log&#39;, function($scope, $log) {
+  var obj = {a: 1, b:2};
+  // 普通log
+  $log.log(obj);
+  // 低级别错误log
+  $log.info(obj);
+  // 中级别错误log
+  $log.warn(obj);
+  // 高级别错误log
+  $log.error(obj);
+}]);
+</code></pre>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>

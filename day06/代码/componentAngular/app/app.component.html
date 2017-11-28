@@ -1,0 +1,10 @@
+<main>
+    <!-- 使用头部子组件, []里面的title需要和子组件里面的属性一致,=号右边的和当前组件里属性一致 -->
+    <app-header [title]="title" [msg]="content"></app-header>
+    <input type="text" [(ngModel)]="title">
+
+    <!-- 实现数据子传父的方式1: 父给子提供一个方法, 子调用的时候给父使用 -->
+    <app-footer [fn]="toFooterFn"></app-footer>
+
+    <app-aside (sonEvent)="sonEvenHandler($event)"></app-aside>
+</main>
